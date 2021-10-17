@@ -14,6 +14,8 @@ export interface IDropDownFilter {
 }
 
 const DropDownFilter: React.FC<IDropDownFilter> = (props: IDropDownFilter): JSX.Element => {
+  const renderFilterOption = (options: string[]) => options.map((option: string) => <ListItem>{option}</ListItem>);
+
   return (
     <DropDownContainer>
       <DropDownHeader>
@@ -21,11 +23,7 @@ const DropDownFilter: React.FC<IDropDownFilter> = (props: IDropDownFilter): JSX.
         <img className="drop-down-arrow" src={dropDownArrow}></img>
       </DropDownHeader>
       <DropDownListContainer>
-        <DropDownList>
-          {props.filterOptions.map((option) => (
-            <ListItem>{option}</ListItem>
-          ))}
-        </DropDownList>
+        <DropDownList>{renderFilterOption(props.filterOptions)}</DropDownList>
       </DropDownListContainer>
     </DropDownContainer>
   );

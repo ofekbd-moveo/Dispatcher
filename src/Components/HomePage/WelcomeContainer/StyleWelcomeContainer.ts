@@ -1,25 +1,16 @@
 import styled from "styled-components";
 
 export const StyleWelcomeContainer = styled.div`
-    & .welcome-title{
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 48px;
-        line-height: 22px;
-        display: flex;
-        align-items: center;
-        letter-spacing: 0.25px;
-
-        color: #5A5A89;
-    }
-    & .app-description{
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-style: normal;
-        font-weight: 200;
-        font-size: 36px;
-        line-height: 50px;
-        letter-spacing: 0.25px;
-        color: #5A5A89;
-    }
+  & .welcome-title {
+    font-weight: 300;
+    font-size: 3rem;
+    letter-spacing: 0.015625rem;
+    color: #5a5a89;
+  }
+  & .app-description {
+    font-weight: 200;
+    font-size: 2.25rem;
+    letter-spacing: 0.015625rem;
+    color: #5a5a89;
+  }
 `;

@@ -11,7 +11,7 @@ export const DropDownHeader = styled.div`
   font-weight: 600;
   border-radius: 10px;
   border: none;
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0.25px;
   color: #5a5a89;
   padding: 15px;
@@ -48,16 +48,15 @@ export const DropDownListContainer = styled.div`
 export const DropDownList = styled.ul`
   list-style-type: none;
   padding: 6px 0;
-  margin: 0;
 `;
 
 export const ListItem = styled.li`
-  height: 28px;
+  height: 1.75rem;
   padding: 10.5px 24px;
   font-family: "Mulish", sans-serif;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 50%;
-  letter-spacing: 0.1px;
+  letter-spacing: 0.00625rem;
   &:hover {
     background: rgba(223, 224, 235, 0.41);
   }

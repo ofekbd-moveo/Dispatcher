@@ -16,7 +16,7 @@ const Template: Story<IButton> = (args) => <ButtonContainer {...args} />;
 export const DEFAULT = Template.bind({});
 DEFAULT.args = {
   className: undefined,
-  withArrow: true,
+  isArrowVisible: true,
   content: "DEFAULT",
   onClickHander: () => console.log("DEFAULT clicked!"),
 };
@@ -24,7 +24,7 @@ DEFAULT.args = {
 export const PRIMERY = Template.bind({});
 PRIMERY.args = {
   className: buttonType.PRIMARY,
-  withArrow: true,
+  isArrowVisible: true,
   content: "PRIMERY",
   onClickHander: () => console.log("PRIMERY clicked!"),
 };
@@ -32,7 +32,7 @@ PRIMERY.args = {
 export const SECONDERY = Template.bind({});
 SECONDERY.args = {
   className: buttonType.SECONDARY,
-  withArrow: false,
+  isArrowVisible: false,
   content: "SECONDERY",
   onClickHander: () => console.log("SECONDERY clicked!"),
 };
@@ -40,7 +40,7 @@ SECONDERY.args = {
 export const TEXT = Template.bind({});
 TEXT.args = {
   className: buttonType.TEXT,
-  withArrow: false,
+  isArrowVisible: false,
   content: "TEXT",
   onClickHander: () => console.log("TEXT clicked!"),
 };

@@ -13,20 +13,20 @@ const WelcomeContainer: React.FC = (): JSX.Element => {
       <StyleDivider />
       <ButtonContainer
         className={buttonType.PRIMARY}
-        withArrow={true}
+        isArrowVisible={true}
         content="CONTINUE"
         onClickHander={() => console.log("CONTINUE clicked!")}
       />
-      <ButtonContainer withArrow={true} content="PRIMARY" onClickHander={() => console.log("PRIMARY clicked!")} />
+      <ButtonContainer isArrowVisible={true} content="PRIMARY" onClickHander={() => console.log("PRIMARY clicked!")} />
       <ButtonContainer
         className={buttonType.SECONDARY}
-        withArrow={false}
+        isArrowVisible={false}
         content="SECONDARY"
         onClickHander={() => console.log("SECONDARY clicked!")}
       />
       <ButtonContainer
         className={buttonType.TEXT}
-        withArrow={false}
+        isArrowVisible={false}
         content="TEXT"
         onClickHander={() => console.log("TEXT clicked!")}
       />
