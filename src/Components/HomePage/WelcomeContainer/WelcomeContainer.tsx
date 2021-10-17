@@ -1,6 +1,6 @@
 import { StyleWelcomeContainer } from "./StyleWelcomeContainer";
 import StyleDivider from "../../Common/Divider/StyleDivider";
-import ButtonContainer from "../../Common/Button/ButtonContainer";
+import Button from "../../Common/Button/Button";
 import { buttonType } from "../../Common/types";
 
 const WelcomeContainer: React.FC = (): JSX.Element => {
@@ -11,20 +11,20 @@ const WelcomeContainer: React.FC = (): JSX.Element => {
         Locate articles and breaking news headlines from news sources and blogs across the web
       </p>
       <StyleDivider />
-      <ButtonContainer
+      <Button
         className={buttonType.PRIMARY}
         isArrowVisible={true}
         content="CONTINUE"
         onClickHander={() => console.log("CONTINUE clicked!")}
       />
-      <ButtonContainer isArrowVisible={true} content="PRIMARY" onClickHander={() => console.log("PRIMARY clicked!")} />
-      <ButtonContainer
+      <Button isArrowVisible={true} content="PRIMARY" onClickHander={() => console.log("PRIMARY clicked!")} />
+      <Button
         className={buttonType.SECONDARY}
         isArrowVisible={false}
         content="SECONDARY"
         onClickHander={() => console.log("SECONDARY clicked!")}
       />
-      <ButtonContainer
+      <Button
         className={buttonType.TEXT}
         isArrowVisible={false}
         content="TEXT"

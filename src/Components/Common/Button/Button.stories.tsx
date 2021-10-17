@@ -1,17 +1,17 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import ButtonContainer, { IButton } from "./ButtonContainer";
+import Button, { IButton } from "./Button";
 import { buttonType } from "../../Common/types";
 // Note 1: title must be unique.
 // Note 2 : 'as Meta' for TS
 
 export default {
-  component: ButtonContainer,
+  component: Button,
   title: "Components/Button",
 } as Meta;
 
 // args in TS way
-const Template: Story<IButton> = (args) => <ButtonContainer {...args} />;
+const Template: Story<IButton> = (args) => <Button {...args} />;
 
 export const DEFAULT = Template.bind({});
 DEFAULT.args = {

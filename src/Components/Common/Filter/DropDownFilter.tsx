@@ -13,17 +13,17 @@ export interface IDropDownFilter {
   filterOptions: string[];
 }
 
-const DropDownFilter: React.FC<IDropDownFilter> = (props: IDropDownFilter): JSX.Element => {
+const DropDownFilter: React.FC<IDropDownFilter> = ({ category, filterOptions }: IDropDownFilter): JSX.Element => {
   const renderFilterOption = (options: string[]) => options.map((option: string) => <ListItem>{option}</ListItem>);
 
   return (
     <DropDownContainer>
       <DropDownHeader>
-        <span>{props.category}</span>
+        <span>{category}</span>
         <img className="drop-down-arrow" src={dropDownArrow}></img>
       </DropDownHeader>
       <DropDownListContainer>
-        <DropDownList>{renderFilterOption(props.filterOptions)}</DropDownList>
+        <DropDownList>{renderFilterOption(filterOptions)}</DropDownList>
       </DropDownListContainer>
     </DropDownContainer>
   );
