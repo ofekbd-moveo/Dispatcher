@@ -18,11 +18,11 @@ export const DropDownHeader = styled.div`
   background: white;
   display: inline-flex;
   justify-content: space-between;
+  margin-bottom: 6.5px;
 
   &.drop-down-arrow {
     width: 6.96px;
     height: 13.93px;
-    margin-right: 5px;
   }
 `;
 
@@ -32,7 +32,7 @@ export const DropDownListContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
-  overflow-x: scroll;
+  overflow-x: overlay;
 
   &::-webkit-scrollbar {
     background: none;

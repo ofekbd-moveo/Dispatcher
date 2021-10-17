@@ -10,13 +10,12 @@ export interface IFilter {
 }
 
 const Filter: React.FC<IFilter> = (props: IFilter): JSX.Element => {
-  const dropDwonList = <DropDownFilter category={props.category} dataList={props.dataList} />;
-
+  const dropDownList = <DropDownFilter category={props.category} dataList={props.dataList} />;
   const optionList = <DropDownFilter category={props.category} dataList={props.dataList} />;
 
   switch (props.type) {
     case FilterType.DROPDWON_LIST:
-      return dropDwonList;
+      return dropDownList;
 
     case FilterType.OPTION_LIST:
       return optionList;
