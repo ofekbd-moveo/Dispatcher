@@ -6,11 +6,11 @@ import {
   DropDownList,
   ListItem,
 } from "./DropDownFilterStyle";
-import dropDownArrow from "../../../images/dropDownArrow.svg";
+import dropDownArrow from "../../../Utils/assets/dropDownArrow.svg";
 
 export interface IDropDownFilter {
   category: string;
-  dataList: string[];
+  filterOptions: string[];
 }
 
 const DropDownFilter: React.FC<IDropDownFilter> = (props: IDropDownFilter): JSX.Element => {
@@ -22,7 +22,7 @@ const DropDownFilter: React.FC<IDropDownFilter> = (props: IDropDownFilter): JSX.
       </DropDownHeader>
       <DropDownListContainer>
         <DropDownList>
-          {props.dataList.map((option) => (
+          {props.filterOptions.map((option) => (
             <ListItem>{option}</ListItem>
           ))}
         </DropDownList>

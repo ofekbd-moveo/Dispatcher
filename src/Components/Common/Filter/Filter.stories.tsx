@@ -19,12 +19,12 @@ export const DROPDOWN = Template.bind({});
 DROPDOWN.args = {
   type: FilterType.DROPDWON_LIST,
   category: "country",
-  dataList: countries,
+  filterOptions: countries,
 };
 
 export const OPTION_LIST = Template.bind({});
 OPTION_LIST.args = {
   type: FilterType.OPTION_LIST,
   category: "country",
-  dataList: ["Israel", "Paris", "London"],
+  filterOptions: ["Israel", "Paris", "London"],
 };

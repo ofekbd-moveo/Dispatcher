@@ -6,12 +6,12 @@ import { FilterType } from "../../Common/types";
 export interface IFilter {
   type: FilterType;
   category: string;
-  dataList: string[];
+  filterOptions: string[];
 }
 
 const Filter: React.FC<IFilter> = (props: IFilter): JSX.Element => {
-  const dropDownList = <DropDownFilter category={props.category} dataList={props.dataList} />;
-  const optionList = <DropDownFilter category={props.category} dataList={props.dataList} />;
+  const dropDownList = <DropDownFilter category={props.category} filterOptions={props.filterOptions} />;
+  const optionList = <DropDownFilter category={props.category} filterOptions={props.filterOptions} />;
 
   switch (props.type) {
     case FilterType.DROPDWON_LIST:
