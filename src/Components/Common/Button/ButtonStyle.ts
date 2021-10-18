@@ -21,11 +21,11 @@ export const ButtonStyle = styled.button`
 
   &.secondary {
     background: #d9dbe9;
-    letter-spacing: 0.25px;
+    letter-spacing: 0.015625rem;
     text-transform: uppercase;
     color: #5a5a89;
     border-radius: 20px;
-    width: 98px;
+    width: 110px;
   }
 
   &.text {

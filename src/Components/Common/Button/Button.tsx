@@ -10,7 +10,7 @@ export interface IButton {
   onClickHander: () => void;
 }
 
-const ButtonContainer: React.FC<IButton> = (props: IButton): JSX.Element => {
+const Button: React.FC<IButton> = (props: IButton): JSX.Element => {
   return (
     <ButtonStyle className={props.className}>
       {props.content}
@@ -19,4 +19,4 @@ const ButtonContainer: React.FC<IButton> = (props: IButton): JSX.Element => {
   );
 };
 
-export default ButtonContainer;
+export default Button;
