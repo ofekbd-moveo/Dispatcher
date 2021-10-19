@@ -4,6 +4,8 @@ import Filter from "./Components/Common/Filter/Filer";
 import { FilterType } from "../src/Components/Common/types";
 import { ICard } from "./Components/Common/types";
 import CardList from "./Components/Card/CardList";
+import Search from "./Components/Search/Search";
+import TopBar from "./Components/TopBar/TopBar";
 
 const App = (): JSX.Element => {
   const countriesMock: string[] = ["Israel", "France", "London", "Germany", "Greece"];
@@ -48,6 +50,8 @@ const App = (): JSX.Element => {
   const cardsMock: ICard[] = [card1Mock, card2Mock, card3Mock];
   return (
     <div>
+      <TopBar />
+      <Search />
       <CardList cards={cardsMock}></CardList>
       <WelcomeContainer />
       <Filter type={FilterType.DROPDWON_LIST} category="Country" filterOptions={countriesMock}></Filter>
