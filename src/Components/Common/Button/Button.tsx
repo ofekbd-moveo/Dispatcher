@@ -7,16 +7,16 @@ export interface IButton {
   className?: buttonType;
   isArrowVisible: boolean;
   content: string;
-  onClickHander: () => void;
+  onClickHandler: () => void;
 }
 
-const ButtonContainer: React.FC<IButton> = (props: IButton): JSX.Element => {
+const Button: React.FC<IButton> = (props: IButton): JSX.Element => {
   return (
     <ButtonStyle className={props.className}>
       {props.content}
-      {props.isArrowVisible && <img className="arrow-right" src={arrowRight} onClick={props.onClickHander} />}
+      {props.isArrowVisible && <img className="arrow-right" src={arrowRight} onClick={props.onClickHandler} />}
     </ButtonStyle>
   );
 };
 
-export default ButtonContainer;
+export default Button;
