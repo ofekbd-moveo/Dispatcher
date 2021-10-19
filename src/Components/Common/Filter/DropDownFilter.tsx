@@ -14,7 +14,8 @@ export interface IDropDownFilter {
 }
 
 const DropDownFilter: React.FC<IDropDownFilter> = ({ category, filterOptions }: IDropDownFilter): JSX.Element => {
-  const renderFilterOption = (options: string[]) => options.map((option: string) => <ListItem>{option}</ListItem>);
+  const renderFilterOption = (options: string[]) =>
+    options.map((option: string, key: number) => <ListItem key={key}>{option}</ListItem>);
 
   return (
     <DropDownContainer>
