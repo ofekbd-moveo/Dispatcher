@@ -15,20 +15,20 @@ const WelcomeContainer: React.FC = (): JSX.Element => {
         className={buttonType.PRIMARY}
         isArrowVisible={true}
         content="CONTINUE"
-        onClickHander={() => console.log("CONTINUE clicked!")}
+        onClickHandler={() => console.log("CONTINUE clicked!")}
       />
-      <Button isArrowVisible={true} content="PRIMARY" onClickHander={() => console.log("PRIMARY clicked!")} />
+      <Button isArrowVisible={true} content="PRIMARY" onClickHandler={() => console.log("PRIMARY clicked!")} />
       <Button
         className={buttonType.SECONDARY}
         isArrowVisible={false}
         content="SECONDARY"
-        onClickHander={() => console.log("SECONDARY clicked!")}
+        onClickHandler={() => console.log("SECONDARY clicked!")}
       />
       <Button
         className={buttonType.TEXT}
         isArrowVisible={false}
         content="TEXT"
-        onClickHander={() => console.log("TEXT clicked!")}
+        onClickHandler={() => console.log("TEXT clicked!")}
       />
     </StyleWelcomeContainer>
   );

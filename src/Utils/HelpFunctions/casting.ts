@@ -1,4 +1,4 @@
-import dateFormat, { masks } from "dateformat";
+import dateFormat from "dateformat";
 
 export const convertDate = (dateText: string): string => {
   const date = new Date(dateText);

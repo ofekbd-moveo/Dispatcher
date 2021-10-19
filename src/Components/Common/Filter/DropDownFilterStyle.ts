@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Colors } from "../types";
 
 export const DropDownContainer = styled.div`
   width: 190px;
@@ -7,13 +8,13 @@ export const DropDownHeader = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 47px;
-  font-weight: 600;
+  height: 2.9375rem;
+  font-weight: 500;
   border-radius: 10px;
   border: none;
   font-size: 0.875rem;
-  letter-spacing: 0.25px;
-  color: #5a5a89;
+  letter-spacing: 0.015625rem;
+  color: ${Colors.PURPLE_BLUE};
   padding: 15px;
   background: white;
   display: inline-flex;
@@ -28,8 +29,8 @@ export const DropDownHeader = styled.div`
 
 export const DropDownListContainer = styled.div`
   width: 100%;
-  height: 126px;
-  background: #ffffff;
+  max-height: 7.875rem;
+  background: ${Colors.WHITE};
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
   overflow-x: overlay;
@@ -41,7 +42,7 @@ export const DropDownListContainer = styled.div`
 
   &::-webkit-scrollbar-thumb {
     border-radius: 6px;
-    background-color: #5a5a89;
+    background-color: ${Colors.PURPLE_BLUE};
   }
 `;
 
@@ -51,13 +52,14 @@ export const DropDownList = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  height: 1.75rem;
+  height: fit-content;
   padding: 10.5px 24px;
   font-family: "Mulish", sans-serif;
   font-size: 0.75rem;
-  line-height: 50%;
+  line-height: 0.75rem;
   letter-spacing: 0.00625rem;
   &:hover {
     background: rgba(223, 224, 235, 0.41);
+    cursor: pointer;
   }
 `;

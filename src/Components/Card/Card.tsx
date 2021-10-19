@@ -1,36 +1,29 @@
 import { CardContainer, Title, Image, Description, Date, Source, ContentContainer } from "./CardStyle";
-import { convertDate } from "../../Utils/HelpFunctions/casting";
 import TagList from "../Common/Tags/TagList";
 import Button from "../Common/Button/Button";
-import { buttonType } from "../Common/types";
-export interface ICard {
-  title: string;
-  imageUrl: string;
-  description: string;
-  publishedAt: string;
-  tags: string[];
-  source: string;
-  dispacherLink: string;
-}
+import { buttonType, ICard } from "../Common/types";
+import { convertDate } from "../../Utils/HelpFunctions/casting";
 
 const Card = (props: ICard): JSX.Element => {
+  const { title, imageUrl, description, publishedAt, tags, source, dispacherLink } = props;
   const navigateToDispacher = () => window.location.replace(props.dispacherLink);
+  const navBtnTitle = "NAVIGATE TO DISPATCH";
 
   return (
     <CardContainer>
-      <Image src={props.imageUrl}></Image>
+      <Image src={imageUrl}></Image>
 
       <ContentContainer>
-        <Date>{convertDate(props.publishedAt)}</Date>
-        <TagList tags={props.tags} />
-        <Title>{props.title}</Title>
-        <Source>{props.source}</Source>
-        <Description>{props.description}</Description>
+        <Date>{convertDate(publishedAt)}</Date>
+        <TagList tags={tags} />
+        <Title>{title}</Title>
+        <Source>{source}</Source>
+        <Description>{description}</Description>
         <Button
           className={buttonType.PRIMARY}
-          isArrowVisible={true}
-          content={"NAVIGATE TO DISPATCH"}
-          onClickHander={navigateToDispacher}
+          isArrowVisible
+          content={navBtnTitle}
+          onClickHandler={navigateToDispacher}
         ></Button>
       </ContentContainer>
     </CardContainer>

@@ -1,12 +1,12 @@
-import { nextKeyIndex } from "../../Utils/HelpFunctions/generators";
-import Card, { ICard } from "./Card";
+import Card from "./Card";
+import { ICard } from "../Common/types";
 import { CardsContainer } from "./CardListStyle";
 
 const CardList = ({ cards }: { cards: ICard[] }): JSX.Element => {
   const renderCardList = (cards: ICard[]) =>
-    cards.map((card: ICard) => (
+    cards.map((card: ICard, key: number) => (
       <Card
-        key={nextKeyIndex()}
+        key={key}
         title={card.title}
         imageUrl={card.imageUrl}
         description={card.description}

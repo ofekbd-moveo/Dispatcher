@@ -2,7 +2,7 @@ import "./App.css";
 import WelcomeContainer from "./Components/HomePage/WelcomeContainer/WelcomeContainer";
 import Filter from "./Components/Common/Filter/Filer";
 import { FilterType } from "../src/Components/Common/types";
-import Card, { ICard } from "./Components/Card/Card";
+import { ICard } from "./Components/Common/types";
 import CardList from "./Components/Card/CardList";
 
 const App = (): JSX.Element => {
@@ -48,9 +48,9 @@ const App = (): JSX.Element => {
   const cardsMock: ICard[] = [card1Mock, card2Mock, card3Mock];
   return (
     <div>
+      <CardList cards={cardsMock}></CardList>
       <WelcomeContainer />
       <Filter type={FilterType.DROPDWON_LIST} category="Country" filterOptions={countriesMock}></Filter>
-      <CardList cards={cardsMock}></CardList>
     </div>
   );
 };

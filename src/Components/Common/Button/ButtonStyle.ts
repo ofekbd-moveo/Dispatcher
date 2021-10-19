@@ -1,18 +1,21 @@
 import styled from "styled-components";
+import { Colors } from "../types";
 
 export const ButtonStyle = styled.button`
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.625rem;
-  color: #ffffff;
+  color: ${Colors.WHITE};
   padding: 0px 10px;
   width: 100%;
   height: 36px;
-  background: #0058b9;
+  background: ${Colors.CYAN_BLUE};
   border-radius: 10px;
   border: none;
   letter-spacing: 0.015625rem;
   text-transform: uppercase;
+  width: fit-content;
+  padding: 0 0.625rem;
 
   &.primary {
     border-radius: 20px;
@@ -20,17 +23,16 @@ export const ButtonStyle = styled.button`
   }
 
   &.secondary {
-    background: #d9dbe9;
+    background: ${Colors.LIGHT_GRAY};
     letter-spacing: 0.015625rem;
     text-transform: uppercase;
-    color: #5a5a89;
+    color: ${Colors.PURPLE_BLUE};
     border-radius: 20px;
-    width: 110px;
   }
 
   &.text {
     background: none;
-    color: #5a5a89;
+    color: ${Colors.PURPLE_BLUE};
     border-radius: 20px;
   }
 

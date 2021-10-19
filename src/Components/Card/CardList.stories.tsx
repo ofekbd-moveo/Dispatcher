@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import CardList from "../Card/CardList";
-import Card, { ICard } from "./Card";
+import { ICard } from "../Common/types";
 // Note 1: title must be unique.
 // Note 2 : 'as Meta' for TS
 

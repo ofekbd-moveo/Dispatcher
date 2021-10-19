@@ -18,7 +18,7 @@ DEFAULT.args = {
   className: undefined,
   isArrowVisible: true,
   content: "DEFAULT",
-  onClickHander: () => console.log("DEFAULT clicked!"),
+  onClickHandler: () => console.log("DEFAULT clicked!"),
 };
 
 export const PRIMERY = Template.bind({});
@@ -26,7 +26,7 @@ PRIMERY.args = {
   className: buttonType.PRIMARY,
   isArrowVisible: true,
   content: "PRIMERY",
-  onClickHander: () => console.log("PRIMERY clicked!"),
+  onClickHandler: () => console.log("PRIMERY clicked!"),
 };
 
 export const SECONDERY = Template.bind({});
@@ -34,7 +34,7 @@ SECONDERY.args = {
   className: buttonType.SECONDARY,
   isArrowVisible: false,
   content: "SECONDERY",
-  onClickHander: () => console.log("SECONDERY clicked!"),
+  onClickHandler: () => console.log("SECONDERY clicked!"),
 };
 
 export const TEXT = Template.bind({});
@@ -42,5 +42,5 @@ TEXT.args = {
   className: buttonType.TEXT,
   isArrowVisible: false,
   content: "TEXT",
-  onClickHander: () => console.log("TEXT clicked!"),
+  onClickHandler: () => console.log("TEXT clicked!"),
 };
