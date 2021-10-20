@@ -11,24 +11,22 @@ import {
 import searchIcon from "../../Utils/assets/search.svg";
 import exitIcon from "../../Utils/assets/exit.svg";
 import Filter from "../Common/Filter/Filer";
-import { buttonType, FilterType } from "../Common/types";
+import { buttonType, FilterType, InputEvent } from "../Common/types";
 import Button from "../Common/Button/Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Search = (): JSX.Element => {
-  const SearchFromDatabase = ["Top Headline", "Everything"];
-  const recentSearches = ["crypto", "soccer", "soc", "fdaad", "dgdf", "asddsf"];
+  const SearchFromDatabaseMock = ["Top Headline", "Everything"];
+  const recentSearchesMock = ["crypto", "soccer", "soc", "fdaad", "dgdf", "asddsf"];
   const [isOpenSearches, setIsOpenSearches] = useState(false);
-  const [value, setvalue] = useState("");
-  type InputEvent = React.ChangeEvent<HTMLInputElement>;
+  const [searchInput, setSearchInput] = useState("");
 
   const onChangeHandler = (event: InputEvent) => {
-    setvalue(event.target.value);
+    event.preventDefault();
+    const newSearchInput = event.target.value;
+    setSearchInput(newSearchInput);
+    setIsOpenSearches(newSearchInput !== "");
   };
-
-  useEffect(() => {
-    value ? setIsOpenSearches(true) : setIsOpenSearches(false);
-  }, [value]);
 
   const renderRecentSearchesList = (recentSearches: string[]) =>
     recentSearches.map((search: string, key: number) => (
@@ -42,9 +40,9 @@ const Search = (): JSX.Element => {
     <SearchContainer>
       <SearchLineContainer>
         <SearchIcon src={searchIcon} />
-        <SearchArea placeholder="Search" value={value} onChange={onChangeHandler} />
+        <SearchArea placeholder="Search" value={searchInput} onChange={onChangeHandler} />
         <div className="vertical-div" />
-        <Filter type={FilterType.DROPDWON_LIST} category="Top Headline" filterOptions={SearchFromDatabase}></Filter>
+        <Filter type={FilterType.DROPDWON_LIST} category="Top Headline" filterOptions={SearchFromDatabaseMock}></Filter>
       </SearchLineContainer>
 
       {isOpenSearches && (
@@ -58,7 +56,7 @@ const Search = (): JSX.Element => {
               onClickHandler={() => console.log("clear searches!")}
             ></Button>
           </RecentSearchesHeader>
-          {renderRecentSearchesList(recentSearches)}
+          {renderRecentSearchesList(recentSearchesMock)}
         </RecentSearchesContainer>
       )}
     </SearchContainer>

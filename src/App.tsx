@@ -6,6 +6,7 @@ import { ICard } from "./Components/Common/types";
 import CardList from "./Components/Card/CardList";
 import Search from "./Components/Search/Search";
 import TopBar from "./Components/TopBar/TopBar";
+import assets from "./Utils/assets/assetsImports";
 
 const App = (): JSX.Element => {
   const countriesMock: string[] = ["Israel", "France", "London", "Germany", "Greece"];

@@ -2,19 +2,18 @@ import Search from "../Search/Search";
 import { TopBarContainer, LogoIcon, IconList, Icon, Account, LogoAndSearchContainer, IconSearch } from "./TopBarStyle";
 import settings from "../../Utils/assets/settings.svg";
 import notifications from "../../Utils/assets/notifications.svg";
-import logo from "../../Utils/assets/LOGO.svg";
-import search from "../../Utils/assets/search.svg";
+import assets from "../../Utils/assets/assetsImports";
 
 const TopBar = (): JSX.Element => {
   const accountLetter = "AC";
   return (
     <TopBarContainer>
       <LogoAndSearchContainer>
-        <LogoIcon src={logo} />
+        <LogoIcon src={assets.logo} />
         <Search />
       </LogoAndSearchContainer>
       <IconList>
-        <IconSearch src={search} />
+        <IconSearch src={assets.search} />
         <Icon src={settings} />
         <Icon src={notifications} />
         <Account>{accountLetter}</Account>

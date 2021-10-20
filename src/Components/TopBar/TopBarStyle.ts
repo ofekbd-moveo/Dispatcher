@@ -5,7 +5,7 @@ export const TopBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   background: ${Colors.DARK_PURPLE};
-  padding: 0.75rem;
+  padding: 12px;
   justify-content: space-between;
   height: 75px;
 `;
@@ -40,5 +40,5 @@ export const Account = styled.div`
   border-radius: 30px;
   width: fit-content;
   padding: 16px;
-  font-size: 14px;
+  font-size: 0.875rem;
 `;

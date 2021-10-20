@@ -31,3 +31,5 @@ export interface ICard {
   source: string;
   dispacherLink: string;
 }
+
+export type InputEvent = React.ChangeEvent<HTMLInputElement>;
