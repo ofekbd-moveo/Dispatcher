@@ -3,6 +3,9 @@ import { Colors } from "../types";
 
 export const DropDownContainer = styled.div`
   width: 190px;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 export const DropDownHeader = styled.div`
   justify-content: center;
@@ -22,8 +25,11 @@ export const DropDownHeader = styled.div`
   margin-bottom: 6.5px;
 
   &.drop-down-arrow {
-    width: 6.96px;
-    height: 13.93px;
+    width: 7px;
+    height: 14px;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;
 

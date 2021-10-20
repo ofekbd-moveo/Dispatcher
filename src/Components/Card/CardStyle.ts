@@ -12,6 +12,12 @@ export const Image = styled.img`
   width: clamp(100px, 20%, 600px);
   border-radius: 20px 0 0 20px;
   object-fit: cover;
+
+  @media screen and (max-width: 780px) {
+    width: auto;
+    max-height: 100px;
+    border-radius: 20px 20px 0 0;
+  }
 `;
 
 export const Date = styled.span`
@@ -52,5 +58,9 @@ export const CardContainer = styled.div`
 
   & Button {
     float: right;
+  }
+
+  @media (max-width: 780px) {
+    flex-direction: column;
   }
 `;
