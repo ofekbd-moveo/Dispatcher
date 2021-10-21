@@ -16,7 +16,7 @@ export const SearchLineContainer = styled.div`
   width: 100%;
   & .vertical-div {
     opacity: 0.3;
-    border: 0.25px solid #d9dbe9;
+    border: 1px solid #d9dbe9;
     height: 80%;
     align-self: center;
   }
