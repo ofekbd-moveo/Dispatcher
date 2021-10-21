@@ -45,6 +45,8 @@ export const RecentSearchesContainer = styled.div`
   padding: 0.25rem 0;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   overflow-x: scroll;
+  position: relative;
+  z-index: 10;
 `;
 
 export const RecentSearchesHeader = styled.div`

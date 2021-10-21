@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { Colors } from "../types";
 
 export const DropDownContainer = styled.div`
+  margin-right: 20px;
   width: 190px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;

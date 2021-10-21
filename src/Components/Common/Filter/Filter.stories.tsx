@@ -26,5 +26,5 @@ export const OPTION_LIST = Template.bind({});
 OPTION_LIST.args = {
   type: FilterType.OPTION_LIST,
   category: "country",
-  filterOptions: ["Israel", "Paris", "London"],
+  filterOptions: countries,
 };

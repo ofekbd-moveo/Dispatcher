@@ -13,7 +13,7 @@ export const Image = styled.img`
   border-radius: 20px 0 0 20px;
   object-fit: cover;
 
-  @media screen and (max-width: 780px) {
+  @media screen and (max-width: 768px) {
     width: auto;
     max-height: 100px;
     border-radius: 20px 20px 0 0;
@@ -54,13 +54,15 @@ export const CardContainer = styled.div`
   border-radius: 20px;
   display: flex;
   height: fit-content;
-  margin: 24px;
+  margin: 0 24px 24px 0;
+  overflow: auto;
 
   & Button {
     float: right;
   }
 
-  @media (max-width: 780px) {
+  @media (max-width: 768px) {
     flex-direction: column;
+    margin: 0;
   }
 `;
