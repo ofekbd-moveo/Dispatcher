@@ -11,6 +11,12 @@ export enum FilterType {
   OPTION_LIST = "option-list",
 }
 
+export enum ChartType {
+  DOUGHNUT = "Doughnut",
+  LINE = "Line",
+  BAR = "Bar",
+}
+
 export enum Colors {
   PURPLE_BLUE = "#5A5A89",
   CYAN_BLUE = "#0058B9",
@@ -33,3 +39,87 @@ export interface ICard {
 }
 
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
+
+export type TChartCard = IDoughnutChart | ILineChart | IBarChart;
+
+type doughnutDataType = {
+  labels: string[];
+  datasets: {
+    label?: string;
+    data: number[];
+    backgroundColor?: string[];
+    borderColor?: string[];
+    borderWidth?: number;
+    hoverBackgroundColor?: string[];
+    hoverOffset?: number;
+    spacing?: number;
+  };
+};
+
+export const doughnutOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  cutout: 40,
+};
+
+export const barOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+};
+
+export const lineOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    y: {
+      beginAtZero: true,
+    },
+  },
+};
+
+type lineDataType = {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    fill?: boolean;
+    backgroundColor?: string;
+    borderColor?: string;
+    borderWidth?: number;
+    hoverBorderWidth?: number;
+    indexAxis?: string;
+    tension?: number;
+  }[];
+};
+
+type barDataType = {
+  labels: string[];
+  datasets: {
+    label?: string;
+    data: number[];
+    backgroundColor?: string[];
+    borderColor?: string[];
+    borderWidth?: number;
+    barThickness?: number | string;
+    borderRadius?: number;
+    indexAxis?: string;
+  }[];
+};
+
+export interface IDoughnutChart {
+  title: string;
+  type: ChartType.DOUGHNUT;
+  data: doughnutDataType;
+}
+
+export interface ILineChart {
+  title: string;
+  type: ChartType.LINE;
+  data: lineDataType;
+}
+
+export interface IBarChart {
+  title: string;
+  type: ChartType.BAR;
+  data: barDataType;
+}
