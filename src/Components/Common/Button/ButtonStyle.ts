@@ -17,6 +17,10 @@ export const ButtonStyle = styled.button`
   width: fit-content;
   padding: 0 0.625rem;
 
+  &.none {
+    width: 100%;
+  }
+
   &.primary {
     border-radius: 20px;
     width: 242px;

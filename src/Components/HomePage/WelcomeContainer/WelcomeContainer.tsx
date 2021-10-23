@@ -12,23 +12,10 @@ const WelcomeContainer: React.FC = (): JSX.Element => {
       </p>
       <StyleDivider />
       <Button
-        className={buttonType.PRIMARY}
+        className={buttonType.NONE}
         isArrowVisible={true}
         content="CONTINUE"
         onClickHandler={() => console.log("CONTINUE clicked!")}
-      />
-      <Button isArrowVisible={true} content="PRIMARY" onClickHandler={() => console.log("PRIMARY clicked!")} />
-      <Button
-        className={buttonType.SECONDARY}
-        isArrowVisible={false}
-        content="SECONDARY"
-        onClickHandler={() => console.log("SECONDARY clicked!")}
-      />
-      <Button
-        className={buttonType.TEXT}
-        isArrowVisible={false}
-        content="TEXT"
-        onClickHandler={() => console.log("TEXT clicked!")}
       />
     </StyleWelcomeContainer>
   );

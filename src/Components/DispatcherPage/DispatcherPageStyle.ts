@@ -16,6 +16,11 @@ export const FilterList = styled.div`
     height: 0;
   }
 `;
+
+export const FilterContainer = styled.div`
+  margin-right: 20px;
+`;
+
 export const Title = styled.h1`
   font-size: 1.5rem;
   color: ${Colors.DARK_PURPLE};

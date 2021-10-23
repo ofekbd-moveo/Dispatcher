@@ -17,6 +17,11 @@ export enum ChartType {
   BAR = "Bar",
 }
 
+export enum NoDataType {
+  TEXTUAL = "textual",
+  GRAPHIC = "graphic",
+}
+
 export enum Colors {
   PURPLE_BLUE = "#5A5A89",
   CYAN_BLUE = "#0058B9",
@@ -53,7 +58,7 @@ type doughnutDataType = {
     hoverBackgroundColor?: string[];
     hoverOffset?: number;
     spacing?: number;
-  };
+  }[];
 };
 
 export const doughnutOptions = {

@@ -2,9 +2,10 @@ import CardList from "../Card/CardList";
 import ChartCardList from "../Charts/ChartCardList";
 import Divider from "../Common/Divider/StyleDivider";
 import Filter from "../Common/Filter/Filer";
-import { ChartType, FilterType, ICard, IDoughnutChart, TChartCard } from "../Common/types";
+import { ChartType, FilterType, ICard, IDoughnutChart, NoDataType, TChartCard } from "../Common/types";
+import { NoData } from "../NoData/NoData";
 import TopBar from "../TopBar/TopBar";
-import { ContentContainer, DataContentContainer, FilterList, Title } from "./DispatcherPageStyle";
+import { ContentContainer, DataContentContainer, FilterList, FilterContainer, Title } from "./DispatcherPageStyle";
 
 const countries = ["Israel", "France", "London", "Germany", "Greece"];
 const categories = ["Medical", "Politics", "Music", "Sport"];
@@ -129,21 +130,29 @@ const barChartMock: TChartCard = {
 
 const chartsMock: TChartCard[] = [doughnutChartMock, lineChartMock, barChartMock];
 
-export const DispacherPage = (): JSX.Element => {
+const missingData: boolean = false;
+
+export const DispatcherPage = (): JSX.Element => {
   return (
     <>
       <TopBar />
       <ContentContainer>
         <FilterList>
-          <Filter type={FilterType.DROPDWON_LIST} category="Country" filterOptions={countries} />
-          <Filter type={FilterType.DROPDWON_LIST} category="Ctegory" filterOptions={categories} />
-          <Filter type={FilterType.DROPDWON_LIST} category="Sources" filterOptions={sources} />
+          <FilterContainer>
+            <Filter type={FilterType.DROPDWON_LIST} category="Country" filterOptions={countries} />
+          </FilterContainer>
+          <FilterContainer>
+            <Filter type={FilterType.DROPDWON_LIST} category="Ctegory" filterOptions={categories} />
+          </FilterContainer>
+          <FilterContainer>
+            <Filter type={FilterType.DROPDWON_LIST} category="Sources" filterOptions={sources} />
+          </FilterContainer>
         </FilterList>
 
         <Divider />
         <Title>{dispatchersDatabase + " in " + country}</Title>
         <DataContentContainer>
-          <CardList cards={cardsMock} />
+          {missingData ? <NoData type={NoDataType.TEXTUAL} /> : <CardList cards={cardsMock} />}
           <ChartCardList charts={chartsMock}></ChartCardList>
         </DataContentContainer>
       </ContentContainer>
