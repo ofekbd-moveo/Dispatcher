@@ -57,12 +57,19 @@ export const CardContainer = styled.div`
   margin: 0 24px 24px 0;
   overflow: auto;
 
-  & Button {
+  /* & Button {
     float: right;
-  }
+  } */
 
   @media (max-width: 768px) {
     flex-direction: column;
-    margin: 0;
+    margin: 5% 0;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  text-align: end;
+  @media (max-width: 480px) {
+    text-align: center;
   }
 `;
