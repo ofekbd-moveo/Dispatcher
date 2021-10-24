@@ -11,7 +11,7 @@ export const TopBarContainer = styled.div`
 `;
 
 export const LogoIcon = styled.img`
-  margin-right: 15%;
+  margin-right: 10%;
 `;
 
 export const IconList = styled.div`

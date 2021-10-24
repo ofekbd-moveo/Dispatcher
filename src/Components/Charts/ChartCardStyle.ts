@@ -19,6 +19,7 @@ export const Divider = styled.div`
   border: 2px solid ${Colors.PURPLE_BLUE};
   width: 22px;
   border-radius: 20px;
+  margin-bottom: 20px;
 `;
 
 export const ChartTitle = styled.h1`

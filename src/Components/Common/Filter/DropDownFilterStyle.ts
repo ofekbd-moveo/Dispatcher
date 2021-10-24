@@ -3,7 +3,7 @@ import { Colors } from "../types";
 
 export const DropDownContainer = styled.div`
   width: 190px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -40,6 +40,8 @@ export const DropDownListContainer = styled.div`
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
   overflow-x: overlay;
+  position: relative;
+  z-index: 9;
 
   &::-webkit-scrollbar {
     background: none;
