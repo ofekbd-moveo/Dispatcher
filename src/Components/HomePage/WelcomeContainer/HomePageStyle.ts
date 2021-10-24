@@ -10,18 +10,21 @@ export const HomePageContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-  width: 20%;
+  width: 30%;
   background: ${Colors.DARK_PURPLE};
   display: flex;
   justify-content: center;
   @media screen and (max-width: 768px) {
     width: 100%;
-    height: 20%;
+    height: 30%;
   }
 `;
 export const Logo = styled.img`
-  margin: 20px;
+  margin: 7vw;
   display: block;
+  @media screen and (max-width: 768px) {
+    margin: 6vh;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -50,10 +53,17 @@ export const Title = styled.h1`
   font-size: 2.25rem;
   line-height: 3.8125rem;
   color: ${Colors.PURPLE_BLUE};
+  @media screen and (max-width: 768px) {
+    font-size: 1.8rem;
+    line-height: 3rem;
+  }
 `;
 export const Description = styled.h2`
   font-weight: 200;
   font-size: 1.625rem;
   line-height: 1.875rem;
   color: ${Colors.PURPLE_BLUE};
+  @media screen and (max-width: 768px) {
+    font-size: 1.27rem;
+  }
 `;

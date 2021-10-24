@@ -1,4 +1,4 @@
-import { CardContainer, Title, Image, Description, Date, Source, ContentContainer } from "./CardStyle";
+import { CardContainer, Title, Image, Description, Date, Source, ContentContainer, ButtonContainer } from "./CardStyle";
 import TagList from "../Common/Tags/TagList";
 import Button from "../Common/Button/Button";
 import { buttonType, ICard } from "../Common/types";
@@ -19,12 +19,14 @@ const Card = (props: ICard): JSX.Element => {
         <Title>{title}</Title>
         <Source>{source}</Source>
         <Description>{description}</Description>
-        <Button
-          className={buttonType.PRIMARY}
-          isArrowVisible
-          content={navBtnTitle}
-          onClickHandler={navigateToDispacher}
-        ></Button>
+        <ButtonContainer>
+          <Button
+            className={buttonType.PRIMARY}
+            isArrowVisible
+            content={navBtnTitle}
+            onClickHandler={navigateToDispacher}
+          ></Button>
+        </ButtonContainer>
       </ContentContainer>
     </CardContainer>
   );
