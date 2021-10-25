@@ -14,6 +14,7 @@ import {
 import Button from "../Button/Button";
 import { buttonType, SideBarFilterType } from "../types";
 import assets from "../../../Utils/assets/assetsImports";
+import { useState } from "react";
 
 type TCategories = "Search in" | "Sources" | "Language" | "Dates";
 type TSelectedOptionsEachCategory = { [category in TCategories]: string[] };
@@ -27,10 +28,10 @@ export interface ISideBarFilter {
   closeFilterBarClickHandler: () => void;
 }
 
-const filterBy = { sources: [] };
-
 export const SideBarFilter = (props: ISideBarFilter): JSX.Element => {
-  const { type, title, optionsList, filterBy, isFilterMenuOpen, closeFilterBarClickHandler } = props;
+  const { title, optionsList, filterBy, isFilterMenuOpen, closeFilterBarClickHandler } = props;
+
+  const [type, setType] = useState(SideBarFilterType.FILTER_LIST);
 
   const convertOptionsArrToString = (op: TCategories): string => {
     if (filterBy !== undefined) {
@@ -56,9 +57,9 @@ export const SideBarFilter = (props: ISideBarFilter): JSX.Element => {
     ));
 
   return (
-    <FilterSideBarContainer className={isFilterMenuOpen ? "open" : "close"}>
-      <BackDrop onClick={closeFilterBarClickHandler} />
-      <SideBarContainer>
+    <FilterSideBarContainer>
+      <BackDrop onClick={closeFilterBarClickHandler} className={isFilterMenuOpen ? "open" : "close"} />
+      <SideBarContainer className={isFilterMenuOpen ? "open" : "close"}>
         <HederAndListContainer>
           <Header>
             {type === SideBarFilterType.FILTER && <BackArrow src={assets.back} />}

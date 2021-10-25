@@ -3,7 +3,6 @@ import { Colors } from "../Common/types";
 
 export const SearchSmallScreenContainer = styled.div`
   position: absolute;
-  /* top: 0; */
   right: 0;
   height: 100vh;
   width: 100%;
@@ -12,14 +11,16 @@ export const SearchSmallScreenContainer = styled.div`
   flex-direction: column;
   z-index: 100;
   background: white;
-  transition: right ease-in-out 1s;
+  transition: width ease-in-out 1s;
+  white-space: nowrap;
 
   &.close {
-    right: -100%;
+    width: 0;
+    overflow: hidden;
   }
 
   &.open {
-    right: 0;
+    width: 100%;
   }
 `;
 

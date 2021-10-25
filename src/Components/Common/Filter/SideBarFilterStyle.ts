@@ -1,21 +1,7 @@
 import styled from "styled-components";
 import { Colors } from "../types";
 
-export const FilterSideBarContainer = styled.div`
-  position: absolute;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  transition: right ease-in-out 1s;
-
-  &.close {
-    right: -100%;
-  }
-
-  &.open {
-    right: 0;
-  }
-`;
+export const FilterSideBarContainer = styled.div``;
 
 export const BackDrop = styled.div`
   position: absolute;
@@ -23,6 +9,24 @@ export const BackDrop = styled.div`
   height: 100vh;
   z-index: 10;
   background: rgba(48, 48, 50, 0.7);
+  &.close {
+    width: 0;
+  }
+
+  &.open {
+    animation: fadeIn;
+    animation-duration: 1s;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      width: 100%;
+    }
+    100% {
+      opacity: 1;
+      width: 100%;
+    }
+  }
 `;
 
 export const SideBarContainer = styled.div`
@@ -36,6 +40,15 @@ export const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: width ease-in-out 1s;
+  white-space: nowrap;
+  &.close {
+    width: 0;
+  }
+
+  &.open {
+    width: 80%;
+  }
 `;
 
 export const HederAndListContainer = styled.div``;
