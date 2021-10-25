@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Colors } from "../Common/types";
 export const SearchContainer = styled.div`
   width: clamp(100px, 45vw, 600px);
   @media screen and (max-width: 480px) {
@@ -65,9 +65,9 @@ export const RecentSearchesHeader = styled.div`
 export const RecentSearch = styled.div`
   display: flex;
   justify-content: space-between;
-  font-size: 0.75rem;
+  font-size: 12px;
   letter-spacing: 0.00625rem;
-  color: #5a5a89;
+  color: ${Colors.PURPLE_BLUE};
   font-weight: 200;
   padding: 0.5rem 0.99875rem;
 

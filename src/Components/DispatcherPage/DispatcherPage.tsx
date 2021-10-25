@@ -1,9 +1,21 @@
+import { useState } from "react";
 import CardList from "../Card/CardList";
 import ChartCardList from "../Charts/ChartCardList";
 import Divider from "../Common/Divider/StyleDivider";
 import Filter from "../Common/Filter/Filer";
-import { ChartType, FilterType, ICard, IDoughnutChart, NoDataType, TChartCard } from "../Common/types";
+import { SideBarFilter } from "../Common/Filter/SideBarFilter";
+import {
+  ChartType,
+  FilterType,
+  ICard,
+  IDoughnutChart,
+  NoDataType,
+  SideBarFilterType,
+  TChartCard,
+} from "../Common/types";
 import { NoData } from "../NoData/NoData";
+import { SearchSmallScreen } from "../SearchSmallScreen/SearchSmallScreen";
+import { SecondaryTopBar } from "../SecondaryTopBar/SecondaryTopBar";
 import TopBar from "../TopBar/TopBar";
 import { ContentContainer, DataContentContainer, FilterList, FilterContainer, Title } from "./DispatcherPageStyle";
 
@@ -131,11 +143,51 @@ const barChartMock: TChartCard = {
 const chartsMock: TChartCard[] = [doughnutChartMock, lineChartMock, barChartMock];
 
 const missingData: boolean = false;
-
+const recentSearchesMock = ["crypto", "soccer", "soc", "asddsf"];
+const filterByMock = { "Search in": ["Everything"], Sources: [], Language: [], Dates: [] };
+const filterListMock = ["Search in", "Sources", "Language", "Dates"];
 export const DispatcherPage = (): JSX.Element => {
+  const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+
+  const openSearchBarClickHandler = () => {
+    setIsSearchMenuOpen(true);
+  };
+
+  const closeSearchBarClickHandler = () => {
+    setIsSearchMenuOpen(false);
+  };
+
+  const openFilterBarClickHandler = () => {
+    setIsFilterMenuOpen(true);
+  };
+
+  const closeFilterBarClickHandler = () => {
+    setIsFilterMenuOpen(false);
+  };
   return (
     <>
-      <TopBar />
+      <SearchSmallScreen
+        recentSearches={recentSearchesMock}
+        isMenuOpen={isSearchMenuOpen}
+        closeSearchBarClickHandler={closeSearchBarClickHandler}
+      />
+      <Filter
+        type={FilterType.OPTION_LIST}
+        category="FILTER"
+        filterOptions={filterListMock}
+        isFilterMenuOpen={isFilterMenuOpen}
+        closeFilterBarClickHandler={closeFilterBarClickHandler}
+      />
+      <TopBar openSearchBarClickHandler={openSearchBarClickHandler} />
+      <SecondaryTopBar openFilterBarClickHandler={openFilterBarClickHandler} />
+      {/* <SideBarFilter
+        type={SideBarFilterType.FILTER_LIST}
+        title="FILTER"
+        optionsList={filterListMock}
+        filterBy={filterByMock}
+      /> */}
+
       <ContentContainer>
         <FilterList>
           <FilterContainer>

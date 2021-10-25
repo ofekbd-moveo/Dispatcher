@@ -8,8 +8,7 @@ import {
   SearchArea,
   ExitIcon,
 } from "./SearchStyle";
-import searchIcon from "../../Utils/assets/search.svg";
-import exitIcon from "../../Utils/assets/exit.svg";
+import assets from "../../Utils/assets/assetsImports";
 import Filter from "../Common/Filter/Filer";
 import { buttonType, FilterType, InputEvent } from "../Common/types";
 import Button from "../Common/Button/Button";
@@ -32,14 +31,14 @@ const Search = (): JSX.Element => {
     recentSearches.map((search: string, key: number) => (
       <RecentSearch key={key}>
         <span>{search}</span>
-        <ExitIcon src={exitIcon} />
+        <ExitIcon src={assets.exit} />
       </RecentSearch>
     ));
 
   return (
     <SearchContainer>
       <SearchLineContainer>
-        <SearchIcon src={searchIcon} />
+        <SearchIcon src={assets.search} />
         <SearchArea placeholder="Search" value={searchInput} onChange={onChangeHandler} />
         <div className="vertical-div" />
         <Filter type={FilterType.DROPDWON_LIST} category="Top Headline" filterOptions={SearchFromDatabaseMock}></Filter>

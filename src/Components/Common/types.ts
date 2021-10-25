@@ -17,6 +17,11 @@ export enum ChartType {
   BAR = "Bar",
 }
 
+export enum SideBarFilterType {
+  FILTER_LIST = "filter-list",
+  FILTER = "filter",
+}
+
 export enum NoDataType {
   TEXTUAL = "textual",
   GRAPHIC = "graphic",

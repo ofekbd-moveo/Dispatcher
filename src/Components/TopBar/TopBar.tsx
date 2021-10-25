@@ -4,8 +4,9 @@ import settings from "../../Utils/assets/settings.svg";
 import notifications from "../../Utils/assets/notifications.svg";
 import assets from "../../Utils/assets/assetsImports";
 
-const TopBar = (): JSX.Element => {
+const TopBar = ({ openSearchBarClickHandler }: { openSearchBarClickHandler: () => void }): JSX.Element => {
   const accountLetter = "AC";
+
   return (
     <TopBarContainer>
       <LogoAndSearchContainer>
@@ -13,7 +14,7 @@ const TopBar = (): JSX.Element => {
         <Search />
       </LogoAndSearchContainer>
       <IconList>
-        <IconSearch src={assets.search} />
+        <IconSearch src={assets.search} onClick={openSearchBarClickHandler} />
         <Icon src={settings} />
         <Icon src={notifications} />
         <Account>{accountLetter}</Account>
