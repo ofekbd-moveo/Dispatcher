@@ -37,6 +37,12 @@ export enum Colors {
   BRIGHT_PURPLE_BLUE = "#F3F3FF",
   LIGHT_GRAY = "#D9DBE9",
 }
+export enum Categories {
+  SEARCH_IN = "Search in",
+  SOURCES = "Sources",
+  COUNTRY = "Country",
+  TAGS = "Tags",
+}
 
 export interface ICard {
   title: string;

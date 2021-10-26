@@ -2,17 +2,9 @@ import { useState } from "react";
 import CardList from "../Card/CardList";
 import ChartCardList from "../Charts/ChartCardList";
 import Divider from "../Common/Divider/StyleDivider";
-import Filter from "../Common/Filter/Filer";
+import DropDownFilter from "../Common/Filter/DropDownFilter";
 import { SideBarFilter } from "../Common/Filter/SideBarFilter";
-import {
-  ChartType,
-  FilterType,
-  ICard,
-  IDoughnutChart,
-  NoDataType,
-  SideBarFilterType,
-  TChartCard,
-} from "../Common/types";
+import { ChartType, FilterType, ICard, IDoughnutChart, NoDataType, TChartCard, Categories } from "../Common/types";
 import { NoData } from "../NoData/NoData";
 import { SearchSmallScreen } from "../SearchSmallScreen/SearchSmallScreen";
 import { SecondaryTopBar } from "../SecondaryTopBar/SecondaryTopBar";
@@ -144,8 +136,16 @@ const chartsMock: TChartCard[] = [doughnutChartMock, lineChartMock, barChartMock
 
 const missingData: boolean = false;
 const recentSearchesMock = ["crypto", "soccer", "soc", "asddsf"];
-const filterByMock = { "Search in": ["Everything"], Sources: [], Language: [], Dates: [] };
-const filterListMock = ["Search in", "Sources", "Language", "Dates"];
+
+const optionsOfEachFilterMock = {
+  [Categories.SEARCH_IN]: ["Everything", "Top Headline"],
+  [Categories.SOURCES]: ["CBS", "NBC", "Sport 1", "Ynet", "ynet"],
+  [Categories.COUNTRY]: ["Israel", "France", "London", "Germany", "Greece"],
+  [Categories.TAGS]: ["Medical", "Politics", "Music", "Sport"],
+};
+
+// const filterListMock = ["Search in", "Sources", "Language", "Dates"];
+
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
@@ -172,32 +172,24 @@ export const DispatcherPage = (): JSX.Element => {
         isMenuOpen={isSearchMenuOpen}
         closeSearchBarClickHandler={closeSearchBarClickHandler}
       />
-      <Filter
-        type={FilterType.OPTION_LIST}
-        category="FILTER"
-        filterOptions={filterListMock}
+      <SideBarFilter
+        optionsOfEachFilter={optionsOfEachFilterMock}
         isFilterMenuOpen={isFilterMenuOpen}
         closeFilterBarClickHandler={closeFilterBarClickHandler}
       />
       <TopBar openSearchBarClickHandler={openSearchBarClickHandler} />
       <SecondaryTopBar openFilterBarClickHandler={openFilterBarClickHandler} />
-      {/* <SideBarFilter
-        type={SideBarFilterType.FILTER_LIST}
-        title="FILTER"
-        optionsList={filterListMock}
-        filterBy={filterByMock}
-      /> */}
 
       <ContentContainer>
         <FilterList>
           <FilterContainer>
-            <Filter type={FilterType.DROPDWON_LIST} category="Country" filterOptions={countries} />
+            <DropDownFilter category="Country" filterOptions={countries} />
           </FilterContainer>
           <FilterContainer>
-            <Filter type={FilterType.DROPDWON_LIST} category="Ctegory" filterOptions={categories} />
+            <DropDownFilter category="Ctegory" filterOptions={categories} />
           </FilterContainer>
           <FilterContainer>
-            <Filter type={FilterType.DROPDWON_LIST} category="Sources" filterOptions={sources} />
+            <DropDownFilter category="Sources" filterOptions={sources} />
           </FilterContainer>
         </FilterList>
 

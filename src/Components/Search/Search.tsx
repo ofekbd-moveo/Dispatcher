@@ -9,10 +9,10 @@ import {
   ExitIcon,
 } from "./SearchStyle";
 import assets from "../../Utils/assets/assetsImports";
-import Filter from "../Common/Filter/Filer";
 import { buttonType, FilterType, InputEvent } from "../Common/types";
 import Button from "../Common/Button/Button";
 import { useState } from "react";
+import DropDownFilter from "../Common/Filter/DropDownFilter";
 
 const Search = (): JSX.Element => {
   const SearchFromDatabaseMock = ["Top Headline", "Everything"];
@@ -41,7 +41,7 @@ const Search = (): JSX.Element => {
         <SearchIcon src={assets.search} />
         <SearchArea placeholder="Search" value={searchInput} onChange={onChangeHandler} />
         <div className="vertical-div" />
-        <Filter type={FilterType.DROPDWON_LIST} category="Top Headline" filterOptions={SearchFromDatabaseMock}></Filter>
+        <DropDownFilter category="Top Headline" filterOptions={SearchFromDatabaseMock}></DropDownFilter>
       </SearchLineContainer>
 
       {isOpenSearches && (

@@ -16,12 +16,12 @@ export const SecondaryTopBar = (props: ISecondaryTopBar): JSX.Element => {
 
   const sortByTitle = "Sort by";
   return (
-    <SecondaryTopBarContainer onClick={openFilterBarClickHandler}>
+    <SecondaryTopBarContainer>
       <SortByContainer>
         {sortByTitle}
         <DropDownArrowIcon src={assets.dropDownArrow} />
       </SortByContainer>
-      <FilterBarIconContainer>
+      <FilterBarIconContainer onClick={openFilterBarClickHandler}>
         <FilterBarIcon src={assets.filter} />
       </FilterBarIconContainer>
     </SecondaryTopBarContainer>

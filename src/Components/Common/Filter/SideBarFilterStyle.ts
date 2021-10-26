@@ -70,17 +70,12 @@ export const Footer = styled.div`
   width: 100%;
   text-align: center;
 `;
-export const OptionContainer = styled.div`
+export const OptionContainer = styled.div<{ isSelected?: boolean }>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid rgba(217, 219, 233, 0.5);
   padding: 11px 19px;
-
-  &:hover {
-    background: rgba(90, 90, 137, 0.05);
-    cursor: pointer;
-  }
 `;
 export const OptionTitle = styled.h2`
   font-size: 0.875rem;
