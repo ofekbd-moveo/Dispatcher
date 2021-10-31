@@ -17,11 +17,6 @@ export enum ChartType {
   BAR = "Bar",
 }
 
-export enum SideBarFilterType {
-  FILTER_LIST = "filter-list",
-  FILTER = "filter",
-}
-
 export enum NoDataType {
   TEXTUAL = "textual",
   GRAPHIC = "graphic",
@@ -36,15 +31,9 @@ export enum Colors {
   BLUISH_BLACK = "#14142B",
   BRIGHT_PURPLE_BLUE = "#F3F3FF",
   LIGHT_GRAY = "#D9DBE9",
+  LIGHT_PURPLE_GRAY = "#dfe0eb",
   GRAY = "#C4C4C4",
-}
-export enum Categories {
-  SEARCH_IN = "searchIn",
-  SOURCES = "sources",
-  COUNTRY = "country",
-  TAGS = "tags",
-  everything = "everything",
-  topHeadline = "topHeadline",
+  DARK_GRAY = "#303032",
 }
 
 export interface ICard {
@@ -143,16 +132,6 @@ export interface IBarChart {
   data: barDataType;
 }
 
-export type TCategories = Categories.SEARCH_IN | Categories.COUNTRY | Categories.SOURCES | Categories.TAGS;
-
-export type TSelectedSubFiltersEachCategory = { [category in TCategories]: string[] };
-
-export interface ISideBarFilter {
-  subFiltersOfEachFilter: TSelectedSubFiltersEachCategory;
-  isFilterMenuOpen: boolean;
-  closeFilterBarClickHandler: () => void;
-}
-
 export interface IHash {
   [searchIn: string]: string;
 }
@@ -166,4 +145,17 @@ export const CategoriesTitle: IHash = {
 
 export interface ITopBar {
   openSearchBarClickHandler: () => void;
+}
+
+export interface ISideBarFilter {
+  allFiltersOptions: { [category: string]: { [subCategory: string]: string[] } };
+  selectedFilters: { [category: string]: { [subCategory: string]: string[] } };
+  isFilterMenuOpen: boolean;
+  closeFilterBarClickHandler: () => void;
+  filterClickHandler: (category: string, subCategory: string, filter: string) => void;
+}
+
+export enum Categories {
+  everything = "everything",
+  topHeadline = "topHeadline",
 }

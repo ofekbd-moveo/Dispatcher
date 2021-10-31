@@ -9,7 +9,7 @@ export const FormContainer = styled.div`
   border-radius: 10px;
   display: flex;
   align-items: center;
-  margin: 13%;
+  margin: 10% 13%;
 `;
 export const Divider = styled.div`
   border: 1px solid ${Colors.LIGHT_GRAY};

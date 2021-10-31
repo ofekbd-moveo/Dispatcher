@@ -5,7 +5,7 @@ import Divider from "../../Common/Divider/StyleDivider";
 import Button from "../../Common/Button/Button";
 import { buttonType } from "../../Common/types";
 
-export const HomePage = (): JSX.Element => {
+export const WelcomePage = (): JSX.Element => {
   return (
     <HomePageContainer>
       <LogoContainer>

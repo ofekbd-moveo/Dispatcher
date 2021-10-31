@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import CardList from "../Card/CardList";
 import ChartCardList from "../Charts/ChartCardList";
 import Divider from "../Common/Divider/StyleDivider";
 import DropDownFilter from "../Common/Filter/DropDownFilter";
-// import { SideBarFilter } from "../Common/Filter/SideBarFilter";
-import { ChartType, FilterType, ICard, IDoughnutChart, NoDataType, TChartCard, Categories } from "../Common/types";
+import { ChartType, ICard, IDoughnutChart, NoDataType, TChartCard } from "../Common/types";
 import { NoData } from "../NoData/NoData";
 import { SearchSmallScreen } from "../SearchSmallScreen/SearchSmallScreen";
 import { SecondaryTopBar } from "../SecondaryTopBar/SecondaryTopBar";
-import { SideBarFilter, EverythingSubCategories, TopHeadlineSubCategories } from "../SideBarFilter/SideBarFilter";
+import { SideBarFilter } from "../SideBarFilter/SideBarFilter";
 import TopBar from "../TopBar/TopBar";
 import { ContentContainer, DataContentContainer, FilterList, FilterContainer, Title } from "./DispatcherPageStyle";
 
@@ -136,9 +135,10 @@ const barChartMock: TChartCard = {
 const chartsMock: TChartCard[] = [doughnutChartMock, lineChartMock, barChartMock];
 
 const missingData: boolean = false;
+
 const recentSearchesMock = ["crypto", "soccer", "soc", "asddsf"];
 
-const allFiltersOptions = {
+const allFiltersOptions: TFiltersOptions = {
   everything: {
     sources: ["CBS", "NBC", "Sport 1", "Ynet"],
     country: ["Israel", "France", "London", "Germany", "Greece"],
@@ -150,48 +150,69 @@ const allFiltersOptions = {
     dates: ["01/01/2020", "20/12/1993"],
   },
 };
-
+export type TFiltersOptions = {
+  [category: string]: {
+    [subCategory: string]: string[];
+  };
+};
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState({
+    everything: {
+      sources: [],
+      country: [],
+      category: [],
+    },
+    topHeadline: {
+      sources: [],
+      language: [],
+      dates: [],
+    },
+  });
 
-  const openSearchBarClickHandler = () => {
-    setIsSearchMenuOpen(true);
+  const filterClickHandler = (category: string, subCategory: string, filter: string) => {
+    const selectedFiltersInSubCategory = (selectedFilters as TFiltersOptions)[category][subCategory];
+    const isSelectedFilter = selectedFiltersInSubCategory.includes(filter);
+
+    const toggleFilterFromSelectedFilters = () => {
+      const removeFilter = selectedFiltersInSubCategory.filter((currFilter: string) => currFilter !== filter);
+      const addFilter = [...selectedFiltersInSubCategory, filter];
+      const newFilters = isSelectedFilter ? removeFilter : addFilter;
+
+      setSelectedFilters((prevState) => ({
+        ...prevState,
+        [category]: { ...(selectedFilters as TFiltersOptions)[category], [subCategory]: newFilters },
+      }));
+    };
+    toggleFilterFromSelectedFilters();
   };
 
-  const closeSearchBarClickHandler = () => {
-    setIsSearchMenuOpen(false);
+  const toggleSearchBar = (toShow: boolean) => {
+    setIsSearchMenuOpen(toShow);
+  };
+  const toggleFilterBar = (toShow: boolean) => {
+    setIsFilterMenuOpen(toShow);
   };
 
-  const openFilterBarClickHandler = () => {
-    setIsFilterMenuOpen(true);
-  };
-
-  const closeFilterBarClickHandler = () => {
-    setIsFilterMenuOpen(false);
-  };
-
-  // const filterHandler
   return (
     <>
       <SearchSmallScreen
         recentSearches={recentSearchesMock}
         isMenuOpen={isSearchMenuOpen}
-        closeSearchBarClickHandler={closeSearchBarClickHandler}
+        closeSearchBarClickHandler={() => toggleSearchBar(false)}
       />
-      {/* <SideBarFilter
-        subFiltersOfEachFilter={optionsOfEachFilterMock}
-        isFilterMenuOpen={isFilterMenuOpen}
-        closeFilterBarClickHandler={closeFilterBarClickHandler}
-      /> */}
+
       <SideBarFilter
         allFiltersOptions={allFiltersOptions}
         isFilterMenuOpen={isFilterMenuOpen}
-        closeFilterBarClickHandler={closeFilterBarClickHandler}
+        selectedFilters={selectedFilters}
+        closeFilterBarClickHandler={() => toggleFilterBar(false)}
+        filterClickHandler={filterClickHandler}
       ></SideBarFilter>
 
-      <TopBar openSearchBarClickHandler={openSearchBarClickHandler} />
-      <SecondaryTopBar openFilterBarClickHandler={openFilterBarClickHandler} />
+      <TopBar openSearchBarClickHandler={() => toggleSearchBar(true)} />
+      <SecondaryTopBar openFilterBarClickHandler={() => toggleFilterBar(true)} />
 
       <ContentContainer>
         <FilterList>

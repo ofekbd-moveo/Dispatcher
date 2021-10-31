@@ -1,13 +1,13 @@
 import { Meta, Story } from "@storybook/react";
-import { HomePage } from "./HomePage";
+import { WelcomePage } from "./WelcomePage";
 
 export default {
-  component: HomePage,
-  title: "Components/HomePage",
+  component: WelcomePage,
+  title: "Components/WelcomePage",
 } as Meta;
 
 // Here we define the content we want to render
-const Template: Story = () => <HomePage />;
+const Template: Story = () => <WelcomePage />;
 
 // Here we define variants
 export const DEFAULT = Template.bind({});

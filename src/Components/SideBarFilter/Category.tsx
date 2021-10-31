@@ -1,18 +1,17 @@
-import { Dispatch, SetStateAction } from "react";
-import { Categories } from "./SideBarFilter";
+import { SetStateAction } from "react";
 import { FilterListContainer, RowContainer, RowTitle } from "./SideBarMenuStyle";
 
 export interface ICategory {
   category: string;
-  setCurrSubCategory: (value: SetStateAction<string>) => void;
+  setMenuTitle: (value: SetStateAction<string>) => void;
 }
 
 const CATEGORY_TITLE = "Search in";
 
 export const Category = (props: ICategory) => {
-  const { category, setCurrSubCategory } = props;
+  const { category, setMenuTitle } = props;
   const renderCategory = () => {
-    setCurrSubCategory(CATEGORY_TITLE);
+    setMenuTitle(CATEGORY_TITLE);
   };
   return (
     <RowContainer onClick={renderCategory}>

@@ -26,7 +26,7 @@ export const SearchSmallScreenContainer = styled.div`
 
 export const SearchInputContainer = styled.div`
   background: ${Colors.WHITE};
-  border-bottom: 1px solid rgba(217, 219, 233, 0.5);
+  border-bottom: 1px solid ${Colors.LIGHT_PURPLE_GRAY};
   padding: 26px 20px;
   display: flex;
   justify-content: space-between;
@@ -77,7 +77,7 @@ export const RecentSearch = styled.div`
   color: ${Colors.PURPLE_BLUE};
   font-weight: 200;
   padding: 1.25rem 1.25rem 1.25rem 1.0625rem;
-  border-bottom: 1px solid rgba(217, 219, 233, 0.5);
+  border-bottom: 1px solid ${Colors.LIGHT_PURPLE_GRAY};
 `;
 
 export const RecentSearchesContainer = styled.div``;

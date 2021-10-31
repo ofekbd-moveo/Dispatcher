@@ -8,7 +8,7 @@ export const SecondaryTopBarContainer = styled.div`
   height: 44px;
   align-items: center;
   padding: 0 16px;
-  border-bottom: 2px solid rgba(217, 219, 233, 0.5);
+  border-bottom: 2px solid ${Colors.LIGHT_PURPLE_GRAY};
   box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
   display: none;
   @media screen and (max-width: 768px) {

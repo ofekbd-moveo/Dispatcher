@@ -4,14 +4,14 @@ import { RowContainer, RowTitle } from "./SideBarMenuStyle";
 export interface ISubCategoryFilter {
   isSelected: boolean;
   value: string;
-  filterClickHandler: (filter: string) => void;
+  filterClickHandler: () => void;
 }
 
 export const SubCategoryFilter = (props: ISubCategoryFilter): JSX.Element => {
   let { isSelected, value, filterClickHandler } = props;
 
   const selectedClickHandler = () => {
-    filterClickHandler(value);
+    filterClickHandler();
     isSelected = true;
   };
 

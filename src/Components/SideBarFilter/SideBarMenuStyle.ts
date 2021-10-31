@@ -1,20 +1,22 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Colors } from "../Common/types";
 
-export const BackDrop = styled.div`
+export const BackDrop = styled.div<{ isFilterMenuOpen: boolean }>`
   position: absolute;
   width: 100%;
   height: 100vh;
   z-index: 10;
   background: rgba(48, 48, 50, 0.7);
-  &.close {
-    width: 0;
-  }
+  ${(props) =>
+    props.isFilterMenuOpen
+      ? css`
+          animation: fadeIn;
+          animation-duration: 1s;
+        `
+      : css`
+          width: 0;
+        `};
 
-  &.open {
-    animation: fadeIn;
-    animation-duration: 1s;
-  }
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -26,7 +28,7 @@ export const BackDrop = styled.div`
     }
   }
 `;
-export const SideBarContainer = styled.div`
+export const SideBarContainer = styled.div<{ isFilterMenuOpen: boolean }>`
   position: absolute;
   width: 80%;
   height: 100%;
@@ -39,13 +41,7 @@ export const SideBarContainer = styled.div`
   justify-content: space-between;
   transition: width ease-in-out 1s;
   white-space: nowrap;
-  &.close {
-    width: 0;
-  }
-
-  &.open {
-    width: 80%;
-  }
+  width: ${(props) => (props.isFilterMenuOpen ? 80 : 0)}%;
 `;
 export const Header = styled.div``;
 export const Footer = styled.div`
@@ -70,7 +66,7 @@ export const RowContainer = styled.div<{ isSelected?: boolean }>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(217, 219, 233, 0.5);
+  border-bottom: 1px solid ${Colors.LIGHT_PURPLE_GRAY};
   padding: 11px 19px;
   background: ${(props) => (props.isSelected ? Colors.LIGHT_GRAY : Colors.WHITE)};
 `;
