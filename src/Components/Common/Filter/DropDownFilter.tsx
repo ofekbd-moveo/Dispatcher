@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import assets from "../../../Utils/assets/assetsImports";
+import assets from "../../../Utils/assets";
 import {
   DropDownHeader,
   DropDownContainer,

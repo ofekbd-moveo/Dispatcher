@@ -23,7 +23,6 @@ export const ButtonStyle = styled.button`
 
   &.primary {
     border-radius: 20px;
-    width: 242px;
   }
 
   &.secondary {

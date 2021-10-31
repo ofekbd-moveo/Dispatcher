@@ -3,11 +3,12 @@ import CardList from "../Card/CardList";
 import ChartCardList from "../Charts/ChartCardList";
 import Divider from "../Common/Divider/StyleDivider";
 import DropDownFilter from "../Common/Filter/DropDownFilter";
-import { SideBarFilter } from "../Common/Filter/SideBarFilter";
+// import { SideBarFilter } from "../Common/Filter/SideBarFilter";
 import { ChartType, FilterType, ICard, IDoughnutChart, NoDataType, TChartCard, Categories } from "../Common/types";
 import { NoData } from "../NoData/NoData";
 import { SearchSmallScreen } from "../SearchSmallScreen/SearchSmallScreen";
 import { SecondaryTopBar } from "../SecondaryTopBar/SecondaryTopBar";
+import { SideBarFilter, EverythingSubCategories, TopHeadlineSubCategories } from "../SideBarFilter/SideBarFilter";
 import TopBar from "../TopBar/TopBar";
 import { ContentContainer, DataContentContainer, FilterList, FilterContainer, Title } from "./DispatcherPageStyle";
 
@@ -137,14 +138,18 @@ const chartsMock: TChartCard[] = [doughnutChartMock, lineChartMock, barChartMock
 const missingData: boolean = false;
 const recentSearchesMock = ["crypto", "soccer", "soc", "asddsf"];
 
-const optionsOfEachFilterMock = {
-  [Categories.SEARCH_IN]: ["Everything", "Top Headline"],
-  [Categories.SOURCES]: ["CBS", "NBC", "Sport 1", "Ynet", "ynet"],
-  [Categories.COUNTRY]: ["Israel", "France", "London", "Germany", "Greece"],
-  [Categories.TAGS]: ["Medical", "Politics", "Music", "Sport"],
+const allFiltersOptions = {
+  everything: {
+    sources: ["CBS", "NBC", "Sport 1", "Ynet"],
+    country: ["Israel", "France", "London", "Germany", "Greece"],
+    category: ["Medical", "Politics", "Music", "Sport"],
+  },
+  topHeadline: {
+    sources: ["CBS", "NBC", "Sport 1"],
+    language: ["he", "en", "arb"],
+    dates: ["01/01/2020", "20/12/1993"],
+  },
 };
-
-// const filterListMock = ["Search in", "Sources", "Language", "Dates"];
 
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
@@ -165,6 +170,8 @@ export const DispatcherPage = (): JSX.Element => {
   const closeFilterBarClickHandler = () => {
     setIsFilterMenuOpen(false);
   };
+
+  // const filterHandler
   return (
     <>
       <SearchSmallScreen
@@ -172,11 +179,17 @@ export const DispatcherPage = (): JSX.Element => {
         isMenuOpen={isSearchMenuOpen}
         closeSearchBarClickHandler={closeSearchBarClickHandler}
       />
-      <SideBarFilter
-        optionsOfEachFilter={optionsOfEachFilterMock}
+      {/* <SideBarFilter
+        subFiltersOfEachFilter={optionsOfEachFilterMock}
         isFilterMenuOpen={isFilterMenuOpen}
         closeFilterBarClickHandler={closeFilterBarClickHandler}
-      />
+      /> */}
+      <SideBarFilter
+        allFiltersOptions={allFiltersOptions}
+        isFilterMenuOpen={isFilterMenuOpen}
+        closeFilterBarClickHandler={closeFilterBarClickHandler}
+      ></SideBarFilter>
+
       <TopBar openSearchBarClickHandler={openSearchBarClickHandler} />
       <SecondaryTopBar openFilterBarClickHandler={openFilterBarClickHandler} />
 

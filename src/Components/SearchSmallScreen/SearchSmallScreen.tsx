@@ -11,7 +11,7 @@ import {
   TitleContainer,
   RecentSearch,
 } from "./SearchSmallScreenStyle";
-import assets from "../../Utils/assets/assetsImports";
+import assets from "../../Utils/assets";
 
 export interface ISreachSmallScreen {
   recentSearches: string[];

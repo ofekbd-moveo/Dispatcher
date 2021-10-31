@@ -5,7 +5,7 @@ import {
   SecondaryTopBarContainer,
   SortByContainer,
 } from "./SecondaryTopBarStyle";
-import assets from "../../Utils/assets/assetsImports";
+import assets from "../../Utils/assets";
 
 export interface ISecondaryTopBar {
   openFilterBarClickHandler: () => void;

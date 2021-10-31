@@ -1,35 +1,29 @@
+import { useState } from "react";
+import { StyleFilterRow } from "./StyleFilterRow";
 import {
   SideBarContainer,
-  OptionsContainer,
+  SubFiltersContainer,
   Header,
   Footer,
-  OptionListContainer,
-  OptionContainer,
-  OptionTitle,
-  HederAndListContainer,
+  SubFilterListContainer,
+  SubFilterContainer,
+  SubFilterTitle,
   BackArrow,
   BackDrop,
   FilterSideBarContainer,
+  HeaderAndListContainer,
 } from "./SideBarFilterStyle";
 import Button from "../Button/Button";
-import { buttonType, Categories, SideBarFilterType } from "../types";
-import assets from "../../../Utils/assets/assetsImports";
-import { useState } from "react";
-import { Option } from "./Option";
+import { buttonType, Categories, CategoriesTitle, ISideBarFilter, TCategories } from "../types";
+import assets from "../../../Utils/assets";
+import { SubFilter } from "./SubFilter";
 
-type TCategories = Categories.SEARCH_IN | Categories.COUNTRY | Categories.SOURCES | Categories.TAGS;
-type TSelectedOptionsEachCategory = { [category in TCategories]: string[] };
-
-export interface ISideBarFilter {
-  optionsOfEachFilter: TSelectedOptionsEachCategory;
-  isFilterMenuOpen: boolean;
-  closeFilterBarClickHandler: () => void;
-}
+const FILTER_MENU_TITLE = "FILTER";
 
 export const SideBarFilter = (props: ISideBarFilter): JSX.Element => {
-  const { optionsOfEachFilter, isFilterMenuOpen, closeFilterBarClickHandler } = props;
-  const FILTER_MENU_TITLE = "FILTER";
-  const [currTitle, setCurrTitle] = useState(FILTER_MENU_TITLE);
+  const { subFiltersOfEachFilter, isFilterMenuOpen, closeFilterBarClickHandler } = props;
+  const [currFilterTitle, setCurrFilterTitle] = useState(FILTER_MENU_TITLE);
+
   const [filterBy, setFilterBy] = useState({
     [Categories.SEARCH_IN]: ["Everything"],
     [Categories.SOURCES]: [] as string[],
@@ -37,81 +31,85 @@ export const SideBarFilter = (props: ISideBarFilter): JSX.Element => {
     [Categories.TAGS]: [] as string[],
   });
 
-  const convertOptionsArrToString = (optionList: string[]): string => {
-    const optionsStr =
-      optionList.length === 0
-        ? "All, "
-        : optionList.reduce((optionsAcc: string, currOption: string) => currOption + ", " + optionsAcc, "");
+  const convertSubFiltersArrToString = (subFilterList: string[]): string =>
+    subFilterList.length === 0 ? "All" : subFilterList.join(", ");
 
-    return optionsStr.slice(0, -2);
+  const filterClickHandler = (filter: TCategories) => {
+    setCurrFilterTitle(filter);
   };
 
-  const categoryClickHandler = (category: TCategories) => {
-    setCurrTitle(category);
-  };
   const backClickHandler = () => {
-    setCurrTitle(FILTER_MENU_TITLE);
+    setCurrFilterTitle(FILTER_MENU_TITLE);
   };
 
-  const renderCategories = () => {
-    const categories = Object.keys(filterBy) as TCategories[];
+  //TODO: export component
+  const renderFilters = () => {
+    const filters = Object.keys(filterBy) as TCategories[];
 
-    return categories.map((category: TCategories, key: number) => (
-      <OptionContainer key={key} onClick={() => categoryClickHandler(category)}>
-        <OptionTitle>{category}</OptionTitle>
-        <OptionListContainer>{convertOptionsArrToString(filterBy[category] as string[])}</OptionListContainer>
-      </OptionContainer>
-    ));
+    return filters.map((filter: TCategories, key: number) =>
+      StyleFilterRow(
+        <SubFilterContainer key={key} onClick={() => filterClickHandler(filter)}>
+          <SubFilterTitle>{CategoriesTitle[filter]}</SubFilterTitle>
+          <SubFilterListContainer>{convertSubFiltersArrToString(filterBy[filter] as string[])}</SubFilterListContainer>
+        </SubFilterContainer>
+      )
+    );
   };
 
-  const renderOptions = () => {
-    const options = optionsOfEachFilter[currTitle as TCategories];
-    const subFilterOptions = filterBy[currTitle as TCategories];
+  const renderSubFilters = () => {
+    const subFilters = subFiltersOfEachFilter[currFilterTitle as TCategories];
+    const subFiltersSelected = filterBy[currFilterTitle as TCategories];
 
-    return options.map((option: string, key: number) => (
-      <Option
-        shouldMark={subFilterOptions.includes(option)}
-        value={option}
+    return subFilters.map((subFilter: string, key: number) => (
+      <SubFilter
+        isMark={subFiltersSelected.includes(subFilter)}
+        value={subFilter}
         subFilterClickHandler={subFilterClickHandler}
       />
     ));
   };
-  const removeOptionFromFilterBy = (optionToRemove: string) => {
-    const newOptions = filterBy[currTitle as TCategories].filter((op: string) => op !== optionToRemove);
+  const removeSubFilterFromFilterBy = (SubFilterToRemove: string) => {
+    const newSubFilters = filterBy[currFilterTitle as TCategories].filter((op: string) => op !== SubFilterToRemove);
     setFilterBy((prevState) => ({
       ...prevState,
-      [currTitle]: newOptions,
+      [currFilterTitle]: newSubFilters,
     }));
   };
-  const addOptionFromFilterBy = (optionToAdd: string) => {
-    const newOptions = [...filterBy[currTitle as TCategories], optionToAdd];
+  const addSubFilterFromFilterBy = (subFilterToAdd: string) => {
+    const newSubFilters = [...filterBy[currFilterTitle as TCategories], subFilterToAdd];
 
     setFilterBy((prevState) => ({
       ...prevState,
-      [currTitle]: newOptions,
+      [currFilterTitle]: newSubFilters,
     }));
   };
-  const editSubFilterOptions = (option: string) => {
-    const subFilterOptions = filterBy[currTitle as TCategories];
+  const editSubFilterSubFilters = (subFilter: string) => {
+    const subFilterSubFilters = filterBy[currFilterTitle as TCategories];
 
-    const isOptionInFilterByList = subFilterOptions.includes(option);
-    isOptionInFilterByList ? removeOptionFromFilterBy(option) : addOptionFromFilterBy(option);
+    const isSubFilterInFilterByList = subFilterSubFilters.includes(subFilter);
+    isSubFilterInFilterByList ? removeSubFilterFromFilterBy(subFilter) : addSubFilterFromFilterBy(subFilter);
   };
-  const subFilterClickHandler = (option: string) => {
-    editSubFilterOptions(option);
+  const subFilterClickHandler = (subFilter: string) => {
+    editSubFilterSubFilters(subFilter);
+  };
+
+  const isSubFilter = currFilterTitle !== FILTER_MENU_TITLE;
+
+  const renderFilterValues = () => {
+    return;
   };
 
   return (
     <FilterSideBarContainer>
       <BackDrop onClick={closeFilterBarClickHandler} className={isFilterMenuOpen ? "open" : "close"} />
       <SideBarContainer className={isFilterMenuOpen ? "open" : "close"}>
-        <HederAndListContainer>
+        <HeaderAndListContainer>
           <Header>
-            {currTitle !== FILTER_MENU_TITLE && <BackArrow src={assets.back} onClick={backClickHandler} />}
-            {currTitle}
+            {isSubFilter && <BackArrow src={assets.back} onClick={backClickHandler} />}
+            {CategoriesTitle[currFilterTitle]}
           </Header>
-          <OptionsContainer>{currTitle === FILTER_MENU_TITLE ? renderCategories() : renderOptions()}</OptionsContainer>
-        </HederAndListContainer>
+          <SubFiltersContainer>{isSubFilter ? renderSubFilters() : renderFilters()}</SubFiltersContainer>
+        </HeaderAndListContainer>
         <Footer>
           <Button
             className={buttonType.PRIMARY}

@@ -1,6 +1,6 @@
 import React from "react";
 import { ButtonStyle } from "./ButtonStyle";
-import assets from "../../../Utils/assets/assetsImports";
+import assets from "../../../Utils/assets";
 import { buttonType } from "../types";
 
 export interface IButton {

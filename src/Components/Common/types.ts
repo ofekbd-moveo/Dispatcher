@@ -36,12 +36,15 @@ export enum Colors {
   BLUISH_BLACK = "#14142B",
   BRIGHT_PURPLE_BLUE = "#F3F3FF",
   LIGHT_GRAY = "#D9DBE9",
+  GRAY = "#C4C4C4",
 }
 export enum Categories {
-  SEARCH_IN = "Search in",
-  SOURCES = "Sources",
-  COUNTRY = "Country",
-  TAGS = "Tags",
+  SEARCH_IN = "searchIn",
+  SOURCES = "sources",
+  COUNTRY = "country",
+  TAGS = "tags",
+  everything = "everything",
+  topHeadline = "topHeadline",
 }
 
 export interface ICard {
@@ -138,4 +141,29 @@ export interface IBarChart {
   title: string;
   type: ChartType.BAR;
   data: barDataType;
+}
+
+export type TCategories = Categories.SEARCH_IN | Categories.COUNTRY | Categories.SOURCES | Categories.TAGS;
+
+export type TSelectedSubFiltersEachCategory = { [category in TCategories]: string[] };
+
+export interface ISideBarFilter {
+  subFiltersOfEachFilter: TSelectedSubFiltersEachCategory;
+  isFilterMenuOpen: boolean;
+  closeFilterBarClickHandler: () => void;
+}
+
+export interface IHash {
+  [searchIn: string]: string;
+}
+export const CategoriesTitle: IHash = {
+  searchIn: "Search in",
+  sources: "Sources",
+  country: "Country",
+  tags: "Tags",
+  FILTER: "FILTER",
+};
+
+export interface ITopBar {
+  openSearchBarClickHandler: () => void;
 }

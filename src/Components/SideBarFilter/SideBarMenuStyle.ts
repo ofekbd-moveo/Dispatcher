@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../types";
-
-export const FilterSideBarContainer = styled.div``;
+import { Colors } from "../Common/types";
 
 export const BackDrop = styled.div`
   position: absolute;
@@ -28,7 +26,6 @@ export const BackDrop = styled.div`
     }
   }
 `;
-
 export const SideBarContainer = styled.div`
   position: absolute;
   width: 80%;
@@ -50,10 +47,16 @@ export const SideBarContainer = styled.div`
     width: 80%;
   }
 `;
+export const Header = styled.div``;
+export const Footer = styled.div`
+  background: ${Colors.GHOST_WHITE};
+  align-self: center;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+`;
 
-export const HeaderAndListContainer = styled.div``;
-export const SubFiltersContainer = styled.div``;
-export const Header = styled.div`
+export const SidebarTitle = styled.div`
   border-bottom: 1px solid rgba(217, 219, 233, 0.5);
   display: flex;
   font-size: 1rem;
@@ -63,31 +66,27 @@ export const Header = styled.div`
   padding: 25px 16px 27px;
   text-transform: uppercase;
 `;
-export const Footer = styled.div`
-  background: ${Colors.GHOST_WHITE};
-  align-self: center;
-  padding: 20px;
-  width: 100%;
-  text-align: center;
-`;
-export const SubFilterContainer = styled.div<{ isSelected?: boolean }>`
+export const RowContainer = styled.div<{ isSelected?: boolean }>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid rgba(217, 219, 233, 0.5);
   padding: 11px 19px;
+  background: ${(props) => (props.isSelected ? Colors.LIGHT_GRAY : Colors.WHITE)};
 `;
-export const SubFilterTitle = styled.h2`
+
+export const RowTitle = styled.h2`
   font-size: 0.875rem;
   font-weight: 200;
   color: ${Colors.PURPLE_BLUE};
 `;
-export const SubFilterListContainer = styled.div`
+export const FilterListContainer = styled.div`
   color: ${Colors.PURPLE_BLUE};
   opacity: 0.85;
   font-size: 0.875rem;
   font-weight: 200;
 `;
+
 export const BackArrow = styled.img`
   margin-right: 15px;
   &:hover {
