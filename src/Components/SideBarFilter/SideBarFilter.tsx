@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import Button from "../Common/Button/Button";
-import { buttonType, Categories, ISideBarFilter } from "../Common/types";
+import { buttonType, Categories, ISideBarFilter } from "../types";
 import { Category } from "./Category";
 import { BackArrow, BackDrop, Footer, Header, SideBarContainer, SidebarTitle } from "./SideBarMenuStyle";
 import { SubCategory } from "./SubCategory";
 import { SubCategoryFilter } from "./SubCategoryFilter";
 import assets from "../../Utils/assets";
 import { CategoryFilter } from "./CategoryFilter";
-
-const MAIN_TITLE = "FILTER";
-const CATEGORY_TITLE = "Search in";
+import { CATEGORY_TITLE, MAIN_TITLE } from "../constants";
 
 export const SideBarFilter = (props: ISideBarFilter) => {
   const {
@@ -45,10 +43,11 @@ export const SideBarFilter = (props: ISideBarFilter) => {
     const filters = allFiltersOptions[currentCategory][currSubCategory];
 
     return filters.map((filter) => {
-      const isSelectedFilter = selectedFilters[currentCategory][currSubCategory].includes(filter);
+      const isAllreadySelected = selectedFilters[currentCategory][currSubCategory].includes(filter);
+
       return (
         <SubCategoryFilter
-          isSelected={isSelectedFilter}
+          isAllreadySelected={isAllreadySelected}
           value={filter}
           filterClickHandler={() => filterClickHandler(currentCategory, currSubCategory, filter)}
         ></SubCategoryFilter>

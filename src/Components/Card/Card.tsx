@@ -1,7 +1,7 @@
 import { CardContainer, Title, Image, Description, Date, Source, ContentContainer, ButtonContainer } from "./CardStyle";
 import TagList from "../Common/Tags/TagList";
 import Button from "../Common/Button/Button";
-import { buttonType, ICard } from "../Common/types";
+import { buttonType, ICard } from "../types";
 import { convertDate } from "../../Utils/HelpFunctions/casting";
 
 const Card = (props: ICard): JSX.Element => {

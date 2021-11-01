@@ -1,5 +1,5 @@
 import Button from "../Common/Button/Button";
-import { buttonType } from "../Common/types";
+import { buttonType } from "../types";
 import {
   BackArrow,
   RecentSearchesContainer,

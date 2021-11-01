@@ -1,12 +1,5 @@
-import { Dispatch, SetStateAction, useCallback } from "react";
+import { ISubCategory } from "../types";
 import { FilterListContainer, RowContainer, RowTitle } from "./SideBarMenuStyle";
-
-export interface ISubCategory {
-  subCategory: string;
-  filters: string[];
-  setMenuTitle: (value: SetStateAction<string>) => void;
-  setCurrSubCategory: (value: SetStateAction<string>) => void;
-}
 
 export const SubCategory = (props: ISubCategory) => {
   const { subCategory, filters, setMenuTitle, setCurrSubCategory } = props;

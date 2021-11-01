@@ -1,5 +1,5 @@
 import Card from "./Card";
-import { ICard } from "../Common/types";
+import { ICard } from "../types";
 import { CardsContainer } from "./CardListStyle";
 
 const CardList = ({ cards }: { cards: ICard[] }): JSX.Element => {

@@ -9,7 +9,7 @@ import {
   ExitIcon,
 } from "./SearchStyle";
 import assets from "../../Utils/assets";
-import { buttonType, FilterType, InputEvent } from "../Common/types";
+import { buttonType, FilterType, InputEvent } from "../types";
 import Button from "../Common/Button/Button";
 import { useState } from "react";
 import DropDownFilter from "../Common/Filter/DropDownFilter";

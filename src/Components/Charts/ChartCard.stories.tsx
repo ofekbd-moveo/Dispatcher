@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
-import { ChartType } from "../Common/types";
-import { TChartCard } from "../Common/types";
+import { ChartType } from "../types";
+import { TChartCard } from "../types";
 import ChartCard from "./ChartCard";
 
 export default {

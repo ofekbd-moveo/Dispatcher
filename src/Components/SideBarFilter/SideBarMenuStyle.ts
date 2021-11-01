@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Colors } from "../Common/types";
+import { Colors } from "../types";
 
 export const BackDrop = styled.div<{ isFilterMenuOpen: boolean }>`
   position: absolute;
@@ -42,6 +42,9 @@ export const SideBarContainer = styled.div<{ isFilterMenuOpen: boolean }>`
   transition: width ease-in-out 1s;
   white-space: nowrap;
   width: ${(props) => (props.isFilterMenuOpen ? 80 : 0)}%;
+  @media screen and (max-width: 768px) {
+    width: ${(props) => (props.isFilterMenuOpen ? 40 : 0)}%;
+  }
 `;
 export const Header = styled.div``;
 export const Footer = styled.div`

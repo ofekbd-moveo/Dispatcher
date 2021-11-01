@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { ISubCategoryFilter } from "../types";
 import { RowContainer, RowTitle } from "./SideBarMenuStyle";
 
-export interface ISubCategoryFilter {
-  isSelected: boolean;
-  value: string;
-  filterClickHandler: () => void;
-}
-
 export const SubCategoryFilter = (props: ISubCategoryFilter): JSX.Element => {
-  let { isSelected, value, filterClickHandler } = props;
+  let { isAllreadySelected, value, filterClickHandler } = props;
+  const [isSelected, setIsSelected] = useState(isAllreadySelected);
 
   const selectedClickHandler = () => {
     filterClickHandler();
-    isSelected = true;
+    setIsSelected(true);
   };
 
   return (

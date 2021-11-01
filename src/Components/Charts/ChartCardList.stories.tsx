@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
-import { ChartType, IDoughnutChart } from "../Common/types";
-import { TChartCard } from "../Common/types";
+import { ChartType, IDoughnutChart } from "../types";
+import { TChartCard } from "../types";
 import ChartCardList from "./ChartCardList";
 
 export default {

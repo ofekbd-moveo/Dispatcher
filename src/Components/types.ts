@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 // pass to global env
 export enum buttonType {
   NONE = "none",
@@ -132,19 +134,12 @@ export interface IBarChart {
   data: barDataType;
 }
 
-export interface IHash {
-  [searchIn: string]: string;
-}
-export const CategoriesTitle: IHash = {
-  searchIn: "Search in",
-  sources: "Sources",
-  country: "Country",
-  tags: "Tags",
-  FILTER: "FILTER",
-};
-
 export interface ITopBar {
   openSearchBarClickHandler: () => void;
+}
+
+export interface ISecondaryTopBar {
+  openFilterBarClickHandler: () => void;
 }
 
 export interface ISideBarFilter {
@@ -158,4 +153,27 @@ export interface ISideBarFilter {
 export enum Categories {
   everything = "everything",
   topHeadline = "topHeadline",
+}
+
+export type TFiltersOptions = {
+  [category: string]: {
+    [subCategory: string]: string[];
+  };
+};
+
+export interface ICategory {
+  category: string;
+  setMenuTitle: (value: SetStateAction<string>) => void;
+}
+export interface ISubCategory {
+  subCategory: string;
+  filters: string[];
+  setMenuTitle: (value: SetStateAction<string>) => void;
+  setCurrSubCategory: (value: SetStateAction<string>) => void;
+}
+
+export interface ISubCategoryFilter {
+  isAllreadySelected: boolean;
+  value: string;
+  filterClickHandler: () => void;
 }

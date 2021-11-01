@@ -3,7 +3,7 @@ import assets from "../../../Utils/assets";
 import { ContentContainer, Description, Title } from "./HomePageStyle";
 import Divider from "../../Common/Divider/StyleDivider";
 import Button from "../../Common/Button/Button";
-import { buttonType } from "../../Common/types";
+import { buttonType } from "../../types";
 
 export const WelcomePage = (): JSX.Element => {
   return (

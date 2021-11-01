@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../Common/types";
+import { Colors } from "../types";
 
 export const Title = styled.h1`
   margin-top: 19.25px;
@@ -13,7 +13,7 @@ export const Image = styled.img`
   border-radius: 20px 0 0 20px;
   object-fit: cover;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 480px) {
     width: auto;
     max-height: 100px;
     border-radius: 20px 20px 0 0;
@@ -57,11 +57,7 @@ export const CardContainer = styled.div`
   margin: 0 24px 24px 0;
   overflow: auto;
 
-  /* & Button {
-    float: right;
-  } */
-
-  @media (max-width: 768px) {
+  @media (max-width: 480px) {
     flex-direction: column;
     margin: 5% 0;
   }

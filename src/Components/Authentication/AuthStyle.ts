@@ -1,6 +1,13 @@
 import styled from "styled-components";
-import { Colors } from "../Common/types";
+import { Colors } from "../types";
 
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const FormContainer = styled.div`
   background: ${Colors.WHITE};
   width: 70vw;
@@ -9,13 +16,11 @@ export const FormContainer = styled.div`
   border-radius: 10px;
   display: flex;
   align-items: center;
-  margin: 10% 13%;
 `;
 export const Divider = styled.div`
   border: 1px solid ${Colors.LIGHT_GRAY};
   height: 80%;
-  width: 1px;
-  margin: 0 10% 0 30%;
+  margin: 0 10px 0 30vw;
   @media screen and (max-width: 768px) {
     display: none;
   }

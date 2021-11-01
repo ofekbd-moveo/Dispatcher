@@ -6,19 +6,16 @@ import {
   SortByContainer,
 } from "./SecondaryTopBarStyle";
 import assets from "../../Utils/assets";
-
-export interface ISecondaryTopBar {
-  openFilterBarClickHandler: () => void;
-}
+import { SORT_BY_TITLE } from "../constants";
+import { ISecondaryTopBar } from "../types";
 
 export const SecondaryTopBar = (props: ISecondaryTopBar): JSX.Element => {
   const { openFilterBarClickHandler } = props;
 
-  const sortByTitle = "Sort by";
   return (
     <SecondaryTopBarContainer>
       <SortByContainer>
-        {sortByTitle}
+        {SORT_BY_TITLE}
         <DropDownArrowIcon src={assets.dropDownArrow} />
       </SortByContainer>
       <FilterBarIconContainer onClick={openFilterBarClickHandler}>

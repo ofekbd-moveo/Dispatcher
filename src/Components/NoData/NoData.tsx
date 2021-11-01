@@ -1,4 +1,4 @@
-import { NoDataType } from "../Common/types";
+import { NoDataType } from "../types";
 import assets from "../../Utils/assets";
 import { NoDataContainer, NoDataMsg } from "./NoDataStyle";
 

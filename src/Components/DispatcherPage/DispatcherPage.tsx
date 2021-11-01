@@ -3,13 +3,14 @@ import CardList from "../Card/CardList";
 import ChartCardList from "../Charts/ChartCardList";
 import Divider from "../Common/Divider/StyleDivider";
 import DropDownFilter from "../Common/Filter/DropDownFilter";
-import { ChartType, ICard, IDoughnutChart, NoDataType, TChartCard } from "../Common/types";
+import { ChartType, ICard, IDoughnutChart, NoDataType, TChartCard, TFiltersOptions } from "../types";
 import { NoData } from "../NoData/NoData";
 import { SearchSmallScreen } from "../SearchSmallScreen/SearchSmallScreen";
 import { SecondaryTopBar } from "../SecondaryTopBar/SecondaryTopBar";
 import { SideBarFilter } from "../SideBarFilter/SideBarFilter";
 import TopBar from "../TopBar/TopBar";
 import { ContentContainer, DataContentContainer, FilterList, FilterContainer, Title } from "./DispatcherPageStyle";
+import { allFiltersOptions, initializedSelectedFilters } from "../constants";
 
 const countries = ["Israel", "France", "London", "Germany", "Greece"];
 const categories = ["Medical", "Politics", "Music", "Sport"];
@@ -134,65 +135,34 @@ const barChartMock: TChartCard = {
 
 const chartsMock: TChartCard[] = [doughnutChartMock, lineChartMock, barChartMock];
 
-const missingData: boolean = false;
+const missingDataMock: boolean = false;
 
 const recentSearchesMock = ["crypto", "soccer", "soc", "asddsf"];
 
-const allFiltersOptions: TFiltersOptions = {
-  everything: {
-    sources: ["CBS", "NBC", "Sport 1", "Ynet"],
-    country: ["Israel", "France", "London", "Germany", "Greece"],
-    category: ["Medical", "Politics", "Music", "Sport"],
-  },
-  topHeadline: {
-    sources: ["CBS", "NBC", "Sport 1"],
-    language: ["he", "en", "arb"],
-    dates: ["01/01/2020", "20/12/1993"],
-  },
-};
-export type TFiltersOptions = {
-  [category: string]: {
-    [subCategory: string]: string[];
-  };
-};
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState({
-    everything: {
-      sources: [],
-      country: [],
-      category: [],
-    },
-    topHeadline: {
-      sources: [],
-      language: [],
-      dates: [],
-    },
-  });
+  const [selectedFilters, setSelectedFilters] = useState(initializedSelectedFilters);
 
-  const filterClickHandler = (category: string, subCategory: string, filter: string) => {
+  const filterClickHandler = (category: string, subCategory: string, newFilterValue: string) => {
     const selectedFiltersInSubCategory = (selectedFilters as TFiltersOptions)[category][subCategory];
-    const isSelectedFilter = selectedFiltersInSubCategory.includes(filter);
+    const isSelectedFilter = selectedFiltersInSubCategory.includes(newFilterValue);
 
-    const toggleFilterFromSelectedFilters = () => {
-      const removeFilter = selectedFiltersInSubCategory.filter((currFilter: string) => currFilter !== filter);
-      const addFilter = [...selectedFiltersInSubCategory, filter];
-      const newFilters = isSelectedFilter ? removeFilter : addFilter;
+    const newFilters = isSelectedFilter
+      ? selectedFiltersInSubCategory.filter((currFilter: string) => currFilter !== newFilterValue)
+      : [...selectedFiltersInSubCategory, newFilterValue];
 
-      setSelectedFilters((prevState) => ({
-        ...prevState,
-        [category]: { ...(selectedFilters as TFiltersOptions)[category], [subCategory]: newFilters },
-      }));
-    };
-    toggleFilterFromSelectedFilters();
+    setSelectedFilters((prevState) => ({
+      ...prevState,
+      [category]: { ...(selectedFilters as TFiltersOptions)[category], [subCategory]: newFilters },
+    }));
   };
 
-  const toggleSearchBar = (toShow: boolean) => {
-    setIsSearchMenuOpen(toShow);
+  const toggleSearchBar = (newState: boolean) => {
+    setIsSearchMenuOpen(newState);
   };
-  const toggleFilterBar = (toShow: boolean) => {
-    setIsFilterMenuOpen(toShow);
+  const toggleFilterBar = (newState: boolean) => {
+    setIsFilterMenuOpen(newState);
   };
 
   return (
@@ -215,22 +185,10 @@ export const DispatcherPage = (): JSX.Element => {
       <SecondaryTopBar openFilterBarClickHandler={() => toggleFilterBar(true)} />
 
       <ContentContainer>
-        <FilterList>
-          <FilterContainer>
-            <DropDownFilter category="Country" filterOptions={countries} />
-          </FilterContainer>
-          <FilterContainer>
-            <DropDownFilter category="Ctegory" filterOptions={categories} />
-          </FilterContainer>
-          <FilterContainer>
-            <DropDownFilter category="Sources" filterOptions={sources} />
-          </FilterContainer>
-        </FilterList>
-
         <Divider />
         <Title>{dispatchersDatabase + " in " + country}</Title>
         <DataContentContainer>
-          {missingData ? <NoData type={NoDataType.TEXTUAL} /> : <CardList cards={cardsMock} />}
+          {missingDataMock ? <NoData type={NoDataType.TEXTUAL} /> : <CardList cards={cardsMock} />}
           <ChartCardList charts={chartsMock}></ChartCardList>
         </DataContentContainer>
       </ContentContainer>
