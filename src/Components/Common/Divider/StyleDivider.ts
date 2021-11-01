@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../types";
+import { Colors } from "../../types";
 
 const Divider = styled.div`
   opacity: 0.5;

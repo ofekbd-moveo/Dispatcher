@@ -1,11 +1,16 @@
+import { Dispatch, SetStateAction, useState } from "react";
 import CardList from "../Card/CardList";
 import ChartCardList from "../Charts/ChartCardList";
 import Divider from "../Common/Divider/StyleDivider";
-import Filter from "../Common/Filter/Filer";
-import { ChartType, FilterType, ICard, IDoughnutChart, NoDataType, TChartCard } from "../Common/types";
+import DropDownFilter from "../Common/Filter/DropDownFilter";
+import { ChartType, ICard, IDoughnutChart, NoDataType, TChartCard, TFiltersOptions } from "../types";
 import { NoData } from "../NoData/NoData";
+import { SearchSmallScreen } from "../SearchSmallScreen/SearchSmallScreen";
+import { SecondaryTopBar } from "../SecondaryTopBar/SecondaryTopBar";
+import { SideBarFilter } from "../SideBarFilter/SideBarFilter";
 import TopBar from "../TopBar/TopBar";
 import { ContentContainer, DataContentContainer, FilterList, FilterContainer, Title } from "./DispatcherPageStyle";
+import { allFiltersOptions, initializedSelectedFilters } from "../constants";
 
 const countries = ["Israel", "France", "London", "Germany", "Greece"];
 const categories = ["Medical", "Politics", "Music", "Sport"];
@@ -130,29 +135,60 @@ const barChartMock: TChartCard = {
 
 const chartsMock: TChartCard[] = [doughnutChartMock, lineChartMock, barChartMock];
 
-const missingData: boolean = false;
+const missingDataMock: boolean = false;
+
+const recentSearchesMock = ["crypto", "soccer", "soc", "asddsf"];
 
 export const DispatcherPage = (): JSX.Element => {
+  const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState(initializedSelectedFilters);
+
+  const filterClickHandler = (category: string, subCategory: string, newFilterValue: string) => {
+    const selectedFiltersInSubCategory = (selectedFilters as TFiltersOptions)[category][subCategory];
+    const isSelectedFilter = selectedFiltersInSubCategory.includes(newFilterValue);
+
+    const newFilters = isSelectedFilter
+      ? selectedFiltersInSubCategory.filter((currFilter: string) => currFilter !== newFilterValue)
+      : [...selectedFiltersInSubCategory, newFilterValue];
+
+    setSelectedFilters((prevState) => ({
+      ...prevState,
+      [category]: { ...(selectedFilters as TFiltersOptions)[category], [subCategory]: newFilters },
+    }));
+  };
+
+  const toggleSearchBar = (newState: boolean) => {
+    setIsSearchMenuOpen(newState);
+  };
+  const toggleFilterBar = (newState: boolean) => {
+    setIsFilterMenuOpen(newState);
+  };
+
   return (
     <>
-      <TopBar />
-      <ContentContainer>
-        <FilterList>
-          <FilterContainer>
-            <Filter type={FilterType.DROPDWON_LIST} category="Country" filterOptions={countries} />
-          </FilterContainer>
-          <FilterContainer>
-            <Filter type={FilterType.DROPDWON_LIST} category="Ctegory" filterOptions={categories} />
-          </FilterContainer>
-          <FilterContainer>
-            <Filter type={FilterType.DROPDWON_LIST} category="Sources" filterOptions={sources} />
-          </FilterContainer>
-        </FilterList>
+      <SearchSmallScreen
+        recentSearches={recentSearchesMock}
+        isMenuOpen={isSearchMenuOpen}
+        closeSearchBarClickHandler={() => toggleSearchBar(false)}
+      />
 
+      <SideBarFilter
+        allFiltersOptions={allFiltersOptions}
+        isFilterMenuOpen={isFilterMenuOpen}
+        selectedFilters={selectedFilters}
+        closeFilterBarClickHandler={() => toggleFilterBar(false)}
+        filterClickHandler={filterClickHandler}
+      ></SideBarFilter>
+
+      <TopBar openSearchBarClickHandler={() => toggleSearchBar(true)} />
+      <SecondaryTopBar openFilterBarClickHandler={() => toggleFilterBar(true)} />
+
+      <ContentContainer>
         <Divider />
         <Title>{dispatchersDatabase + " in " + country}</Title>
         <DataContentContainer>
-          {missingData ? <NoData type={NoDataType.TEXTUAL} /> : <CardList cards={cardsMock} />}
+          {missingDataMock ? <NoData type={NoDataType.TEXTUAL} /> : <CardList cards={cardsMock} />}
           <ChartCardList charts={chartsMock}></ChartCardList>
         </DataContentContainer>
       </ContentContainer>

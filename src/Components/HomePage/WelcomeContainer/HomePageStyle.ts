@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../../Common/types";
+import { Colors } from "../../types";
 
 export const HomePageContainer = styled.div`
   height: 100%;

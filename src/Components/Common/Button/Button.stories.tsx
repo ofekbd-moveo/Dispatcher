@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 import Button, { IButton } from "./Button";
-import { buttonType } from "../../Common/types";
+import { buttonType } from "../../types";
 // Note 1: title must be unique.
 // Note 2 : 'as Meta' for TS
 

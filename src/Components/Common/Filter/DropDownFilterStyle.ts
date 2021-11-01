@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../types";
+import { Colors } from "../../types";
 
 export const DropDownContainer = styled.div`
   width: 190px;

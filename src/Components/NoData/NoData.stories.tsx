@@ -1,5 +1,5 @@
 import { Meta, Story } from "@storybook/react";
-import { NoDataType } from "../Common/types";
+import { NoDataType } from "../types";
 import { NoData } from "./NoData";
 
 export default {

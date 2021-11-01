@@ -1,4 +1,4 @@
-import { barOptions, ChartType, doughnutOptions, lineOptions, TChartCard } from "../Common/types";
+import { barOptions, ChartType, doughnutOptions, lineOptions, TChartCard } from "../types";
 import { ChartCardContainer, ChartTitle, Divider, ChartContainer } from "./ChartCardStyle";
 import { Doughnut, Line, Bar } from "react-chartjs-2";
 import { ChartData } from "chart.js";

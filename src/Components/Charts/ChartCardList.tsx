@@ -1,4 +1,4 @@
-import { TChartCard } from "../Common/types";
+import { TChartCard } from "../types";
 import ChartCard from "./ChartCard";
 import { ChartsContainer } from "./ChartCardListStyle";
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../types";
+import { Colors } from "../../types";
 
 export const Tag = styled.div`
   font-family: Poppins;

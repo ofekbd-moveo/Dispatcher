@@ -2,10 +2,13 @@ import Search from "../Search/Search";
 import { TopBarContainer, LogoIcon, IconList, Icon, Account, LogoAndSearchContainer, IconSearch } from "./TopBarStyle";
 import settings from "../../Utils/assets/settings.svg";
 import notifications from "../../Utils/assets/notifications.svg";
-import assets from "../../Utils/assets/assetsImports";
+import assets from "../../Utils/assets";
+import { ITopBar } from "../types";
+import { ACCOUNT_LETTERS } from "../constants";
 
-const TopBar = (): JSX.Element => {
-  const accountLetter = "AC";
+const TopBar = (props: ITopBar): JSX.Element => {
+  const { openSearchBarClickHandler } = props;
+
   return (
     <TopBarContainer>
       <LogoAndSearchContainer>
@@ -13,10 +16,10 @@ const TopBar = (): JSX.Element => {
         <Search />
       </LogoAndSearchContainer>
       <IconList>
-        <IconSearch src={assets.search} />
+        <IconSearch src={assets.search} onClick={openSearchBarClickHandler} />
         <Icon src={settings} />
         <Icon src={notifications} />
-        <Account>{accountLetter}</Account>
+        <Account>{ACCOUNT_LETTERS}</Account>
       </IconList>
     </TopBarContainer>
   );

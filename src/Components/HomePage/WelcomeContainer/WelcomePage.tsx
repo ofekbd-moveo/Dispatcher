@@ -1,11 +1,11 @@
 import { HomePageContainer, Logo, LogoContainer, TextContainer } from "./HomePageStyle";
-import assets from "../../../Utils/assets/assetsImports";
+import assets from "../../../Utils/assets";
 import { ContentContainer, Description, Title } from "./HomePageStyle";
 import Divider from "../../Common/Divider/StyleDivider";
 import Button from "../../Common/Button/Button";
-import { buttonType } from "../../Common/types";
+import { buttonType } from "../../types";
 
-export const HomePage = (): JSX.Element => {
+export const WelcomePage = (): JSX.Element => {
   return (
     <HomePageContainer>
       <LogoContainer>

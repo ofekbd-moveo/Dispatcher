@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 // pass to global env
 export enum buttonType {
   NONE = "none",
@@ -31,6 +33,9 @@ export enum Colors {
   BLUISH_BLACK = "#14142B",
   BRIGHT_PURPLE_BLUE = "#F3F3FF",
   LIGHT_GRAY = "#D9DBE9",
+  LIGHT_PURPLE_GRAY = "#dfe0eb",
+  GRAY = "#C4C4C4",
+  DARK_GRAY = "#303032",
 }
 
 export interface ICard {
@@ -127,4 +132,48 @@ export interface IBarChart {
   title: string;
   type: ChartType.BAR;
   data: barDataType;
+}
+
+export interface ITopBar {
+  openSearchBarClickHandler: () => void;
+}
+
+export interface ISecondaryTopBar {
+  openFilterBarClickHandler: () => void;
+}
+
+export interface ISideBarFilter {
+  allFiltersOptions: { [category: string]: { [subCategory: string]: string[] } };
+  selectedFilters: { [category: string]: { [subCategory: string]: string[] } };
+  isFilterMenuOpen: boolean;
+  closeFilterBarClickHandler: () => void;
+  filterClickHandler: (category: string, subCategory: string, filter: string) => void;
+}
+
+export enum Categories {
+  everything = "everything",
+  topHeadline = "topHeadline",
+}
+
+export type TFiltersOptions = {
+  [category: string]: {
+    [subCategory: string]: string[];
+  };
+};
+
+export interface ICategory {
+  category: string;
+  setMenuTitle: (value: SetStateAction<string>) => void;
+}
+export interface ISubCategory {
+  subCategory: string;
+  filters: string[];
+  setMenuTitle: (value: SetStateAction<string>) => void;
+  setCurrSubCategory: (value: SetStateAction<string>) => void;
+}
+
+export interface ISubCategoryFilter {
+  isAllreadySelected: boolean;
+  value: string;
+  filterClickHandler: () => void;
 }

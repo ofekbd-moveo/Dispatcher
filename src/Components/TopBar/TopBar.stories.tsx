@@ -7,7 +7,12 @@ export default {
 } as Meta;
 
 // args in TS way
-const Template: Story<{}> = (args) => <TopBar {...args} />;
+const Template: Story<{ openSearchBarClickHandler: () => void }> = (args) => <TopBar {...args} />;
 
 export const DEFAULT = Template.bind({});
-DEFAULT.args = {};
+DEFAULT.args = {
+  openSearchBarClickHandler: openSearchBarClickHandler(),
+};
+function openSearchBarClickHandler(): () => void {
+  throw new Error("Function not implemented.");
+}
