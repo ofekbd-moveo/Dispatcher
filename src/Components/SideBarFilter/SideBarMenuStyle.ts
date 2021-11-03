@@ -41,9 +41,9 @@ export const SideBarContainer = styled.div<{ isFilterMenuOpen: boolean }>`
   justify-content: space-between;
   transition: width ease-in-out 1s;
   white-space: nowrap;
-  width: ${(props) => (props.isFilterMenuOpen ? 80 : 0)}%;
+  width: ${(props) => (props.isFilterMenuOpen ? 40 : 0)}%;
   @media screen and (max-width: 768px) {
-    width: ${(props) => (props.isFilterMenuOpen ? 40 : 0)}%;
+    width: ${(props) => (props.isFilterMenuOpen ? 80 : 0)}%;
   }
 `;
 export const Header = styled.div``;

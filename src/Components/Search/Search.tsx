@@ -9,14 +9,14 @@ import {
   ExitIcon,
 } from "./SearchStyle";
 import assets from "../../Utils/assets";
-import { buttonType, FilterType, InputEvent } from "../types";
+import { buttonType, DropDownFilterType, InputEvent, ISearch, TFiltersOptions } from "../types";
 import Button from "../Common/Button/Button";
 import { useState } from "react";
-import DropDownFilter from "../Common/Filter/DropDownFilter";
+import { DropDownFilter } from "../DropDownFilter/DropDownFilter";
+import { recentSearchesMock } from "../DispatcherPage/Mock";
 
-const Search = (): JSX.Element => {
-  const SearchFromDatabaseMock = ["Top Headline", "Everything"];
-  const recentSearchesMock = ["crypto", "soccer", "soc", "fdaad", "dgdf", "asddsf"];
+const Search = (props: ISearch): JSX.Element => {
+  const { allFiltersOptions, selectedFilters, category, setCategory, filterClickHandler } = props;
   const [isOpenSearches, setIsOpenSearches] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -41,7 +41,14 @@ const Search = (): JSX.Element => {
         <SearchIcon src={assets.search} />
         <SearchArea placeholder="Search" value={searchInput} onChange={onChangeHandler} />
         <div className="vertical-div" />
-        <DropDownFilter category="Top Headline" filterOptions={SearchFromDatabaseMock}></DropDownFilter>
+        <DropDownFilter
+          type={DropDownFilterType.CATEGORY}
+          category={category}
+          setCategory={setCategory}
+          allFiltersOptions={allFiltersOptions}
+          selectedFilters={selectedFilters}
+          filterClickHandler={filterClickHandler}
+        />
       </SearchLineContainer>
 
       {isOpenSearches && (

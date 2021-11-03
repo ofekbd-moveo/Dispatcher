@@ -7,13 +7,26 @@ import { ITopBar } from "../types";
 import { ACCOUNT_LETTERS } from "../constants";
 
 const TopBar = (props: ITopBar): JSX.Element => {
-  const { openSearchBarClickHandler } = props;
+  const {
+    allFiltersOptions,
+    selectedFilters,
+    category,
+    setCategory,
+    filterClickHandler,
+    openSearchBarClickHandler,
+  } = props;
 
   return (
     <TopBarContainer>
       <LogoAndSearchContainer>
         <LogoIcon src={assets.logo} />
-        <Search />
+        <Search
+          allFiltersOptions={allFiltersOptions}
+          selectedFilters={selectedFilters}
+          category={category}
+          setCategory={setCategory}
+          filterClickHandler={filterClickHandler}
+        />
       </LogoAndSearchContainer>
       <IconList>
         <IconSearch src={assets.search} onClick={openSearchBarClickHandler} />

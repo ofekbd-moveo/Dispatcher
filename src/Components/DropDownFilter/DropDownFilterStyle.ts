@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../../types";
+import { Colors } from "../types";
 
 export const DropDownContainer = styled.div`
   width: 190px;
@@ -11,7 +11,7 @@ export const DropDownHeader = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 2.9375rem;
+  height: 47px;
   font-weight: 500;
   border-radius: 10px;
   border: none;
@@ -35,7 +35,7 @@ export const DropDownHeader = styled.div`
 
 export const DropDownListContainer = styled.div`
   width: 100%;
-  max-height: 7.875rem;
+  max-height: 126px;
   background: ${Colors.WHITE};
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
@@ -59,20 +59,22 @@ export const DropDownList = styled.ul`
   padding: 6px 0;
 `;
 
-export const ListItem = styled.li`
+export const ListItem = styled.li<{ isSelected?: boolean }>`
   height: fit-content;
   padding: 10.5px 24px;
   font-family: "Mulish", sans-serif;
   font-size: 0.75rem;
   line-height: 0.75rem;
   letter-spacing: 0.00625rem;
+  background: ${(props) => (props.isSelected ? Colors.LIGHT_GRAY : Colors.WHITE)};
   &:hover {
-    background: rgba(223, 224, 235, 0.41);
+    background-color: fade(${Colors.LIGHT_PURPLE_GRAY}, 40%);
+    background: ${(props) => (props.isSelected ? Colors.LIGHT_GRAY : "")};
     cursor: pointer;
   }
 `;
 
-export const FilterList = styled.div`
+export const SubCategoryList = styled.div`
   display: flex;
   flex-direction: row;
   height: 47px;
@@ -81,6 +83,6 @@ export const FilterList = styled.div`
   }
 `;
 
-export const FilterContainer = styled.div`
+export const SubCategoryContainer = styled.div`
   margin-right: 20px;
 `;

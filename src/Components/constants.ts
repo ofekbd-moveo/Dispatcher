@@ -20,7 +20,7 @@ export const allFiltersOptions: TFiltersOptions = {
   },
 };
 
-export const initializedSelectedFilters = {
+export const initializedSelectedFilters: TFiltersOptions = {
   everything: {
     sources: [],
     country: [],

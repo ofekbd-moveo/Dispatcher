@@ -135,6 +135,11 @@ export interface IBarChart {
 }
 
 export interface ITopBar {
+  allFiltersOptions: TFiltersOptions;
+  selectedFilters: TFiltersOptions;
+  category: string;
+  setCategory: (value: string) => void;
+  filterClickHandler: (category: string, subCategory: string, newFilterValue: string) => void;
   openSearchBarClickHandler: () => void;
 }
 
@@ -176,4 +181,39 @@ export interface ISubCategoryFilter {
   isAllreadySelected: boolean;
   value: string;
   filterClickHandler: () => void;
+}
+
+export enum DropDownFilterType {
+  CATEGORY = "CATEGORY",
+  SUB_CATEGORY = "SUB_CATEGORY",
+}
+export interface IDropDownFilter {
+  type: string;
+  allFiltersOptions: TFiltersOptions;
+  selectedFilters: TFiltersOptions;
+  category: string;
+  setCategory: (valie: string) => void;
+  filterClickHandler: (category: string, subCategory: string, filter: string) => void;
+}
+
+export interface IDropDownCategory {
+  currCategory: string;
+  setCategory: (vale: string) => void;
+  categories: string[];
+}
+
+export interface IDropDownSubCategory {
+  category: string;
+  subCategory: string;
+  filters: string[];
+  selectedFilters: TFiltersOptions;
+  filterClickHandler: (category: string, subCategory: string, filter: string) => void;
+}
+
+export interface ISearch {
+  allFiltersOptions: TFiltersOptions;
+  selectedFilters: TFiltersOptions;
+  category: string;
+  setCategory: (value: string) => void;
+  filterClickHandler: (category: string, subCategory: string, newFilterValue: string) => void;
 }
