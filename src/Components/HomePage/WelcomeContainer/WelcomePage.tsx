@@ -4,8 +4,11 @@ import { ContentContainer, Description, Title } from "./HomePageStyle";
 import Divider from "../../Common/Divider/StyleDivider";
 import Button from "../../Common/Button/Button";
 import { buttonType } from "../../types";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const WelcomePage = (): JSX.Element => {
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <HomePageContainer>
       <LogoContainer>
@@ -24,7 +27,7 @@ export const WelcomePage = (): JSX.Element => {
             className={buttonType.NONE}
             isArrowVisible={true}
             content="CONTINUE"
-            onClickHandler={() => console.log("CONTINUE clicked!")}
+            onClickHandler={() => loginWithRedirect({ redirectUri: "http://localhost:3000/dispatcher" })}
           />
         </div>
       </ContentContainer>

@@ -39,6 +39,10 @@ export const Account = styled.div`
   background: ${Colors.CYAN_BLUE};
   border-radius: 30px;
   width: fit-content;
-  padding: 16px;
+  padding: 11px;
   font-size: 0.875rem;
+  line-height: 1.875rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
