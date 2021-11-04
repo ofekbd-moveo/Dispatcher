@@ -9,14 +9,13 @@ import {
   ExitIcon,
 } from "./SearchStyle";
 import assets from "../../Utils/assets";
-import { buttonType, DropDownFilterType, InputEvent, ISearch, TFiltersOptions } from "../types";
+import { buttonType, DropDownFilterType, InputEvent } from "../types";
 import Button from "../Common/Button/Button";
 import { useState } from "react";
 import { DropDownFilter } from "../DropDownFilter/DropDownFilter";
 import { recentSearchesMock } from "../DispatcherPage/Mock";
 
-const Search = (props: ISearch): JSX.Element => {
-  const { allFiltersOptions, selectedFilters, category, setCategory, filterClickHandler } = props;
+const Search = (): JSX.Element => {
   const [isOpenSearches, setIsOpenSearches] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -41,14 +40,7 @@ const Search = (props: ISearch): JSX.Element => {
         <SearchIcon src={assets.search} />
         <SearchArea placeholder="Search" value={searchInput} onChange={onChangeHandler} />
         <div className="vertical-div" />
-        <DropDownFilter
-          type={DropDownFilterType.CATEGORY}
-          category={category}
-          setCategory={setCategory}
-          allFiltersOptions={allFiltersOptions}
-          selectedFilters={selectedFilters}
-          filterClickHandler={filterClickHandler}
-        />
+        <DropDownFilter type={DropDownFilterType.CATEGORY} />
       </SearchLineContainer>
 
       {isOpenSearches && (

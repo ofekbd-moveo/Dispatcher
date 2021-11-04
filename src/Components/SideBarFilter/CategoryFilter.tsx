@@ -1,17 +1,19 @@
-import { SetStateAction } from "react";
 import { RowContainer, RowTitle } from "./SideBarMenuStyle";
+import { newsActions } from "../../store/index";
+import { useDispatch } from "react-redux";
 
 export interface ICategoryFilter {
   isSelected: boolean;
   category: string;
-  setCurrentCategory: (value: SetStateAction<string>) => void;
   backClickHandler: () => void;
 }
 
 export const CategoryFilter = (props: ICategoryFilter): JSX.Element => {
-  const { isSelected, category, setCurrentCategory, backClickHandler } = props;
+  const { isSelected, category, backClickHandler } = props;
+  const dispatch = useDispatch();
+
   const changeCategory = () => {
-    setCurrentCategory(category);
+    dispatch(newsActions.changeCategory(category));
     backClickHandler();
   };
 
