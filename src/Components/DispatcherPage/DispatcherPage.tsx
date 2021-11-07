@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardList from "../Card/CardList";
 import ChartCardList from "../Charts/ChartCardList";
 import Divider from "../Common/Divider/StyleDivider";
@@ -10,11 +10,15 @@ import { SideBarFilter } from "../SideBarFilter/SideBarFilter";
 import TopBar from "../TopBar/TopBar";
 import { ContentContainer, DataContentContainer, Title } from "./DispatcherPageStyle";
 import { DropDownFilter } from "../DropDownFilter/DropDownFilter";
-import { recentSearchesMock, dispatchersDatabase, country, missingDataMock, cardsMock, chartsMock } from "./Mock";
+import { recentSearchesMock, dispatchersDatabase, country, missingDataMock, chartsMock } from "./Mock";
+import { useSelector } from "react-redux";
+import { filterCardsData, getAndSetSources, getCardsData, RootState } from "../../store";
+import { useDispatch } from "react-redux";
 
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const seletedFilters = useSelector((state: RootState) => state.news.selectedFilters);
 
   const toggleSearchBar = (newState: boolean) => {
     setIsSearchMenuOpen(newState);
@@ -22,6 +26,16 @@ export const DispatcherPage = (): JSX.Element => {
   const toggleFilterBar = (newState: boolean) => {
     setIsFilterMenuOpen(newState);
   };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCardsData());
+    dispatch(getAndSetSources());
+  }, []);
+
+  useEffect(() => {
+    dispatch(filterCardsData());
+  }, [seletedFilters]);
 
   return (
     <>
@@ -45,7 +59,7 @@ export const DispatcherPage = (): JSX.Element => {
         <Divider />
         <Title>{dispatchersDatabase + " in " + country}</Title>
         <DataContentContainer>
-          {missingDataMock ? <NoData type={NoDataType.TEXTUAL} /> : <CardList cards={cardsMock} />}
+          {missingDataMock ? <NoData type={NoDataType.TEXTUAL} /> : <CardList />}
           <ChartCardList charts={chartsMock}></ChartCardList>
         </DataContentContainer>
       </ContentContainer>

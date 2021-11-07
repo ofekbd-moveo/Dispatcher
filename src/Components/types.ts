@@ -38,13 +38,17 @@ export enum Colors {
 }
 
 export interface ICard {
+  source: {
+    id: string;
+    name: string;
+  };
+  author: string;
   title: string;
-  imageUrl: string;
   description: string;
+  url: string;
+  urlToImage: string;
   publishedAt: string;
-  tags: string[];
-  source: string;
-  dispacherLink: string;
+  content: string;
 }
 
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;

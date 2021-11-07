@@ -3,21 +3,22 @@ import TagList from "../Common/Tags/TagList";
 import Button from "../Common/Button/Button";
 import { buttonType, ICard } from "../types";
 import { convertDate } from "../../Utils/HelpFunctions/casting";
+import { tagsMock } from "../DispatcherPage/Mock";
 
 const Card = (props: ICard): JSX.Element => {
-  const { title, imageUrl, description, publishedAt, tags, source, dispacherLink } = props;
-  const navigateToDispacher = () => window.location.replace(props.dispacherLink);
+  const { source, author, title, description, url, urlToImage, publishedAt, content } = props;
+  const navigateToDispacher = () => window.location.replace(url);
   const navBtnTitle = "NAVIGATE TO DISPATCH";
 
   return (
     <CardContainer>
-      <Image src={imageUrl}></Image>
+      <Image src={urlToImage}></Image>
 
       <ContentContainer>
         <Date>{convertDate(publishedAt)}</Date>
-        <TagList tags={tags} />
+        <TagList tags={tagsMock} />
         <Title>{title}</Title>
-        <Source>{source}</Source>
+        <Source>{source.name}</Source>
         <Description>{description}</Description>
         <ButtonContainer>
           <Button
