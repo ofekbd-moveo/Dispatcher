@@ -27,7 +27,7 @@ export const WelcomePage = (): JSX.Element => {
             className={buttonType.NONE}
             isArrowVisible={true}
             content="CONTINUE"
-            onClickHandler={() => loginWithRedirect({ redirectUri: "http://localhost:3000/dispatcher" })}
+            onClickHandler={() => loginWithRedirect({ redirectUri: `${process.env.REACT_APP_PUBLIC_URL}/dispatcher` })}
           />
         </div>
       </ContentContainer>

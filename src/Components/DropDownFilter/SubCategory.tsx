@@ -19,7 +19,7 @@ export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
 
   const [isOpen, setIsOpen] = useState(false);
   const selectedFilters = useSelector((state: RootState) => state.news.selectedFilters);
-  const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersData);
+  const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersOptions);
   const currCategory = useSelector((state: RootState) => state.news.currCategory);
   const filters = allFiltersOptions[currCategory][subCategory];
 
@@ -35,10 +35,10 @@ export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
   };
 
   const renderFilters = (filters: string[]) => {
-    return filters.map((filter: string) => {
+    return filters.map((filter: string, key: number) => {
       const isSelectedFilter = selectedFilters[currCategory][subCategory].includes(filter);
       return (
-        <ListItem isSelected={isSelectedFilter} onClick={() => selectedClickHandler(filter)}>
+        <ListItem key={key} isSelected={isSelectedFilter} onClick={() => selectedClickHandler(filter)}>
           {filter}
         </ListItem>
       );

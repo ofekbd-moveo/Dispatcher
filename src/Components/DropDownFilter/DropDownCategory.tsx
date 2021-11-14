@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 
 export const DropDownCategory = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersData);
+  const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersOptions);
   const currCategory = useSelector((state: RootState) => state.news.currCategory);
 
   const dispatch = useDispatch();

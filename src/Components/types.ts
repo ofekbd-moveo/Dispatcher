@@ -55,7 +55,7 @@ export type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
 export type TChartCard = IDoughnutChart | ILineChart | IBarChart;
 
-type doughnutDataType = {
+export type doughnutDataType = {
   labels: string[];
   datasets: {
     label?: string;
@@ -90,7 +90,7 @@ export const lineOptions = {
   },
 };
 
-type lineDataType = {
+export type lineDataType = {
   labels: string[];
   datasets: {
     label: string;

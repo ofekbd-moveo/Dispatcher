@@ -2,7 +2,7 @@ import dateFormat from "dateformat";
 import { CATEGORY, COUNTRY, LANGUAGE, SORT_BY } from "../../Components/constants";
 import { Categories, TFiltersOptions } from "../../Components/types";
 
-export const convertDate = (dateText: string): string => {
+export const formateDate = (dateText: string): string => {
   const date = new Date(dateText);
   return dateFormat(date, "dddd mmm d, yyyy");
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../Common/Button/Button";
-import { buttonType, ISideBarFilter, TFiltersOptions } from "../types";
+import { buttonType, ISideBarFilter } from "../types";
 import { Category } from "./Category";
 import { BackArrow, BackDrop, Footer, Header, SideBarContainer, SidebarTitle } from "./SideBarMenuStyle";
 import { SubCategory } from "./SubCategory";
@@ -14,7 +14,7 @@ import { RootState } from "../../store";
 export const SideBarFilter = (props: ISideBarFilter) => {
   const { isFilterMenuOpen, closeFilterBarClickHandler } = props;
 
-  const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersData);
+  const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersOptions);
   const selectedFilters = useSelector((state: RootState) => state.news.selectedFilters);
   const currCategory = useSelector((state: RootState) => state.news.currCategory);
 
@@ -24,10 +24,11 @@ export const SideBarFilter = (props: ISideBarFilter) => {
 
   const renderSubCategories = () => {
     const subCategoriesList = Object.keys(allFiltersOptions[currCategory]);
-    return subCategoriesList.map((subCategory) => {
+    return subCategoriesList.map((subCategory, key) => {
       const filters = selectedFilters[currCategory][subCategory];
       return (
         <SubCategory
+          key={key}
           subCategory={subCategory}
           filters={filters}
           setMenuTitle={setMenuTitle}
@@ -40,11 +41,12 @@ export const SideBarFilter = (props: ISideBarFilter) => {
   const renderSubCategoryFilters = () => {
     const filters = allFiltersOptions[currCategory][currSubCategory];
 
-    return filters.map((filter) => {
+    return filters.map((filter, key) => {
       const isAllreadySelected = selectedFilters[currCategory][currSubCategory].includes(filter);
 
       return (
         <SubCategoryFilter
+          key={key}
           isAllreadySelected={isAllreadySelected}
           filter={filter}
           currSubCategory={currSubCategory}
@@ -56,8 +58,9 @@ export const SideBarFilter = (props: ISideBarFilter) => {
   const renderCategories = () => {
     const categoriesList = Object.keys(allFiltersOptions);
 
-    return categoriesList.map((category) => (
+    return categoriesList.map((category, key) => (
       <CategoryFilter
+        key={key}
         isSelected={category === currCategory}
         category={category}
         backClickHandler={backClickHandler}

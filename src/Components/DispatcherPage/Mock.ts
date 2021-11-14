@@ -86,6 +86,4 @@ export const barChartMock: TChartCard = {
 
 export const chartsMock: TChartCard[] = [doughnutChartMock, lineChartMock, barChartMock];
 
-export const missingDataMock: boolean = false;
-
 export const recentSearchesMock = ["crypto", "soccer", "soc", "fdaad", "dgdf", "asddsf"];
