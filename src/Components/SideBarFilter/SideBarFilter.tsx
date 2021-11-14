@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../Common/Button/Button";
-import { buttonType, Categories, ISideBarFilter } from "../types";
+import { buttonType, ISideBarFilter } from "../types";
 import { Category } from "./Category";
 import { BackArrow, BackDrop, Footer, Header, SideBarContainer, SidebarTitle } from "./SideBarMenuStyle";
 import { SubCategory } from "./SubCategory";
@@ -8,28 +8,27 @@ import { SubCategoryFilter } from "./SubCategoryFilter";
 import assets from "../../Utils/assets";
 import { CategoryFilter } from "./CategoryFilter";
 import { CATEGORY_TITLE, MAIN_TITLE } from "../constants";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 export const SideBarFilter = (props: ISideBarFilter) => {
-  const {
-    allFiltersOptions,
-    selectedFilters,
-    isFilterMenuOpen,
-    closeFilterBarClickHandler,
-    filterClickHandler,
-  } = props;
+  const { isFilterMenuOpen, closeFilterBarClickHandler } = props;
 
-  const [currentCategory, setCurrentCategory] = useState(Categories.everything as string);
+  const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersOptions);
+  const selectedFilters = useSelector((state: RootState) => state.news.selectedFilters);
+  const currCategory = useSelector((state: RootState) => state.news.currCategory);
+
   const [currSubCategory, setCurrSubCategory] = useState(MAIN_TITLE);
   const [menuTitle, setMenuTitle] = useState(MAIN_TITLE);
   const isSubCategoryMenu = menuTitle !== MAIN_TITLE;
 
   const renderSubCategories = () => {
-    const subCategoriesList = Object.keys(allFiltersOptions[currentCategory]);
-
-    return subCategoriesList.map((subCategory) => {
-      const filters = selectedFilters[currentCategory][subCategory];
+    const subCategoriesList = Object.keys(allFiltersOptions[currCategory]);
+    return subCategoriesList.map((subCategory, key) => {
+      const filters = selectedFilters[currCategory][subCategory];
       return (
         <SubCategory
+          key={key}
           subCategory={subCategory}
           filters={filters}
           setMenuTitle={setMenuTitle}
@@ -40,16 +39,17 @@ export const SideBarFilter = (props: ISideBarFilter) => {
   };
 
   const renderSubCategoryFilters = () => {
-    const filters = allFiltersOptions[currentCategory][currSubCategory];
+    const filters = allFiltersOptions[currCategory][currSubCategory];
 
-    return filters.map((filter) => {
-      const isAllreadySelected = selectedFilters[currentCategory][currSubCategory].includes(filter);
+    return filters.map((filter, key) => {
+      const isAllreadySelected = selectedFilters[currCategory][currSubCategory].includes(filter);
 
       return (
         <SubCategoryFilter
+          key={key}
           isAllreadySelected={isAllreadySelected}
-          value={filter}
-          filterClickHandler={() => filterClickHandler(currentCategory, currSubCategory, filter)}
+          filter={filter}
+          currSubCategory={currSubCategory}
         ></SubCategoryFilter>
       );
     });
@@ -58,11 +58,11 @@ export const SideBarFilter = (props: ISideBarFilter) => {
   const renderCategories = () => {
     const categoriesList = Object.keys(allFiltersOptions);
 
-    return categoriesList.map((category) => (
+    return categoriesList.map((category, key) => (
       <CategoryFilter
-        isSelected={category === currentCategory}
+        key={key}
+        isSelected={category === currCategory}
         category={category}
-        setCurrentCategory={setCurrentCategory}
         backClickHandler={backClickHandler}
       ></CategoryFilter>
     ));
@@ -92,7 +92,7 @@ export const SideBarFilter = (props: ISideBarFilter) => {
             {isSubCategoryMenu && <BackArrow src={assets.back} onClick={backClickHandler} />}
             {menuTitle}
           </SidebarTitle>
-          {!isSubCategoryMenu && <Category category={currentCategory} setMenuTitle={setMenuTitle} />}
+          {!isSubCategoryMenu && <Category category={currCategory} setMenuTitle={setMenuTitle} />}
           {renderMenu()}
         </Header>
 

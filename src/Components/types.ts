@@ -1,6 +1,5 @@
 import { SetStateAction } from "react";
 
-// pass to global env
 export enum buttonType {
   NONE = "none",
   PRIMARY = "primary",
@@ -39,20 +38,24 @@ export enum Colors {
 }
 
 export interface ICard {
+  source: {
+    id: string;
+    name: string;
+  };
+  author: string;
   title: string;
-  imageUrl: string;
   description: string;
+  url: string;
+  urlToImage: string;
   publishedAt: string;
-  tags: string[];
-  source: string;
-  dispacherLink: string;
+  content: string;
 }
 
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
 export type TChartCard = IDoughnutChart | ILineChart | IBarChart;
 
-type doughnutDataType = {
+export type doughnutDataType = {
   labels: string[];
   datasets: {
     label?: string;
@@ -87,7 +90,7 @@ export const lineOptions = {
   },
 };
 
-type lineDataType = {
+export type lineDataType = {
   labels: string[];
   datasets: {
     label: string;
@@ -135,11 +138,6 @@ export interface IBarChart {
 }
 
 export interface ITopBar {
-  allFiltersOptions: TFiltersOptions;
-  selectedFilters: TFiltersOptions;
-  category: string;
-  setCategory: (value: string) => void;
-  filterClickHandler: (category: string, subCategory: string, newFilterValue: string) => void;
   openSearchBarClickHandler: () => void;
 }
 
@@ -148,11 +146,8 @@ export interface ISecondaryTopBar {
 }
 
 export interface ISideBarFilter {
-  allFiltersOptions: { [category: string]: { [subCategory: string]: string[] } };
-  selectedFilters: { [category: string]: { [subCategory: string]: string[] } };
   isFilterMenuOpen: boolean;
   closeFilterBarClickHandler: () => void;
-  filterClickHandler: (category: string, subCategory: string, filter: string) => void;
 }
 
 export enum Categories {
@@ -179,8 +174,8 @@ export interface ISubCategory {
 
 export interface ISubCategoryFilter {
   isAllreadySelected: boolean;
-  value: string;
-  filterClickHandler: () => void;
+  filter: string;
+  currSubCategory: string;
 }
 
 export enum DropDownFilterType {
@@ -189,31 +184,8 @@ export enum DropDownFilterType {
 }
 export interface IDropDownFilter {
   type: string;
-  allFiltersOptions: TFiltersOptions;
-  selectedFilters: TFiltersOptions;
-  category: string;
-  setCategory: (valie: string) => void;
-  filterClickHandler: (category: string, subCategory: string, filter: string) => void;
-}
-
-export interface IDropDownCategory {
-  currCategory: string;
-  setCategory: (vale: string) => void;
-  categories: string[];
 }
 
 export interface IDropDownSubCategory {
-  category: string;
   subCategory: string;
-  filters: string[];
-  selectedFilters: TFiltersOptions;
-  filterClickHandler: (category: string, subCategory: string, filter: string) => void;
-}
-
-export interface ISearch {
-  allFiltersOptions: TFiltersOptions;
-  selectedFilters: TFiltersOptions;
-  category: string;
-  setCategory: (value: string) => void;
-  filterClickHandler: (category: string, subCategory: string, newFilterValue: string) => void;
 }

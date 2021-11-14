@@ -2,36 +2,26 @@ import { DropDownFilterType, IDropDownFilter } from "../types";
 import { DropDownCategory } from "./DropDownCategory";
 import { SubCategoryList } from "./DropDownFilterStyle";
 import { SubCategory } from "./SubCategory";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 export const DropDownFilter = (props: IDropDownFilter): JSX.Element => {
-  const { type, allFiltersOptions, selectedFilters, category, setCategory, filterClickHandler } = props;
+  const { type } = props;
 
-  const subCategories = Object.keys(allFiltersOptions[category]);
+  const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersOptions);
+  const currCategory = useSelector((state: RootState) => state.news.currCategory);
+
+  const subCategories = Object.keys(allFiltersOptions[currCategory]);
 
   const renderSubCategories = () => {
-    return subCategories.map((subCategory) => {
-      const filters = allFiltersOptions[category][subCategory];
-      return (
-        <SubCategory
-          category={category}
-          subCategory={subCategory}
-          filters={filters}
-          selectedFilters={selectedFilters}
-          filterClickHandler={filterClickHandler}
-        />
-      );
+    return subCategories.map((subCategory, key) => {
+      return <SubCategory key={key} subCategory={subCategory} />;
     });
   };
 
   switch (type) {
     case DropDownFilterType.CATEGORY:
-      return (
-        <DropDownCategory
-          currCategory={category}
-          setCategory={setCategory}
-          categories={Object.keys(allFiltersOptions)}
-        />
-      );
+      return <DropDownCategory />;
     case DropDownFilterType.SUB_CATEGORY:
       return <SubCategoryList>{renderSubCategories()}</SubCategoryList>;
     default:
