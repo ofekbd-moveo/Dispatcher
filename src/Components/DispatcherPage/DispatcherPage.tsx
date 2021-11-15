@@ -14,6 +14,7 @@ import { recentSearchesMock, dispatchersDatabase, country, chartsMock } from "./
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { filterCardsData, initCardsData, initSources } from "../../store/indexFuncs";
+// import { charts } from "../constants";
 
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
@@ -62,7 +63,8 @@ export const DispatcherPage = (): JSX.Element => {
         <Title>{dispatchersDatabase + " in " + country}</Title>
         <DataContentContainer>
           {cards.length === 0 && !isLoading ? <NoData type={NoDataType.TEXTUAL} /> : <CardList />}
-          <ChartCardList charts={chartsMock}></ChartCardList>
+          {/* charts={charts} */}
+          <ChartCardList></ChartCardList>
         </DataContentContainer>
       </ContentContainer>
     </>

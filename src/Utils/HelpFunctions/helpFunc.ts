@@ -1,6 +1,6 @@
 import { doughnutData, lineData } from "../../Components/constants";
-import { ICard, TFiltersOptions } from "../../Components/types";
-import { formateDate } from "./casting";
+import { ICard, IDoughnutChart, ILineChart, TFiltersOptions } from "../../Components/types";
+import { formateChartDate, formateDate } from "./casting";
 
 export const fetchData = (URL: string, func: (articles: TFiltersOptions[]) => void) => {
   fetch(URL, {
@@ -15,22 +15,42 @@ export const fetchData = (URL: string, func: (articles: TFiltersOptions[]) => vo
     });
 };
 
-export const statistics = (cards: ICard[]) => {
+export const calcGraphs = (
+  cards: ICard[],
+  doughnutChart: IDoughnutChart,
+  lineChart: ILineChart,
+  setDoughnutChart: (newState: any) => void,
+  setLineChart: (newState: any) => void
+) => {
   //Sources at Doughnut chart
   const sourcesList = cards.map((card) => card.source.name);
-  const sourcesOccurrences = sourcesList.reduce(function (acc: { [label: string]: number }, curr: string) {
+  const sourcesOccurrences: { [label: string]: number } = sourcesList.reduce(function (
+    acc: { [label: string]: number },
+    curr: string
+  ) {
     return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-  }, {});
+  },
+  {});
 
-  doughnutData.labels = Object.keys(sourcesOccurrences);
-  doughnutData.datasets[0].data = Object.values(sourcesOccurrences);
+  setDoughnutChart({
+    ...doughnutChart,
+    data: {
+      labels: Object.keys(sourcesOccurrences),
+      datasets: [{ ...doughnutData.datasets[0], data: Object.values(sourcesOccurrences) }],
+    },
+  });
 
   //Dates at Line chart
-  const datesList = cards.map((card) => formateDate(card.publishedAt));
+  const datesList = cards.map((card) => formateChartDate(card.publishedAt));
   const datesOccurrences = datesList.reduce(function (acc: { [label: string]: number }, curr: string) {
     return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
   }, {});
 
-  lineData.labels = Object.keys(datesOccurrences);
-  lineData.datasets[0].data = Object.values(datesOccurrences);
+  setLineChart({
+    ...lineChart,
+    data: {
+      labels: Object.keys(datesOccurrences),
+      datasets: [{ ...lineData.datasets[0], data: Object.values(datesOccurrences) }],
+    },
+  });
 };

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardsContainer = styled.div`
-  min-width: 65%;
+  min-width: 70%;
   overflow: scroll;
   height: 125vh;
   @media screen and (max-width: 768px) {

@@ -66,12 +66,13 @@ export type doughnutDataType = {
     hoverBackgroundColor?: string[];
     hoverOffset?: number;
     spacing?: number;
+    cutout?: string;
   }[];
 };
 
 export const doughnutOptions = {
   responsive: true,
-  maintainAspectRatio: false,
+  // maintainAspectRatio: false,
   cutout: 40,
 };
 
@@ -93,7 +94,7 @@ export const lineOptions = {
 export type lineDataType = {
   labels: string[];
   datasets: {
-    label: string;
+    label?: string;
     data: number[];
     fill?: boolean;
     backgroundColor?: string;

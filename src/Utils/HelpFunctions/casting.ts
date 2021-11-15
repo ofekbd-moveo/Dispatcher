@@ -6,7 +6,10 @@ export const formateDate = (dateText: string): string => {
   const date = new Date(dateText);
   return dateFormat(date, "dddd mmm d, yyyy");
 };
-
+export const formateChartDate = (dateText: string): string => {
+  const date = new Date(dateText);
+  return dateFormat(date, "mmm d");
+};
 export const convertCategoryToApiLabel = (category: string): string => {
   switch (category) {
     case Categories.everything:
