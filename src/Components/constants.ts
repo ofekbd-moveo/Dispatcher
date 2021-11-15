@@ -1,4 +1,14 @@
-import { doughnutDataType, lineDataType, TFiltersOptions } from "./types";
+import { barDataMock } from "./DispatcherPage/Mock";
+import {
+  ChartType,
+  doughnutDataType,
+  IBarChart,
+  IDoughnutChart,
+  ILineChart,
+  lineDataType,
+  TChartCard,
+  TFiltersOptions,
+} from "./types";
 
 export const COUNTRY: { [item: string]: string } = {
   Argentina: "ar",
@@ -82,6 +92,7 @@ export const doughnutData: doughnutDataType = {
         "rgba(52, 58, 110, 0.8)",
       ],
       hoverOffset: 5,
+      cutout: "80%",
     },
   ],
 };
@@ -99,6 +110,24 @@ export const lineData: lineDataType = {
     },
   ],
 };
+export const initDoughnutChart: IDoughnutChart = {
+  title: "Sources",
+  type: ChartType.DOUGHNUT,
+  data: doughnutData,
+};
+export const initLineChart: ILineChart = {
+  title: "Dates",
+  type: ChartType.LINE,
+  data: lineData,
+};
+
+export const initBarChart: IBarChart = {
+  title: "Tags",
+  type: ChartType.BAR,
+  data: barDataMock,
+};
+
+// export const charts: TChartCard[] = [doughnutChart, lineChart, barChart];
 
 export const SORT_BY_TITLE = "Sort by";
 export const EMAIL_LABEL = "Email Address";

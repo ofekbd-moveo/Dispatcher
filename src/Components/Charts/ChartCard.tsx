@@ -1,8 +1,9 @@
-import { barOptions, ChartType, doughnutOptions, lineOptions, TChartCard } from "../types";
+import { barOptions, ChartType, doughnutOptions, lineOptions, NoDataType, TChartCard } from "../types";
 import { ChartCardContainer, ChartTitle, Divider, ChartContainer } from "./ChartCardStyle";
 import { Doughnut, Line, Bar } from "react-chartjs-2";
 import { ChartData } from "chart.js";
 import { _DeepPartialObject } from "chart.js/types/utils";
+import { NoData } from "../NoData/NoData";
 
 const renderChartByType = (props: TChartCard): JSX.Element => {
   const { title, type, data } = props;
@@ -14,16 +15,18 @@ const renderChartByType = (props: TChartCard): JSX.Element => {
     case ChartType.BAR:
       return <Bar data={data as ChartData<"bar", number[], string>} options={barOptions} />;
     default:
-      return <></>; //TODO: replace here to missingData component when create it
+      return <NoData type={NoDataType.GRAPHIC} />;
+    //TODO: replace here to missingData component when create it
   }
 };
 
 const ChartCard = (props: TChartCard): JSX.Element => {
+  const { title, type, data } = props;
   const chartToRender = renderChartByType(props);
 
   return (
     <ChartCardContainer>
-      <ChartTitle>{props.title}</ChartTitle>
+      <ChartTitle>{title}</ChartTitle>
       <Divider></Divider>
       <ChartContainer>{chartToRender}</ChartContainer>
     </ChartCardContainer>
