@@ -63,6 +63,6 @@ export const filterCardsData = () => async (dispatch: any, getState: any) => {
   //   }
   //   dispatch(newsActions.setIsLoading(false));
 
-  dispatch(newsActions.setCards(apiMock.articles));
+  dispatch(newsActions.setCards([]));
   dispatch(newsActions.setIsLoading(false));
 };
