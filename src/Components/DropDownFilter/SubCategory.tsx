@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { newsActions } from "../../store/index";
 import { useDispatch } from "react-redux";
+import { filterCardsData } from "../../store/indexFuncs";
 
 export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
   const { subCategory } = props;
@@ -32,6 +33,7 @@ export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
         filter: filter,
       })
     );
+    dispatch(filterCardsData());
   };
 
   const renderFilters = (filters: string[]) => {

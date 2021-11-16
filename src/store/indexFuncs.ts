@@ -54,7 +54,7 @@ export const filterCardsData = () => async (dispatch: any, getState: any) => {
 
   let newCards: ICard[] = [];
   for (const req of requestsParams) {
-    const URL = API_URL + requestsParams[0] + searchStr + "apiKey=" + API_KEY;
+    const URL = API_URL + req + searchStr + "apiKey=" + API_KEY;
 
     await axios
       .get(URL)
@@ -65,7 +65,7 @@ export const filterCardsData = () => async (dispatch: any, getState: any) => {
       })
       .catch((error) => console.log(error));
   }
-  dispatch(newsActions.setCards(newCards));
+  dispatch(newsActions.setCards(_.uniq(newCards)));
   dispatch(newsActions.setIsLoading(false));
 
   // dispatch(newsActions.setCards([]));
