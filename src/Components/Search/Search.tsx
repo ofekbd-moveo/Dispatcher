@@ -13,31 +13,57 @@ import { buttonType, DropDownFilterType, InputEvent } from "../types";
 import Button from "../Common/Button/Button";
 import { useState } from "react";
 import { DropDownFilter } from "../DropDownFilter/DropDownFilter";
-import { recentSearchesMock } from "../DispatcherPage/Mock";
+import _ from "lodash";
+import { useDispatch, useSelector } from "react-redux";
+import { newsActions, RootState } from "../../store";
+import { filterCardsData } from "../../store/indexFuncs";
 
-const Search = (): JSX.Element => {
+interface ISearch {
+  recentSearches: string[];
+  setRecentSearches: (newState: string[]) => void;
+}
+const Search = (props: ISearch): JSX.Element => {
+  const { recentSearches, setRecentSearches } = props;
   const [isOpenSearches, setIsOpenSearches] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
+  const searchInput = useSelector((state: RootState) => state.news.searchInput);
+  const dispatch = useDispatch();
 
   const onChangeHandler = (event: InputEvent) => {
     event.preventDefault();
     const newSearchInput = event.target.value;
-    setSearchInput(newSearchInput);
+    dispatch(newsActions.setSearceInput(newSearchInput));
     setIsOpenSearches(newSearchInput !== "");
   };
 
   const renderRecentSearchesList = (recentSearches: string[]) =>
-    recentSearches.map((search: string, key: number) => (
-      <RecentSearch key={key}>
-        <span>{search}</span>
-        <ExitIcon src={assets.exit} />
-      </RecentSearch>
-    ));
+    recentSearches
+      .map((search: string, key: number) => (
+        <RecentSearch key={key} onClick={() => dispatch(newsActions.setSearceInput(search))}>
+          <span>{search}</span>
+          <ExitIcon
+            src={assets.exit}
+            onClick={() => setRecentSearches(recentSearches.filter((curr) => curr !== search))}
+          />
+        </RecentSearch>
+      ))
+      .reverse();
+
+  const submitHandler = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    //add current Search to LocalStorage
+    setRecentSearches([...recentSearches, searchInput]);
+
+    //send new api request
+    dispatch(filterCardsData());
+
+    //close recent searches
+    setIsOpenSearches(false);
+  };
 
   return (
     <SearchContainer>
-      <SearchLineContainer>
-        <SearchIcon src={assets.search} />
+      <SearchLineContainer onSubmit={(e) => submitHandler(e)}>
+        <SearchIcon type="image" name="submit" src={assets.search} />
         <SearchArea placeholder="Search" value={searchInput} onChange={onChangeHandler} />
         <div className="vertical-div" />
         <DropDownFilter type={DropDownFilterType.CATEGORY} />
@@ -51,10 +77,10 @@ const Search = (): JSX.Element => {
               className={buttonType.TEXT}
               isArrowVisible={false}
               content="CLEAR"
-              onClickHandler={() => console.log("clear searches!")}
+              onClickHandler={() => setRecentSearches([])}
             ></Button>
           </RecentSearchesHeader>
-          {renderRecentSearchesList(recentSearchesMock)}
+          {renderRecentSearchesList(recentSearches)}
         </RecentSearchesContainer>
       )}
     </SearchContainer>

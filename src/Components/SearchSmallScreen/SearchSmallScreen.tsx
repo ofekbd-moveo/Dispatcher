@@ -10,53 +10,87 @@ import {
   SearchSmallScreenContainer,
   TitleContainer,
   RecentSearch,
+  UpperContainer,
 } from "./SearchSmallScreenStyle";
 import assets from "../../Utils/assets";
+import { useDispatch, useSelector } from "react-redux";
+import { newsActions, RootState } from "../../store";
+import { filterCardsData } from "../../store/indexFuncs";
+import { ChangeEvent } from "react";
 
 export interface ISreachSmallScreen {
   recentSearches: string[];
+  setRecentSearches: (newState: string[]) => void;
   isMenuOpen: boolean;
   closeSearchBarClickHandler: () => void;
 }
 export const SearchSmallScreen = (props: ISreachSmallScreen): JSX.Element => {
-  const { recentSearches, isMenuOpen, closeSearchBarClickHandler } = props;
+  const { recentSearches, setRecentSearches, isMenuOpen, closeSearchBarClickHandler } = props;
   const resentSearchesTitle = "RECENT SHEARCHES";
+  const searchInput = useSelector((state: RootState) => state.news.searchInput);
+  const dispatch = useDispatch();
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    const newSearchInput = event.target.value;
+    dispatch(newsActions.setSearceInput(newSearchInput));
+  };
 
   const renderRecentSearchesList = (recentSearches: string[]) =>
     recentSearches.map((search: string, key: number) => (
-      <RecentSearch key={key}>
+      <RecentSearch key={key} onClick={() => dispatch(newsActions.setSearceInput(search))}>
         <span>{search}</span>
-        <RemoveIcon src={assets.exit} />
+        <RemoveIcon
+          src={assets.exit}
+          onClick={() => setRecentSearches(recentSearches.filter((curr) => curr !== search))}
+        />
       </RecentSearch>
     ));
 
+  const submitHandler = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    //add current Search to LocalStorage
+    setRecentSearches([...recentSearches, searchInput]);
+
+    //send new api request
+    dispatch(filterCardsData());
+
+    //close search sidebar
+    closeSearchBarClickHandler();
+  };
+
   return (
-    <SearchSmallScreenContainer className={isMenuOpen ? "open" : "close"}>
-      <RecentSearchesContainer>
+    <SearchSmallScreenContainer className={isMenuOpen ? "open" : "close"} onSubmit={(e) => submitHandler(e)}>
+      <UpperContainer>
         <SearchInputContainer>
           <div className="search-input">
             <BackArrow src={assets.back} />
-            <SearchInputArea placeholder="Search"></SearchInputArea>
+            <SearchInputArea
+              placeholder="Search"
+              value={searchInput}
+              onChange={(e) => onChangeHandler(e)}
+            ></SearchInputArea>
           </div>
           <RemoveIcon src={assets.exit} onClick={closeSearchBarClickHandler} />
         </SearchInputContainer>
         <TitleContainer>
           {resentSearchesTitle}
           <Button
+            type="button"
             className={buttonType.TEXT}
             isArrowVisible={false}
             content="CLEAR"
-            onClickHandler={() => console.log("clear searches!")}
+            onClickHandler={() => setRecentSearches([])}
           ></Button>
         </TitleContainer>
-        {renderRecentSearchesList(recentSearches)}
-      </RecentSearchesContainer>
+        <RecentSearchesContainer>{renderRecentSearchesList(recentSearches)}</RecentSearchesContainer>
+      </UpperContainer>
       <SearchButtonContainer>
         <Button
+          name="submit"
+          type="submit"
           className={buttonType.PRIMARY}
           isArrowVisible={false}
           content="SEARCH"
-          onClickHandler={() => console.log("start searching!")}
         ></Button>
       </SearchButtonContainer>
     </SearchSmallScreenContainer>

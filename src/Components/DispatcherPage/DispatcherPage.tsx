@@ -14,11 +14,12 @@ import { recentSearchesMock, dispatchersDatabase, country, chartsMock } from "./
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { filterCardsData, initCardsData, initSources } from "../../store/indexFuncs";
-// import { charts } from "../constants";
+import { useLocalStorage } from "../../Utils/CustomHooks/LocalStorage";
 
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const [recentSearches, setRecentSearches] = useLocalStorage<string[]>("recent", []);
   const seletedFilters = useSelector((state: RootState) => state.news.selectedFilters);
   const cards = useSelector((state: RootState) => state.news.cards);
   const isLoading = useSelector((state: RootState) => state.news.isLoading);
@@ -43,7 +44,8 @@ export const DispatcherPage = (): JSX.Element => {
   return (
     <>
       <SearchSmallScreen
-        recentSearches={recentSearchesMock}
+        recentSearches={recentSearches}
+        setRecentSearches={setRecentSearches}
         isMenuOpen={isSearchMenuOpen}
         closeSearchBarClickHandler={() => toggleSearchBar(false)}
       />
@@ -53,7 +55,11 @@ export const DispatcherPage = (): JSX.Element => {
         closeFilterBarClickHandler={() => toggleFilterBar(false)}
       ></SideBarFilter>
 
-      <TopBar openSearchBarClickHandler={() => toggleSearchBar(true)} />
+      <TopBar
+        recentSearches={recentSearches}
+        setRecentSearches={setRecentSearches}
+        openSearchBarClickHandler={() => toggleSearchBar(true)}
+      />
       <SecondaryTopBar openFilterBarClickHandler={() => toggleFilterBar(true)} />
 
       <ContentContainer>

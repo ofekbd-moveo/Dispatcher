@@ -9,6 +9,7 @@ interface TNews {
   allFiltersOptions: TFiltersOptions;
   cards: ICard[];
   isLoading: boolean;
+  searchInput: string;
 }
 const initializedNews: TNews = {
   currCategory: Categories.topHeadline,
@@ -16,6 +17,7 @@ const initializedNews: TNews = {
   allFiltersOptions: initializedAllFiltersOptions,
   cards: [],
   isLoading: true,
+  searchInput: "",
 };
 
 const newsSlice = createSlice({
@@ -52,6 +54,9 @@ const newsSlice = createSlice({
 
     setIsLoading(state, action) {
       state.isLoading = action.payload;
+    },
+    setSearceInput(state, action) {
+      state.searchInput = action.payload;
     },
   },
 });
