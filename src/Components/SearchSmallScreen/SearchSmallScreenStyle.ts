@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Colors } from "../types";
 
-export const SearchSmallScreenContainer = styled.div`
+export const SearchSmallScreenContainer = styled.form`
   position: absolute;
   right: 0;
   height: 100vh;
@@ -10,7 +10,8 @@ export const SearchSmallScreenContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   z-index: 100;
-  background: white;
+  background: ${Colors.GHOST_WHITE};
+
   transition: width ease-in-out 1s;
   white-space: nowrap;
 
@@ -24,6 +25,10 @@ export const SearchSmallScreenContainer = styled.div`
   }
 `;
 
+export const UpperContainer = styled.div`
+  height: 90%;
+`;
+
 export const SearchInputContainer = styled.div`
   background: ${Colors.WHITE};
   border-bottom: 1px solid ${Colors.LIGHT_PURPLE_GRAY};
@@ -31,6 +36,7 @@ export const SearchInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0px 32px 64px 0px #0000000d;
 `;
 
 export const BackArrow = styled.img`
@@ -80,9 +86,14 @@ export const RecentSearch = styled.div`
   border-bottom: 1px solid ${Colors.LIGHT_PURPLE_GRAY};
 `;
 
-export const RecentSearchesContainer = styled.div``;
+export const RecentSearchesContainer = styled.div`
+  max-height: 70%;
+  overflow: scroll;
+`;
 
 export const SearchButtonContainer = styled.div`
   align-self: center;
   padding: 10px;
+  text-align: center;
+  width: 100%;
 `;

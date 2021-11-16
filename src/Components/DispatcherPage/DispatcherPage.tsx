@@ -10,16 +10,14 @@ import { SideBarFilter } from "../SideBarFilter/SideBarFilter";
 import TopBar from "../TopBar/TopBar";
 import { ContentContainer, DataContentContainer, Title } from "./DispatcherPageStyle";
 import { DropDownFilter } from "../DropDownFilter/DropDownFilter";
-import { recentSearchesMock, dispatchersDatabase, country, chartsMock } from "./Mock";
+import { dispatchersDatabase, country } from "./Mock";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { filterCardsData, initCardsData, initSources } from "../../store/indexFuncs";
-// import { charts } from "../constants";
 
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
-  const seletedFilters = useSelector((state: RootState) => state.news.selectedFilters);
   const cards = useSelector((state: RootState) => state.news.cards);
   const isLoading = useSelector((state: RootState) => state.news.isLoading);
 
@@ -36,17 +34,9 @@ export const DispatcherPage = (): JSX.Element => {
     dispatch(initSources());
   }, []);
 
-  useEffect(() => {
-    dispatch(filterCardsData());
-  }, [seletedFilters]);
-
   return (
     <>
-      <SearchSmallScreen
-        recentSearches={recentSearchesMock}
-        isMenuOpen={isSearchMenuOpen}
-        closeSearchBarClickHandler={() => toggleSearchBar(false)}
-      />
+      <SearchSmallScreen isMenuOpen={isSearchMenuOpen} closeSearchBarClickHandler={() => toggleSearchBar(false)} />
 
       <SideBarFilter
         isFilterMenuOpen={isFilterMenuOpen}

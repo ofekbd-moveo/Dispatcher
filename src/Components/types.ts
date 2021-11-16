@@ -51,6 +51,8 @@ export interface ICard {
   content: string;
 }
 
+export type TButtonAtrType = "button" | "submit" | "reset";
+
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
 export type TChartCard = IDoughnutChart | ILineChart | IBarChart;

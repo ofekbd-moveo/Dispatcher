@@ -7,7 +7,7 @@ export const SearchContainer = styled.div`
   }
 `;
 
-export const SearchLineContainer = styled.div`
+export const SearchLineContainer = styled.form`
   display: flex;
   justify-content: space-between;
   background: white;
@@ -22,7 +22,7 @@ export const SearchLineContainer = styled.div`
   }
 `;
 
-export const SearchIcon = styled.img`
+export const SearchIcon = styled.input`
   width: 1.52875rem;
   height: 1.5rem;
   align-self: center;

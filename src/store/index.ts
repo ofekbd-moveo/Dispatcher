@@ -2,6 +2,9 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { Categories, ICard, TFiltersOptions } from "../Components/types";
 import _ from "lodash";
 import { initializedAllFiltersOptions, initializedSelectedFilters } from "../Components/constants";
+import { loadLocalStorageState, setLocalStorageState } from "../Utils/CustomHooks/LocalStorage";
+
+const initializedRecentSearches = loadLocalStorageState();
 
 interface TNews {
   currCategory: string;
@@ -9,6 +12,8 @@ interface TNews {
   allFiltersOptions: TFiltersOptions;
   cards: ICard[];
   isLoading: boolean;
+  searchInput: string;
+  recentSearches: string[];
 }
 const initializedNews: TNews = {
   currCategory: Categories.topHeadline,
@@ -16,6 +21,8 @@ const initializedNews: TNews = {
   allFiltersOptions: initializedAllFiltersOptions,
   cards: [],
   isLoading: true,
+  searchInput: "",
+  recentSearches: initializedRecentSearches,
 };
 
 const newsSlice = createSlice({
@@ -52,6 +59,13 @@ const newsSlice = createSlice({
 
     setIsLoading(state, action) {
       state.isLoading = action.payload;
+    },
+    setSearceInput(state, action) {
+      state.searchInput = action.payload;
+    },
+    setLocalStorageState(state, action) {
+      setLocalStorageState(action.payload);
+      state.recentSearches = action.payload;
     },
   },
 });
