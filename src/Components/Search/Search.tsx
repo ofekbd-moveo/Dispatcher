@@ -18,12 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { newsActions, RootState } from "../../store";
 import { filterCardsData } from "../../store/indexFuncs";
 
-interface ISearch {
-  recentSearches: string[];
-  setRecentSearches: (newState: string[]) => void;
-}
-const Search = (props: ISearch): JSX.Element => {
-  const { recentSearches, setRecentSearches } = props;
+const Search = (): JSX.Element => {
+  const recentSearches = useSelector((state: RootState) => state.news.recentSearches);
   const [isOpenSearches, setIsOpenSearches] = useState(false);
   const searchInput = useSelector((state: RootState) => state.news.searchInput);
   const dispatch = useDispatch();
@@ -42,7 +38,7 @@ const Search = (props: ISearch): JSX.Element => {
           <span>{search}</span>
           <ExitIcon
             src={assets.exit}
-            onClick={() => setRecentSearches(recentSearches.filter((curr) => curr !== search))}
+            onClick={() => dispatch(newsActions.setLocalStorageState(recentSearches.filter((curr) => curr !== search)))}
           />
         </RecentSearch>
       ))
@@ -51,7 +47,7 @@ const Search = (props: ISearch): JSX.Element => {
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     //add current Search to LocalStorage
-    setRecentSearches([...recentSearches, searchInput]);
+    dispatch(newsActions.setLocalStorageState([...recentSearches, searchInput]));
 
     //send new api request
     dispatch(filterCardsData());
@@ -77,7 +73,7 @@ const Search = (props: ISearch): JSX.Element => {
               className={buttonType.TEXT}
               isArrowVisible={false}
               content="CLEAR"
-              onClickHandler={() => setRecentSearches([])}
+              onClickHandler={() => dispatch(newsActions.setLocalStorageState([]))}
             ></Button>
           </RecentSearchesHeader>
           {renderRecentSearchesList(recentSearches)}

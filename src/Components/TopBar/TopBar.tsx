@@ -7,7 +7,7 @@ import { ITopBar } from "../types";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const TopBar = (props: ITopBar): JSX.Element => {
-  const { recentSearches, setRecentSearches, openSearchBarClickHandler } = props;
+  const { openSearchBarClickHandler } = props;
 
   const { logout } = useAuth0();
   const { user } = useAuth0();
@@ -21,7 +21,7 @@ const TopBar = (props: ITopBar): JSX.Element => {
     <TopBarContainer>
       <LogoAndSearchContainer>
         <LogoIcon src={assets.logo} />
-        <Search recentSearches={recentSearches} setRecentSearches={setRecentSearches} />
+        <Search />
       </LogoAndSearchContainer>
       <IconList>
         <IconSearch src={assets.search} onClick={openSearchBarClickHandler} />

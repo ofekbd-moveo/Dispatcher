@@ -141,8 +141,6 @@ export interface IBarChart {
 }
 
 export interface ITopBar {
-  recentSearches: string[];
-  setRecentSearches: (newState: string[]) => void;
   openSearchBarClickHandler: () => void;
 }
 

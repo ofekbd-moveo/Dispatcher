@@ -19,15 +19,15 @@ import { filterCardsData } from "../../store/indexFuncs";
 import { ChangeEvent } from "react";
 
 export interface ISreachSmallScreen {
-  recentSearches: string[];
-  setRecentSearches: (newState: string[]) => void;
   isMenuOpen: boolean;
   closeSearchBarClickHandler: () => void;
 }
 export const SearchSmallScreen = (props: ISreachSmallScreen): JSX.Element => {
-  const { recentSearches, setRecentSearches, isMenuOpen, closeSearchBarClickHandler } = props;
+  const { isMenuOpen, closeSearchBarClickHandler } = props;
   const resentSearchesTitle = "RECENT SHEARCHES";
   const searchInput = useSelector((state: RootState) => state.news.searchInput);
+  const recentSearches = useSelector((state: RootState) => state.news.recentSearches);
+
   const dispatch = useDispatch();
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -41,7 +41,7 @@ export const SearchSmallScreen = (props: ISreachSmallScreen): JSX.Element => {
         <span>{search}</span>
         <RemoveIcon
           src={assets.exit}
-          onClick={() => setRecentSearches(recentSearches.filter((curr) => curr !== search))}
+          onClick={() => dispatch(newsActions.setLocalStorageState(recentSearches.filter((curr) => curr !== search)))}
         />
       </RecentSearch>
     ));
@@ -49,7 +49,7 @@ export const SearchSmallScreen = (props: ISreachSmallScreen): JSX.Element => {
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     //add current Search to LocalStorage
-    setRecentSearches([...recentSearches, searchInput]);
+    dispatch(newsActions.setLocalStorageState([...recentSearches, searchInput]));
 
     //send new api request
     dispatch(filterCardsData());
@@ -79,7 +79,7 @@ export const SearchSmallScreen = (props: ISreachSmallScreen): JSX.Element => {
             className={buttonType.TEXT}
             isArrowVisible={false}
             content="CLEAR"
-            onClickHandler={() => setRecentSearches([])}
+            onClickHandler={() => dispatch(newsActions.setLocalStorageState([]))}
           ></Button>
         </TitleContainer>
         <RecentSearchesContainer>{renderRecentSearchesList(recentSearches)}</RecentSearchesContainer>
