@@ -1,5 +1,14 @@
 import dateFormat from "dateformat";
-import { CATEGORY, COUNTRY, LANGUAGE, SORT_BY } from "../../Components/constants";
+import moment from "moment";
+import {
+  CATEGORY,
+  COUNTRY,
+  DATE_KEY,
+  endDateIndexRange,
+  LANGUAGE,
+  SORT_BY,
+  startDateIndexRange,
+} from "../../Components/constants";
 import { Categories, TFiltersOptions } from "../../Components/types";
 
 export const formateDate = (dateText: string): string => {
@@ -10,6 +19,13 @@ export const formateChartDate = (dateText: string): string => {
   const date = new Date(dateText);
   return dateFormat(date, "mmm d");
 };
+
+export const formatDateRange = (dateStr: string) => {
+  const startStr = moment(dateStr.slice(...startDateIndexRange)).format("DD/MM/YY");
+  const endStr = moment(dateStr.slice(...endDateIndexRange)).format("DD/MM/YY");
+  return `${startStr} - ${endStr}`;
+};
+
 export const convertCategoryToApiLabel = (category: string): string => {
   switch (category) {
     case Categories.everything:
@@ -43,6 +59,10 @@ export const convertToParamsStr = (selectedFilters: TFiltersOptions): string[] =
 
     for (const subCategory in selectedFilters[category]) {
       if (selectedFilters[category][subCategory].length !== 0) {
+        if (subCategory === DATE_KEY) {
+          params += selectedFilters[category][subCategory][0];
+          continue;
+        }
         params += selectedFilters[category][subCategory].reduce(
           (acc: string, curr: string) => acc + subCategory + "=" + convertFilterToApiLabel(subCategory, curr) + "&",
           ""

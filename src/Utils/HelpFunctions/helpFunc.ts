@@ -1,6 +1,6 @@
 import { doughnutData, lineData } from "../../Components/constants";
 import { ICard, IDoughnutChart, ILineChart, TFiltersOptions } from "../../Components/types";
-import { formateChartDate, formateDate } from "./casting";
+import { formateChartDate } from "./casting";
 
 export const fetchData = (URL: string, func: (articles: TFiltersOptions[]) => void) => {
   fetch(URL, {

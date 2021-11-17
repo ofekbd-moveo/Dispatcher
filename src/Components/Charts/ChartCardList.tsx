@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { formateChartDate, formateDate } from "../../Utils/HelpFunctions/casting";
 import { calcGraphs } from "../../Utils/HelpFunctions/helpFunc";
-import { doughnutData, initBarChart, initDoughnutChart, initLineChart, lineData } from "../constants";
-import { IDoughnutChart, TChartCard } from "../types";
+import { initBarChart, initDoughnutChart, initLineChart } from "../constants";
+import { TChartCard } from "../types";
 import ChartCard from "./ChartCard";
 import { ChartsContainer } from "./ChartCardListStyle";
 

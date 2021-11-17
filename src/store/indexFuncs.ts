@@ -2,7 +2,6 @@ import axios from "axios";
 import _ from "lodash";
 import { newsActions } from ".";
 import { API_KEY, API_URL, COUNTRY } from "../Components/constants";
-import { apiMock } from "../Components/DispatcherPage/Mock";
 import { ICard } from "../Components/types";
 import { convertCategoryToApiLabel, convertToParamsStr } from "../Utils/HelpFunctions/casting";
 
@@ -55,6 +54,7 @@ export const filterCardsData = () => async (dispatch: any, getState: any) => {
   let newCards: ICard[] = [];
   for (const req of requestsParams) {
     const URL = API_URL + req + searchStr + "apiKey=" + API_KEY;
+    console.log(URL);
 
     await axios
       .get(URL)

@@ -7,9 +7,10 @@ import { SubCategory } from "./SubCategory";
 import { SubCategoryFilter } from "./SubCategoryFilter";
 import assets from "../../Utils/assets";
 import { CategoryFilter } from "./CategoryFilter";
-import { CATEGORY_TITLE, MAIN_TITLE } from "../constants";
+import { CATEGORY_TITLE, DATE_KEY, MAIN_TITLE } from "../constants";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { DatePick } from "../Common/Date/Date";
 
 export const SideBarFilter = (props: ISideBarFilter) => {
   const { isFilterMenuOpen, closeFilterBarClickHandler } = props;
@@ -39,6 +40,7 @@ export const SideBarFilter = (props: ISideBarFilter) => {
   };
 
   const renderSubCategoryFilters = () => {
+    if (currSubCategory === DATE_KEY) return <DatePick />;
     const filters = allFiltersOptions[currCategory][currSubCategory];
 
     return filters.map((filter, key) => {

@@ -6,6 +6,37 @@ export const DropDownContainer = styled.div`
   @media screen and (max-width: 768px) {
     display: none;
   }
+  .react-datepicker {
+    right: 7px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    border: none;
+    z-index: 1;
+  }
+  .react-datepicker__header {
+    border-bottom: 1px solid ${Colors.LIGHT_GRAY};
+    background: ${Colors.WHITE};
+  }
+  .react-datepicker__day,
+  .react-datepicker__day-name {
+    margin: 0;
+    font-weight: 100;
+  }
+  .react-datepicker__day--selected,
+  .react-datepicker__day--keyboard-selected:hover,
+  .react-datepicker__day--in-range,
+  .react-datepicker__day--keyboard-selected {
+    background-color: ${Colors.CYAN_BLUE};
+    color: ${Colors.WHITE} !important;
+  }
+
+  .react-datepicker__current-month {
+    font-weight: 400;
+  }
+  .react-datepicker__current-month,
+  .react-datepicker__day-name,
+  .react-datepicker__day {
+    color: ${Colors.PURPLE_BLUE};
+  }
 `;
 export const DropDownHeader = styled.div`
   justify-content: center;
@@ -78,6 +109,7 @@ export const SubCategoryList = styled.div`
   display: flex;
   flex-direction: row;
   height: 47px;
+
   @media screen and (max-width: 768px) {
     height: 0;
   }

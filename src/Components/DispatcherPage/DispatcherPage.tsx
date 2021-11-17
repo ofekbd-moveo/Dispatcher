@@ -13,7 +13,7 @@ import { DropDownFilter } from "../DropDownFilter/DropDownFilter";
 import { dispatchersDatabase, country } from "./Mock";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
-import { filterCardsData, initCardsData, initSources } from "../../store/indexFuncs";
+import { initCardsData, initSources } from "../../store/indexFuncs";
 
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
@@ -53,7 +53,6 @@ export const DispatcherPage = (): JSX.Element => {
         <Title>{dispatchersDatabase + " in " + country}</Title>
         <DataContentContainer>
           {cards.length === 0 && !isLoading ? <NoData type={NoDataType.TEXTUAL} /> : <CardList />}
-          {/* charts={charts} */}
           <ChartCardList></ChartCardList>
         </DataContentContainer>
       </ContentContainer>

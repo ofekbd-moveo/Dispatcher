@@ -45,6 +45,43 @@ export const SideBarContainer = styled.div<{ isFilterMenuOpen: boolean }>`
   @media screen and (max-width: 768px) {
     width: ${(props) => (props.isFilterMenuOpen ? 80 : 0)}%;
   }
+
+  text-align: center;
+  .react-datepicker {
+    font-size: 0.875rem;
+    border: none;
+    width: -webkit-fill-available;
+  }
+  .react-datepicker__day--selected,
+  .react-datepicker__day--keyboard-selected:hover,
+  .react-datepicker__day--in-range,
+  .react-datepicker__day--keyboard-selected {
+    background-color: ${Colors.CYAN_BLUE};
+    color: ${Colors.WHITE} !important;
+  }
+  .react-datepicker__day {
+    margin: 8px;
+    font-weight: 100;
+  }
+  .react-datepicker__day-name {
+    font-weight: 100;
+  }
+  .react-datepicker__current-month {
+    font-weight: 400;
+  }
+  .react-datepicker__current-month,
+  .react-datepicker__day-name,
+  .react-datepicker__day {
+    color: ${Colors.PURPLE_BLUE};
+  }
+  .react-datepicker__month-container {
+    width: -webkit-fill-available;
+  }
+
+  .react-datepicker__header {
+    border-bottom: 1px solid ${Colors.LIGHT_GRAY};
+    background: ${Colors.WHITE};
+  }
 `;
 export const Header = styled.div``;
 export const Footer = styled.div`
