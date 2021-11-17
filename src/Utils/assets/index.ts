@@ -8,6 +8,7 @@ import back from "./back.svg";
 import exit from "./exit.svg";
 import filter from "./filter.svg";
 import asterisk from "./asterisk.svg";
+import calendar from "./calendar.svg";
 
 const assets = {
   arrowRight,
@@ -20,6 +21,7 @@ const assets = {
   exit,
   filter,
   asterisk,
+  calendar,
 };
 
 export default assets;

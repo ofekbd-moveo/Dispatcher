@@ -14,6 +14,8 @@ import { RootState } from "../../store";
 import { newsActions } from "../../store/index";
 import { useDispatch } from "react-redux";
 import { filterCardsData } from "../../store/indexFuncs";
+import { DatePick } from "../Common/Date/Date";
+import { DATE_KEY } from "../constants";
 
 export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
   const { subCategory } = props;
@@ -52,13 +54,19 @@ export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
       <DropDownContainer>
         <DropDownHeader onClick={() => setIsOpen(!isOpen)}>
           <span>{subCategory}</span>
-          <img className="drop-down-arrow" src={assets.dropDownArrow}></img>
+          <img
+            className="drop-down-arrow"
+            src={subCategory === DATE_KEY ? assets.calendar : assets.dropDownArrow}
+          ></img>
         </DropDownHeader>
-        {isOpen && (
-          <DropDownListContainer>
-            <DropDownList>{renderFilters(filters)}</DropDownList>
-          </DropDownListContainer>
-        )}
+        {isOpen &&
+          (subCategory === DATE_KEY ? (
+            <DatePick />
+          ) : (
+            <DropDownListContainer>
+              <DropDownList>{renderFilters(filters)}</DropDownList>
+            </DropDownListContainer>
+          ))}
       </DropDownContainer>
     </SubCategoryContainer>
   );

@@ -1,7 +1,7 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { Categories, ICard, TFiltersOptions } from "../Components/types";
 import _ from "lodash";
-import { initializedAllFiltersOptions, initializedSelectedFilters } from "../Components/constants";
+import { DATE_KEY, initializedAllFiltersOptions, initializedSelectedFilters } from "../Components/constants";
 import { loadLocalStorageState, setLocalStorageState } from "../Utils/CustomHooks/LocalStorage";
 
 const initializedRecentSearches = loadLocalStorageState();
@@ -43,7 +43,9 @@ const newsSlice = createSlice({
         ? _.pull(filtersList, filter)
         : _.concat(filtersList, filter);
     },
-
+    setDate(state, action) {
+      state.selectedFilters[Categories.everything][DATE_KEY] = [action.payload];
+    },
     setCards(state, action) {
       state.cards = action.payload;
     },
