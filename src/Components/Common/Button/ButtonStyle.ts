@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../types";
+import { Colors } from "../../types";
 
 export const ButtonStyle = styled.button`
   font-weight: 500;
@@ -17,9 +17,12 @@ export const ButtonStyle = styled.button`
   width: fit-content;
   padding: 0 0.625rem;
 
+  &.none {
+    width: 100%;
+  }
+
   &.primary {
     border-radius: 20px;
-    width: 242px;
   }
 
   &.secondary {

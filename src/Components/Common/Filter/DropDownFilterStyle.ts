@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { Colors } from "../types";
+import { Colors } from "../../types";
 
 export const DropDownContainer = styled.div`
   width: 190px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -40,6 +40,8 @@ export const DropDownListContainer = styled.div`
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
   overflow-x: overlay;
+  position: relative;
+  z-index: 9;
 
   &::-webkit-scrollbar {
     background: none;
@@ -68,4 +70,17 @@ export const ListItem = styled.li`
     background: rgba(223, 224, 235, 0.41);
     cursor: pointer;
   }
+`;
+
+export const FilterList = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 47px;
+  @media screen and (max-width: 768px) {
+    height: 0;
+  }
+`;
+
+export const FilterContainer = styled.div`
+  margin-right: 20px;
 `;

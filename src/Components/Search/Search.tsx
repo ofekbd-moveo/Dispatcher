@@ -8,41 +8,61 @@ import {
   SearchArea,
   ExitIcon,
 } from "./SearchStyle";
-import searchIcon from "../../Utils/assets/search.svg";
-import exitIcon from "../../Utils/assets/exit.svg";
-import Filter from "../Common/Filter/Filer";
-import { buttonType, FilterType, InputEvent } from "../Common/types";
+import assets from "../../Utils/assets";
+import { buttonType, DropDownFilterType, InputEvent } from "../types";
 import Button from "../Common/Button/Button";
 import { useState } from "react";
+import { DropDownFilter } from "../DropDownFilter/DropDownFilter";
+import _ from "lodash";
+import { useDispatch, useSelector } from "react-redux";
+import { newsActions, RootState } from "../../store";
+import { filterCardsData } from "../../store/indexFuncs";
 
 const Search = (): JSX.Element => {
-  const SearchFromDatabaseMock = ["Top Headline", "Everything"];
-  const recentSearchesMock = ["crypto", "soccer", "soc", "fdaad", "dgdf", "asddsf"];
+  const recentSearches = useSelector((state: RootState) => state.news.recentSearches);
   const [isOpenSearches, setIsOpenSearches] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
+  const searchInput = useSelector((state: RootState) => state.news.searchInput);
+  const dispatch = useDispatch();
 
   const onChangeHandler = (event: InputEvent) => {
     event.preventDefault();
     const newSearchInput = event.target.value;
-    setSearchInput(newSearchInput);
+    dispatch(newsActions.setSearceInput(newSearchInput));
     setIsOpenSearches(newSearchInput !== "");
   };
 
   const renderRecentSearchesList = (recentSearches: string[]) =>
-    recentSearches.map((search: string, key: number) => (
-      <RecentSearch key={key}>
-        <span>{search}</span>
-        <ExitIcon src={exitIcon} />
-      </RecentSearch>
-    ));
+    recentSearches
+      .map((search: string, key: number) => (
+        <RecentSearch key={key} onClick={() => dispatch(newsActions.setSearceInput(search))}>
+          <span>{search}</span>
+          <ExitIcon
+            src={assets.exit}
+            onClick={() => dispatch(newsActions.setLocalStorageState(recentSearches.filter((curr) => curr !== search)))}
+          />
+        </RecentSearch>
+      ))
+      .reverse();
+
+  const submitHandler = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    //add current Search to LocalStorage
+    dispatch(newsActions.setLocalStorageState([...recentSearches, searchInput]));
+
+    //send new api request
+    dispatch(filterCardsData());
+
+    //close recent searches
+    setIsOpenSearches(false);
+  };
 
   return (
     <SearchContainer>
-      <SearchLineContainer>
-        <SearchIcon src={searchIcon} />
+      <SearchLineContainer onSubmit={(e) => submitHandler(e)}>
+        <SearchIcon type="image" name="submit" src={assets.search} />
         <SearchArea placeholder="Search" value={searchInput} onChange={onChangeHandler} />
         <div className="vertical-div" />
-        <Filter type={FilterType.DROPDWON_LIST} category="Top Headline" filterOptions={SearchFromDatabaseMock}></Filter>
+        <DropDownFilter type={DropDownFilterType.CATEGORY} />
       </SearchLineContainer>
 
       {isOpenSearches && (
@@ -53,10 +73,10 @@ const Search = (): JSX.Element => {
               className={buttonType.TEXT}
               isArrowVisible={false}
               content="CLEAR"
-              onClickHandler={() => console.log("clear searches!")}
+              onClickHandler={() => dispatch(newsActions.setLocalStorageState([]))}
             ></Button>
           </RecentSearchesHeader>
-          {renderRecentSearchesList(recentSearchesMock)}
+          {renderRecentSearchesList(recentSearches)}
         </RecentSearchesContainer>
       )}
     </SearchContainer>

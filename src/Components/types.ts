@@ -1,4 +1,5 @@
-// pass to global env
+import { SetStateAction } from "react";
+
 export enum buttonType {
   NONE = "none",
   PRIMARY = "primary",
@@ -17,6 +18,11 @@ export enum ChartType {
   BAR = "Bar",
 }
 
+export enum NoDataType {
+  TEXTUAL = "textual",
+  GRAPHIC = "graphic",
+}
+
 export enum Colors {
   PURPLE_BLUE = "#5A5A89",
   CYAN_BLUE = "#0058B9",
@@ -26,23 +32,32 @@ export enum Colors {
   BLUISH_BLACK = "#14142B",
   BRIGHT_PURPLE_BLUE = "#F3F3FF",
   LIGHT_GRAY = "#D9DBE9",
+  LIGHT_PURPLE_GRAY = "#dfe0eb",
+  GRAY = "#C4C4C4",
+  DARK_GRAY = "#303032",
 }
 
 export interface ICard {
+  source: {
+    id: string;
+    name: string;
+  };
+  author: string;
   title: string;
-  imageUrl: string;
   description: string;
+  url: string;
+  urlToImage: string;
   publishedAt: string;
-  tags: string[];
-  source: string;
-  dispacherLink: string;
+  content: string;
 }
+
+export type TButtonAtrType = "button" | "submit" | "reset";
 
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
 export type TChartCard = IDoughnutChart | ILineChart | IBarChart;
 
-type doughnutDataType = {
+export type doughnutDataType = {
   labels: string[];
   datasets: {
     label?: string;
@@ -53,12 +68,13 @@ type doughnutDataType = {
     hoverBackgroundColor?: string[];
     hoverOffset?: number;
     spacing?: number;
-  };
+    cutout?: string;
+  }[];
 };
 
 export const doughnutOptions = {
   responsive: true,
-  maintainAspectRatio: false,
+  // maintainAspectRatio: false,
   cutout: 40,
 };
 
@@ -77,10 +93,10 @@ export const lineOptions = {
   },
 };
 
-type lineDataType = {
+export type lineDataType = {
   labels: string[];
   datasets: {
-    label: string;
+    label?: string;
     data: number[];
     fill?: boolean;
     backgroundColor?: string;
@@ -122,4 +138,57 @@ export interface IBarChart {
   title: string;
   type: ChartType.BAR;
   data: barDataType;
+}
+
+export interface ITopBar {
+  openSearchBarClickHandler: () => void;
+}
+
+export interface ISecondaryTopBar {
+  openFilterBarClickHandler: () => void;
+}
+
+export interface ISideBarFilter {
+  isFilterMenuOpen: boolean;
+  closeFilterBarClickHandler: () => void;
+}
+
+export enum Categories {
+  everything = "everything",
+  topHeadline = "topHeadline",
+}
+
+export type TFiltersOptions = {
+  [category: string]: {
+    [subCategory: string]: string[];
+  };
+};
+
+export interface ICategory {
+  category: string;
+  setMenuTitle: (value: SetStateAction<string>) => void;
+}
+export interface ISubCategory {
+  subCategory: string;
+  filters: string[];
+  setMenuTitle: (value: SetStateAction<string>) => void;
+  setCurrSubCategory: (value: SetStateAction<string>) => void;
+}
+
+export interface ISubCategoryFilter {
+  isAllreadySelected: boolean;
+  filter: string;
+  currSubCategory: string;
+}
+
+export enum DropDownFilterType {
+  CATEGORY = "CATEGORY",
+  SUB_CATEGORY = "SUB_CATEGORY",
+}
+export interface IDropDownFilter {
+  type: string;
+}
+
+export interface IDropDownSubCategory {
+  subCategory: string;
 }

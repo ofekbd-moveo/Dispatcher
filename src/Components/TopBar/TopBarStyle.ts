@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../Common/types";
+import { Colors } from "../types";
 
 export const TopBarContainer = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const TopBarContainer = styled.div`
 `;
 
 export const LogoIcon = styled.img`
-  margin-right: 15%;
+  margin-right: 10%;
 `;
 
 export const IconList = styled.div`
@@ -39,6 +39,10 @@ export const Account = styled.div`
   background: ${Colors.CYAN_BLUE};
   border-radius: 30px;
   width: fit-content;
-  padding: 16px;
+  padding: 11px;
   font-size: 0.875rem;
+  line-height: 1.875rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;

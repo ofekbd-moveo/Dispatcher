@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Colors } from "../types";
 export const SearchContainer = styled.div`
   width: clamp(100px, 45vw, 600px);
   @media screen and (max-width: 480px) {
@@ -7,7 +7,7 @@ export const SearchContainer = styled.div`
   }
 `;
 
-export const SearchLineContainer = styled.div`
+export const SearchLineContainer = styled.form`
   display: flex;
   justify-content: space-between;
   background: white;
@@ -22,7 +22,7 @@ export const SearchLineContainer = styled.div`
   }
 `;
 
-export const SearchIcon = styled.img`
+export const SearchIcon = styled.input`
   width: 1.52875rem;
   height: 1.5rem;
   align-self: center;
@@ -45,6 +45,8 @@ export const RecentSearchesContainer = styled.div`
   padding: 0.25rem 0;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   overflow-x: scroll;
+  position: relative;
+  z-index: 10;
 `;
 
 export const RecentSearchesHeader = styled.div`
@@ -65,7 +67,7 @@ export const RecentSearch = styled.div`
   justify-content: space-between;
   font-size: 0.75rem;
   letter-spacing: 0.00625rem;
-  color: #5a5a89;
+  color: ${Colors.PURPLE_BLUE};
   font-weight: 200;
   padding: 0.5rem 0.99875rem;
 

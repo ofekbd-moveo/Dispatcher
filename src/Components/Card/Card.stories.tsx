@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import Card from "../Card/Card";
-import { ICard } from "../Common/types";
+import { ICard } from "../types";
 // Note 1: title must be unique.
 // Note 2 : 'as Meta' for TS
 
@@ -13,16 +13,19 @@ export default {
 const Template: Story<ICard> = (args) => <Card {...args} />;
 
 export const DEFAULT = Template.bind({});
-const tagsMock: string[] = ["#Covid-19", "Israel", "+2"];
 
 DEFAULT.args = {
-  title: "Porsche Now Sells Two Taycans For Every Model S That Tesla Ships",
-  imageUrl:
-    "https://imgix.gizmodo.com.au/content/uploads/sites/2/2021/10/15/a07fb9b8c6eb9270972699a5bdd26dc0.jpg?ar=16%3A9&auto=format&fit=crop&q=65&w=1200",
-  description:
-    "There was a time when the Tesla Model S was the pinnacle of the electric car market. It was fast,...\nThe post Porsche Now Sells Two Taycans For Every Model S That Tesla Ships appeared first on Gizmodo Australia.\n  Related Stories\r\n<ul><li>Tesla Is Rolling Out…",
-  publishedAt: "2021-10-18T06:49:25Z",
-  tags: tagsMock,
-  source: "Gizmodo Australia",
-  dispacherLink: "https://www.gizmodo.com.au/2021/10/porsche-now-sells-two-taycans-for-every-model-s-that-tesla-ships/",
+  source: {
+    id: "engadget",
+    name: "Engadget",
+  },
+  author: "Kris Holt",
+  title: "Square makes its Cash App available for teen use",
+  description: "But they'll need parental permission to use it and there's no bitcoin trading allowed.",
+  url: "https://www.engadget.com/square-cash-app-teenagers-bitcoin-195033391.html",
+  urlToImage:
+    "https://s.yimg.com/ny/api/res/1.2/lhnwkUeae1YFDZXCKANfJQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://s.yimg.com/os/creatr-uploaded-images/2021-03/071c0b50-8b13-11eb-9cff-c7fab8e31c16",
+  publishedAt: "2021-11-04T19:50:33Z",
+  content:
+    "Square is now allowing all teenagers\r\n to use Cash App\r\n, after restricting it to adults until now. Those aged 13 to 17 will need permission from a parent or guardian to use the app, however.\r\nUsers … [+1356 chars]",
 };
