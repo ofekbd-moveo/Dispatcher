@@ -18,8 +18,11 @@ import { initCardsData, initSources } from "../../store/indexFuncs";
 export const DispatcherPage = (): JSX.Element => {
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+
   const cards = useSelector((state: RootState) => state.news.cards);
   const isLoading = useSelector((state: RootState) => state.news.isLoading);
+  const mainTitle = useSelector((state: RootState) => state.news.mainTitle);
+  const isInitial = useSelector((state: RootState) => state.news.isInitial);
 
   const toggleSearchBar = (newState: boolean) => {
     setIsSearchMenuOpen(newState);
@@ -50,7 +53,8 @@ export const DispatcherPage = (): JSX.Element => {
         <DropDownFilter type={DropDownFilterType.SUB_CATEGORY} />
 
         <Divider />
-        <Title>{dispatchersDatabase + " in " + country}</Title>
+        <Title isInitial={isInitial}>{isInitial ? mainTitle : `${cards.length} Total results`}</Title>
+
         <DataContentContainer>
           {cards.length === 0 && !isLoading ? <NoData type={NoDataType.TEXTUAL} /> : <CardList />}
           <ChartCardList></ChartCardList>

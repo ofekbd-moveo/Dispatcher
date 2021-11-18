@@ -9,9 +9,9 @@ export const ContentContainer = styled.div`
   }
 `;
 
-export const Title = styled.h1`
-  font-size: 1.5rem;
-  color: ${Colors.DARK_PURPLE};
+export const Title = styled.h1<{ isInitial: boolean }>`
+  font-size: ${(props) => (props.isInitial ? 1.5 : 0.875)}rem;
+  color: ${(props) => (props.isInitial ? Colors.DARK_PURPLE : `rgba(90, 90, 137, 0.5)`)};
   margin-bottom: 20px;
 `;
 export const DataContentContainer = styled.div`

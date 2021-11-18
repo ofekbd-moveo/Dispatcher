@@ -157,6 +157,10 @@ export enum Categories {
   everything = "everything",
   topHeadline = "topHeadline",
 }
+export const CategoriesStr: { [category: string]: string } = {
+  everything: "Everything",
+  topHeadline: "Top Headlines",
+};
 
 export type TFiltersOptions = {
   [category: string]: {

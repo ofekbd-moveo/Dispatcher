@@ -2,16 +2,21 @@ import axios from "axios";
 import _ from "lodash";
 import { newsActions } from ".";
 import { API_KEY, API_URL, COUNTRY } from "../Components/constants";
-import { ICard } from "../Components/types";
+import { Categories, CategoriesStr, ICard } from "../Components/types";
 import { convertCategoryToApiLabel, convertToParamsStr } from "../Utils/HelpFunctions/casting";
 
 export const initCardsData = () => async (dispatch: any, getState: any) => {
   //Get client Entry Country
   const ipApiRes = await fetch("http://ip-api.com/json", { method: "GET" });
-  const entryCountry = COUNTRY[(await ipApiRes.json()).country as keyof typeof COUNTRY];
+  const entryCountryStr = (await ipApiRes.json()).country as keyof typeof COUNTRY;
+  const entryCountryApi = COUNTRY[entryCountryStr];
   const API_CATEGORY = convertCategoryToApiLabel(getState().news.currCategory);
 
-  const URL = API_URL + API_CATEGORY + "?country=" + entryCountry + "&apiKey=" + API_KEY;
+  const URL = API_URL + API_CATEGORY + "?country=" + entryCountryApi + "&apiKey=" + API_KEY;
+  console.log(API_CATEGORY);
+
+  //init Main Title
+  dispatch(newsActions.setMainTitle(`${CategoriesStr[Categories.topHeadline]} in ${entryCountryStr}`));
 
   axios
     .get(URL)
@@ -22,8 +27,6 @@ export const initCardsData = () => async (dispatch: any, getState: any) => {
     })
     .catch((error) => console.error("Error:", error))
     .then(() => dispatch(newsActions.setIsLoading(false)));
-  // dispatch(newsActions.setCards(apiMock.articles));
-  // dispatch(newsActions.setIsLoading(false));
 };
 
 export const initSources = () => async (dispatch: any, getState: any) => {
@@ -49,6 +52,7 @@ export const filterCardsData = () => async (dispatch: any, getState: any) => {
   const searchStr = searchInput === "" ? "" : `q=${searchInput}&`;
 
   const requestsParams = convertToParamsStr(selectedFilters);
+  dispatch(newsActions.setIsInitial(false));
   await dispatch(newsActions.setIsLoading(true));
 
   let newCards: ICard[] = [];
@@ -67,7 +71,4 @@ export const filterCardsData = () => async (dispatch: any, getState: any) => {
   }
   dispatch(newsActions.setCards(_.uniq(newCards)));
   dispatch(newsActions.setIsLoading(false));
-
-  // dispatch(newsActions.setCards([]));
-  // dispatch(newsActions.setIsLoading(false));
 };

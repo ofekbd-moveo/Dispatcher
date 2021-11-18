@@ -14,6 +14,8 @@ interface TNews {
   isLoading: boolean;
   searchInput: string;
   recentSearches: string[];
+  mainTitle: string;
+  isInitial: boolean;
 }
 const initializedNews: TNews = {
   currCategory: Categories.topHeadline,
@@ -23,6 +25,8 @@ const initializedNews: TNews = {
   isLoading: true,
   searchInput: "",
   recentSearches: initializedRecentSearches,
+  mainTitle: "",
+  isInitial: true,
 };
 
 const newsSlice = createSlice({
@@ -49,9 +53,11 @@ const newsSlice = createSlice({
     setCards(state, action) {
       state.cards = action.payload;
     },
-
-    addCards(state, action) {
-      state.cards = _.union(state.cards, action.payload);
+    setMainTitle(state, action) {
+      state.mainTitle = action.payload;
+    },
+    setIsInitial(state, action) {
+      state.isInitial = action.payload;
     },
 
     setSources(state, action) {
