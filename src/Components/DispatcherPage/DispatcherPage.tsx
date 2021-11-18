@@ -11,7 +11,7 @@ import TopBar from "../TopBar/TopBar";
 import { ContentContainer, DataContentContainer, Title } from "./DispatcherPageStyle";
 import { DropDownFilter } from "../DropDownFilter/DropDownFilter";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../store";
+import { newsActions, RootState } from "../../store";
 import { initCardsData, initSources } from "../../store/indexFuncs";
 import { ModalError } from "../Common/ModalError/ModalError";
 
@@ -39,13 +39,9 @@ export const DispatcherPage = (): JSX.Element => {
     dispatch(initSources());
   }, []);
 
-  useEffect(() => {
-    if (!isInitial) setIsErrorOccur(true);
-  }, [errorMsg]);
-
   return (
     <>
-      <ModalError errMsg={errorMsg} isErrorOccur={isErrorOccur} setIsErrorOccur={setIsErrorOccur}></ModalError>
+      <ModalError errMsg={errorMsg}></ModalError>
       <SearchSmallScreen isMenuOpen={isSearchMenuOpen} closeSearchBarClickHandler={() => toggleSearchBar(false)} />
 
       <SideBarFilter

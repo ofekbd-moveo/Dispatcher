@@ -24,11 +24,13 @@ export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
   const selectedFilters = useSelector((state: RootState) => state.news.selectedFilters);
   const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersOptions);
   const currCategory = useSelector((state: RootState) => state.news.currCategory);
+  const isErrorOccur = useSelector((state: RootState) => state.news.isErrorOccur);
+
   const filters = allFiltersOptions[currCategory][subCategory];
 
   const dispatch = useDispatch();
 
-  const selectedClickHandler = (filter: string) => {
+  const selectedClickHandler = async (filter: string) => {
     dispatch(
       newsActions.toogleFilter({
         subCategory: subCategory,

@@ -24,7 +24,10 @@ export const initCardsData = () => async (dispatch: any, getState: any) => {
         dispatch(newsActions.setCards(res.data.articles));
       }
     })
-    .catch((error) => dispatch(newsActions.setErrorMsg(error.response.data.message)))
+    .catch((error) => {
+      dispatch(newsActions.setErrorMsg(error.response.data.message));
+      dispatch(newsActions.setIsErrorOccur(true));
+    })
     .then(() => dispatch(newsActions.setIsLoading(false)));
 };
 
@@ -41,7 +44,10 @@ export const initSources = () => async (dispatch: any, getState: any) => {
         dispatch(newsActions.setSources(sourcesData));
       }
     })
-    .catch((error) => dispatch(newsActions.setErrorMsg(error.response.data.message)));
+    .catch((error) => {
+      dispatch(newsActions.setErrorMsg(error.response.data.message));
+      dispatch(newsActions.setIsErrorOccur(true));
+    });
 };
 
 export const filterCardsData = () => async (dispatch: any, getState: any) => {
@@ -64,10 +70,10 @@ export const filterCardsData = () => async (dispatch: any, getState: any) => {
       if (res.status === 200) {
         dispatch(newsActions.setCards(res.data.articles));
       }
-      // dispatch(newsActions.setErrorMsg(res.message));
     })
     .catch((error) => {
       dispatch(newsActions.setErrorMsg(error.response.data.message));
+      dispatch(newsActions.setIsErrorOccur(true));
     });
   dispatch(newsActions.setIsLoading(false));
 };

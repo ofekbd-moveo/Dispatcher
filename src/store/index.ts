@@ -16,6 +16,7 @@ interface TNews {
   recentSearches: string[];
   mainTitle: string;
   isInitial: boolean;
+  isErrorOccur: boolean;
   errorMsg: string;
 }
 const initializedNews: TNews = {
@@ -28,6 +29,7 @@ const initializedNews: TNews = {
   recentSearches: initializedRecentSearches,
   mainTitle: "",
   isInitial: true,
+  isErrorOccur: false,
   errorMsg: "",
 };
 
@@ -79,6 +81,13 @@ const newsSlice = createSlice({
     },
     setErrorMsg(state, action) {
       state.errorMsg = action.payload;
+    },
+    setIsErrorOccur(state, action) {
+      state.isErrorOccur = action.payload;
+    },
+    resetErrorHandler(state) {
+      state.errorMsg = "";
+      state.isErrorOccur = false;
     },
   },
 });

@@ -1,4 +1,5 @@
-import { buttonType } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { newsActions, RootState } from "../../../store";
 import {
   BtnContainer,
   CloseBtn,
@@ -12,12 +13,12 @@ import {
 
 export interface IModalError {
   errMsg: string;
-  isErrorOccur: boolean;
-  setIsErrorOccur: (newState: boolean) => void;
 }
 
 export const ModalError = (props: IModalError): JSX.Element => {
-  const { errMsg, isErrorOccur, setIsErrorOccur } = props;
+  const { errMsg } = props;
+  const dispatch = useDispatch();
+  const isErrorOccur = useSelector((state: RootState) => state.news.isErrorOccur);
 
   return (
     <ModalErrorContainer isErrorOccur={isErrorOccur}>
@@ -28,7 +29,13 @@ export const ModalError = (props: IModalError): JSX.Element => {
           <ErrorMsg>{errMsg}</ErrorMsg>
         </ErrorMsgContainer>
         <BtnContainer>
-          <CloseBtn onClick={() => setIsErrorOccur(false)}>Dissmis</CloseBtn>
+          <CloseBtn
+            onClick={() => {
+              dispatch(newsActions.resetErrorHandler());
+            }}
+          >
+            Dissmis
+          </CloseBtn>
         </BtnContainer>
       </ModalContainer>
     </ModalErrorContainer>

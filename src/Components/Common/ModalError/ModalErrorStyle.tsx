@@ -15,14 +15,13 @@ export const ModalContainer = styled.div`
   background-color: ${Colors.WHITE};
   position: absolute;
   z-index: 201;
-  background-color: #ffffff;
   border-radius: 4px;
-  width: 70%;
-  height: 30%;
-  /* text-align: center; */
+  margin: 15%;
   display: flex;
   flex-direction: column;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
   justify-content: space-between;
   margin-top: 30vh;
 `;
@@ -31,8 +30,9 @@ export const ErrorMsgContainer = styled.div`
   height: 80%;
   display: flex;
   flex-direction: column;
+  -webkit-box-pack: center;
   justify-content: center;
-  margin: 0 30px;
+  margin: 7%;
 `;
 export const ErrorMsg = styled.div`
   font-size: 1rem;
@@ -53,7 +53,7 @@ export const ModalErrorContainer = styled.div<{ isErrorOccur: boolean }>`
 
 export const BtnContainer = styled.div`
   width: 100%;
-  height: 20%;
+  height: 45px;
 `;
 
 export const CloseBtn = styled.button`
