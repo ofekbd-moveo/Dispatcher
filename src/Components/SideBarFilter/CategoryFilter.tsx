@@ -1,6 +1,7 @@
 import { RowContainer, RowTitle } from "./SideBarMenuStyle";
 import { newsActions } from "../../store/index";
 import { useDispatch } from "react-redux";
+import { CategoriesStr } from "../types";
 
 export interface ICategoryFilter {
   isSelected: boolean;
@@ -19,7 +20,7 @@ export const CategoryFilter = (props: ICategoryFilter): JSX.Element => {
 
   return (
     <RowContainer isSelected={isSelected} onClick={changeCategory}>
-      <RowTitle>{category}</RowTitle>
+      <RowTitle>{CategoriesStr[category]}</RowTitle>
     </RowContainer>
   );
 };

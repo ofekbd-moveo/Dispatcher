@@ -13,7 +13,6 @@ export const initCardsData = () => async (dispatch: any, getState: any) => {
   const API_CATEGORY = convertCategoryToApiLabel(getState().news.currCategory);
 
   const URL = API_URL + API_CATEGORY + "?country=" + entryCountryApi + "&apiKey=" + API_KEY;
-  console.log(API_CATEGORY);
 
   //init Main Title
   dispatch(newsActions.setMainTitle(`${CategoriesStr[Categories.topHeadline]} in ${entryCountryStr}`));
