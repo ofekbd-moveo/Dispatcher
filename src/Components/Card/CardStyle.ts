@@ -44,6 +44,10 @@ export const Description = styled.p`
 
 export const ContentContainer = styled.div`
   margin: 16.5px;
+  width: 80%;
+  @media screen and (max-width: 480px) {
+    width: auto;
+  }
 `;
 
 export const CardContainer = styled.div`

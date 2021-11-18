@@ -47,27 +47,24 @@ export const initSources = () => async (dispatch: any, getState: any) => {
 export const filterCardsData = () => async (dispatch: any, getState: any) => {
   const selectedFilters = getState().news.selectedFilters;
   const searchInput = getState().news.searchInput;
+  const currCategory = getState().news.currCategory;
 
   const searchStr = searchInput === "" ? "" : `q=${searchInput}&`;
 
-  const requestsParams = convertToParamsStr(selectedFilters);
+  const requestsParams = convertToParamsStr(currCategory, selectedFilters);
   dispatch(newsActions.setIsInitial(false));
   await dispatch(newsActions.setIsLoading(true));
 
-  let newCards: ICard[] = [];
-  for (const req of requestsParams) {
-    const URL = API_URL + req + searchStr + "apiKey=" + API_KEY;
-    console.log(URL);
+  const URL = API_URL + requestsParams + searchStr + "apiKey=" + API_KEY;
+  console.log(URL);
 
-    await axios
-      .get(URL)
-      .then((res) => {
-        if (res.status === 200) {
-          newCards.push(...res.data.articles);
-        }
-      })
-      .catch((error) => console.log(error));
-  }
-  dispatch(newsActions.setCards(_.uniq(newCards)));
+  await axios
+    .get(URL)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch(newsActions.setCards(res.data.articles));
+      }
+    })
+    .catch((error) => console.log(error));
   dispatch(newsActions.setIsLoading(false));
 };

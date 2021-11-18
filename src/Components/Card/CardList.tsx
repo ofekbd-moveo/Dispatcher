@@ -11,7 +11,7 @@ const CardList = (): JSX.Element => {
 
   const renderCardList = (cards: ICard[]) =>
     isLoading
-      ? Array.apply(null, Array(5)).map(() => <MyLoader />)
+      ? Array.apply(null, Array(5)).map((field, key) => <MyLoader key={key} />)
       : cards.map((card: ICard, key: number) => (
           <Card
             key={key}
