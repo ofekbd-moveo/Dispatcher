@@ -16,6 +16,7 @@ interface TNews {
   recentSearches: string[];
   mainTitle: string;
   isInitial: boolean;
+  errorMsg: string;
 }
 const initializedNews: TNews = {
   currCategory: Categories.topHeadline,
@@ -27,6 +28,7 @@ const initializedNews: TNews = {
   recentSearches: initializedRecentSearches,
   mainTitle: "",
   isInitial: true,
+  errorMsg: "",
 };
 
 const newsSlice = createSlice({
@@ -74,6 +76,9 @@ const newsSlice = createSlice({
     setLocalStorageState(state, action) {
       setLocalStorageState(action.payload);
       state.recentSearches = action.payload;
+    },
+    setErrorMsg(state, action) {
+      state.errorMsg = action.payload;
     },
   },
 });

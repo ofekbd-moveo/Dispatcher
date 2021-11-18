@@ -24,7 +24,7 @@ export const initCardsData = () => async (dispatch: any, getState: any) => {
         dispatch(newsActions.setCards(res.data.articles));
       }
     })
-    .catch((error) => console.error("Error:", error))
+    .catch((error) => dispatch(newsActions.setErrorMsg(error.response.data.message)))
     .then(() => dispatch(newsActions.setIsLoading(false)));
 };
 
@@ -41,7 +41,7 @@ export const initSources = () => async (dispatch: any, getState: any) => {
         dispatch(newsActions.setSources(sourcesData));
       }
     })
-    .catch((error) => console.error("Error:", error));
+    .catch((error) => dispatch(newsActions.setErrorMsg(error.response.data.message)));
 };
 
 export const filterCardsData = () => async (dispatch: any, getState: any) => {
@@ -64,7 +64,10 @@ export const filterCardsData = () => async (dispatch: any, getState: any) => {
       if (res.status === 200) {
         dispatch(newsActions.setCards(res.data.articles));
       }
+      // dispatch(newsActions.setErrorMsg(res.message));
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      dispatch(newsActions.setErrorMsg(error.response.data.message));
+    });
   dispatch(newsActions.setIsLoading(false));
 };
