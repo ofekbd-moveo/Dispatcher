@@ -4,7 +4,7 @@ import { Colors } from "../types";
 export const ContentContainer = styled.div`
   margin: 1% 8%;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 768px) {
     margin: 5px 10px;
   }
 `;

@@ -100,7 +100,7 @@ export const lineData: lineDataType = {
   labels: [],
   datasets: [
     {
-      label: "# of dispatchers",
+      label: "# of articles",
       data: [],
       fill: true,
       backgroundColor: "rgba(0, 88, 185, 0.2)",

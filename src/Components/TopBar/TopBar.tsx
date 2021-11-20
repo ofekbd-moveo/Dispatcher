@@ -5,6 +5,7 @@ import notifications from "../../Utils/assets/notifications.svg";
 import assets from "../../Utils/assets";
 import { ITopBar } from "../types";
 import { useAuth0 } from "@auth0/auth0-react";
+import ReactTooltip from "react-tooltip";
 
 const TopBar = (props: ITopBar): JSX.Element => {
   const { openSearchBarClickHandler } = props;
@@ -25,8 +26,12 @@ const TopBar = (props: ITopBar): JSX.Element => {
       </LogoAndSearchContainer>
       <IconList>
         <IconSearch src={assets.search} onClick={openSearchBarClickHandler} />
-        <Icon src={settings} />
-        <Icon src={notifications} />
+        <Icon src={settings} data-tip data-for="comingSoonTip" />
+        <Icon src={notifications} data-tip data-for="comingSoonTip" />
+        <ReactTooltip id="comingSoonTip" place="top" effect="solid">
+          coming soon...
+        </ReactTooltip>
+
         <Account
           onClick={() =>
             logout({
