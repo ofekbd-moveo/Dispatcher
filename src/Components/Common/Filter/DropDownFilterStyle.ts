@@ -78,6 +78,7 @@ export const FilterList = styled.div`
   height: 47px;
   @media screen and (max-width: 768px) {
     height: 0;
+    display: none;
   }
 `;
 

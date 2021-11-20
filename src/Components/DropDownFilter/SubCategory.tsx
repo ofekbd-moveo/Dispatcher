@@ -53,8 +53,8 @@ export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
 
   return (
     <SubCategoryContainer>
-      <DropDownContainer>
-        <DropDownHeader onClick={() => setIsOpen(!isOpen)}>
+      <DropDownContainer className="DropDownContainer">
+        <DropDownHeader className="DropDownHeader" onClick={() => setIsOpen(!isOpen)}>
           <span>{subCategory}</span>
           <img
             className="drop-down-arrow"
@@ -65,7 +65,7 @@ export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
           (subCategory === DATE_KEY ? (
             <DatePick />
           ) : (
-            <DropDownListContainer>
+            <DropDownListContainer className="DropDownListContainer">
               <DropDownList>{renderFilters(filters)}</DropDownList>
             </DropDownListContainer>
           ))}

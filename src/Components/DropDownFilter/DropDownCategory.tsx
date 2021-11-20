@@ -33,7 +33,7 @@ export const DropDownCategory = () => {
     ));
 
   return (
-    <DropDownContainer>
+    <DropDownContainer className="category">
       <DropDownHeader onClick={() => setIsOpen(!isOpen)}>
         <span>{CategoriesStr[currCategory]}</span>
         <img className="drop-down-arrow" src={assets.dropDownArrow}></img>

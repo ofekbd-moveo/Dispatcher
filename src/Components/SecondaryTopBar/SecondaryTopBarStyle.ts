@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SubCategory } from "../DropDownFilter/SubCategory";
 import { Colors } from "../types";
 
 export const SecondaryTopBarContainer = styled.div`
@@ -14,15 +15,28 @@ export const SecondaryTopBarContainer = styled.div`
   @media screen and (max-width: 768px) {
     display: flex;
   }
+
+  div.DropDownContainer {
+    width: 70px;
+    position: relative;
+    height: 20px;
+  }
+
+  div.DropDownHeader {
+    padding: 0;
+    height: fit-content;
+    margin-bottom: 19px;
+  }
+
+  div.DropDownListContainer {
+    width: 100px;
+    border-radius: 0;
+    li {
+      padding: 10px;
+    }
+  }
 `;
-export const SortByContainer = styled.div`
-  color: ${Colors.PURPLE_BLUE};
-  font-size: 1rem;
-  letter-spacing: 0.015625rem;
-`;
-export const DropDownArrowIcon = styled.img`
-  margin-left: 8px;
-`;
+
 export const FilterBarIcon = styled.img``;
 
 export const FilterBarIconContainer = styled.div``;

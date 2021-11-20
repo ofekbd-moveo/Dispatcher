@@ -1,23 +1,17 @@
-import {
-  DropDownArrowIcon,
-  FilterBarIcon,
-  FilterBarIconContainer,
-  SecondaryTopBarContainer,
-  SortByContainer,
-} from "./SecondaryTopBarStyle";
+import { FilterBarIcon, FilterBarIconContainer, SecondaryTopBarContainer } from "./SecondaryTopBarStyle";
 import assets from "../../Utils/assets";
-import { SORT_BY_TITLE } from "../constants";
-import { ISecondaryTopBar } from "../types";
+import { Categories, ISecondaryTopBar } from "../types";
+import { SubCategory } from "../DropDownFilter/SubCategory";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 export const SecondaryTopBar = (props: ISecondaryTopBar): JSX.Element => {
   const { openFilterBarClickHandler } = props;
+  const currCategory = useSelector((state: RootState) => state.news.currCategory);
 
   return (
     <SecondaryTopBarContainer>
-      <SortByContainer>
-        {SORT_BY_TITLE}
-        <DropDownArrowIcon src={assets.dropDownArrow} />
-      </SortByContainer>
+      {currCategory === Categories.everything ? <SubCategory subCategory={"sortBy"} /> : <div></div>}
       <FilterBarIconContainer onClick={openFilterBarClickHandler}>
         <FilterBarIcon src={assets.filter} />
       </FilterBarIconContainer>

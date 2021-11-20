@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { Colors } from "../types";
 
-export const DropDownContainer = styled.div`
+export const DropDownContainer = styled.div<{ className: string }>`
   width: 190px;
   @media screen and (max-width: 768px) {
-    display: none;
+    display: ${(props) => (props.className === "category" ? "none" : "")};
   }
+
   .react-datepicker {
     right: 7px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
@@ -112,6 +113,7 @@ export const SubCategoryList = styled.div`
 
   @media screen and (max-width: 768px) {
     height: 0;
+    display: none;
   }
 `;
 
