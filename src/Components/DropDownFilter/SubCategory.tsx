@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { filterCardsData } from "../../store/indexFuncs";
 import { DatePick } from "../Common/Date/Date";
 import { DATE_KEY } from "../constants";
+import { getKeyOfVal } from "../../Utils/HelpFunctions/helpFunc";
 
 export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
   const { subCategory } = props;
@@ -42,7 +43,7 @@ export const SubCategory = (props: IDropDownSubCategory): JSX.Element => {
 
   const renderFilters = (filters: string[]) => {
     return filters.map((filter: string, key: number) => {
-      const isSelectedFilter = selectedFilters[currCategory][subCategory].includes(filter);
+      const isSelectedFilter = selectedFilters[currCategory][subCategory].includes(getKeyOfVal(subCategory, filter));
       return (
         <ListItem key={key} isSelected={isSelectedFilter} onClick={() => selectedClickHandler(filter)}>
           {filter}

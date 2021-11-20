@@ -1,7 +1,7 @@
 import axios from "axios";
 import _ from "lodash";
 import { newsActions } from ".";
-import { API_KEY, API_URL, COUNTRY } from "../Components/constants";
+import { API_KEY, API_URL, COUNTRY, SOURCES } from "../Components/constants";
 import { Categories, CategoriesStr, ICard } from "../Components/types";
 import { convertCategoryToApiLabel, convertToParamsStr } from "../Utils/HelpFunctions/casting";
 
@@ -9,7 +9,8 @@ export const initCardsData = () => async (dispatch: any, getState: any) => {
   //Get client Entry Country
   const ipApiRes = await fetch("http://ip-api.com/json", { method: "GET" });
   const entryCountryStr = (await ipApiRes.json()).country as keyof typeof COUNTRY;
-  const entryCountryApi = COUNTRY[entryCountryStr];
+  const entryCountryApi = Object.keys(COUNTRY).find((key) => COUNTRY[key] === entryCountryStr);
+
   const API_CATEGORY = convertCategoryToApiLabel(getState().news.currCategory);
 
   const URL = API_URL + API_CATEGORY + "?country=" + entryCountryApi + "&apiKey=" + API_KEY;
@@ -37,11 +38,14 @@ export const initSources = () => async (dispatch: any, getState: any) => {
     .get(URL)
     .then((res) => {
       if (res.status === 200) {
-        let sourcesData = [];
+        // let sourcesData = [];
         for (const source of res.data.sources) {
-          sourcesData.push(source.name);
+          // sourcesData.push(source.name);
+          const id = source.id;
+          SOURCES[id] = source.name;
         }
-        dispatch(newsActions.setSources(sourcesData));
+        // dispatch(newsActions.setSources(sourcesData));
+        dispatch(newsActions.setSources(Object.values(SOURCES)));
       }
     })
     .catch((error) => {

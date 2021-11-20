@@ -60,7 +60,7 @@ export const convertToParamsStr = (currCategory: string, selectedFilters: TFilte
         continue;
       }
       params += selectedFilters[currCategory][subCategory].reduce(
-        (acc: string, curr: string) => acc + subCategory + "=" + convertFilterToApiLabel(subCategory, curr) + "&",
+        (acc: string, curr: string) => acc + subCategory + "=" + curr + "&",
         ""
       );
     }

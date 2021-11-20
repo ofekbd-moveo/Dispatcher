@@ -1,8 +1,16 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { Categories, ICard, TFiltersOptions } from "../Components/types";
 import _ from "lodash";
-import { DATE_KEY, initializedAllFiltersOptions, initializedSelectedFilters } from "../Components/constants";
+import {
+  COUNTRY,
+  DATE_KEY,
+  initializedAllFiltersOptions,
+  initializedSelectedFilters,
+  SOURCES,
+} from "../Components/constants";
 import { loadLocalStorageState, setLocalStorageState } from "../Utils/CustomHooks/LocalStorage";
+import { categories } from "../Components/DispatcherPage/Mock";
+import { SubCategory } from "../Components/DropDownFilter/SubCategory";
 
 const initializedRecentSearches = loadLocalStorageState();
 
@@ -42,9 +50,19 @@ const newsSlice = createSlice({
     },
 
     toogleFilter(state, action) {
-      const { subCategory, filter } = action.payload;
+      let { subCategory, filter } = action.payload;
 
       let filtersList = state.selectedFilters[state.currCategory][subCategory];
+
+      switch (subCategory) {
+        case "country":
+          filter = Object.keys(COUNTRY).find((key) => COUNTRY[key] === filter);
+          break;
+        case "sources":
+          filter = Object.keys(SOURCES).find((key) => SOURCES[key] === filter);
+          break;
+      }
+
       const isSelectedFilter = filtersList.includes(filter);
 
       state.selectedFilters[state.currCategory][subCategory] = isSelectedFilter

@@ -1,4 +1,4 @@
-import { doughnutData, lineData } from "../../Components/constants";
+import { COUNTRY, doughnutData, lineData, SOURCES } from "../../Components/constants";
 import { ICard, IDoughnutChart, ILineChart, TFiltersOptions } from "../../Components/types";
 import { formateChartDate } from "./casting";
 
@@ -53,4 +53,34 @@ export const calcGraphs = (
       datasets: [{ ...lineData.datasets[0], data: Object.values(datesOccurrences) }],
     },
   });
+};
+
+export const getKeyOfVal = (subCategory: string, val: string) => {
+  let res;
+  switch (subCategory) {
+    case "country":
+      res = Object.keys(COUNTRY).find((key) => COUNTRY[key] === val);
+
+      break;
+    case "sources":
+      res = Object.keys(SOURCES).find((key) => SOURCES[key] === val);
+      break;
+  }
+
+  return res ? res : val;
+};
+
+export const getValOfKey = (subCategory: string, val: string) => {
+  let res;
+  switch (subCategory) {
+    case "country":
+      res = COUNTRY[val];
+
+      break;
+    case "sources":
+      res = SOURCES[val];
+      break;
+  }
+
+  return res ? res : val;
 };

@@ -10,22 +10,20 @@ import {
 } from "./types";
 
 export const COUNTRY: { [item: string]: string } = {
-  Argentina: "ar",
-  Australia: "au",
-  Austria: "at",
-  Belgium: "be",
-  Brazil: "br",
-  Canada: "ca",
-  China: "cn",
-  Israel: "il",
-  USA: "us",
+  ar: "Argentina",
+  au: "Australia",
+  at: "Austria",
+  be: "Belgium",
+  br: "Brazil",
+  ca: "Canada",
+  cn: "China",
+  il: "Israel",
 };
+export let SOURCES: { [item: string]: string } = {};
 export const LANGUAGE: { [item: string]: string } = {
-  Arabic: "ar",
-  English: "en",
-  French: "fr",
-  Italian: "it",
-  Hebrew: "he",
+  ar: "Arabic",
+  en: "English",
+  fr: "French",
 };
 export const SORT_BY: { [item: string]: string } = {
   relevancy: "relevancy",
@@ -44,14 +42,14 @@ export const CATEGORY: { [item: string]: string } = {
 };
 export const initializedAllFiltersOptions: TFiltersOptions = {
   everything: {
-    sortBy: Object.keys(SORT_BY),
+    sortBy: Object.values(SORT_BY),
     dates: [],
     sources: [],
-    language: Object.keys(LANGUAGE),
+    language: Object.values(LANGUAGE),
   },
   topHeadline: {
-    country: Object.keys(COUNTRY),
-    category: Object.keys(CATEGORY),
+    country: Object.values(COUNTRY),
+    category: Object.values(CATEGORY),
     sources: [],
   },
 };
