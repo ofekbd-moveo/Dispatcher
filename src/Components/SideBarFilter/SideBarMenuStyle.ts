@@ -5,7 +5,7 @@ export const BackDrop = styled.div<{ isFilterMenuOpen: boolean }>`
   position: absolute;
   width: 100%;
   height: 100vh;
-  z-index: 10;
+  z-index: 100;
   background: rgba(48, 48, 50, 0.7);
   ${(props) =>
     props.isFilterMenuOpen

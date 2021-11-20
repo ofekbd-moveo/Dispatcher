@@ -42,7 +42,11 @@ export const DispatcherPage = (): JSX.Element => {
   return (
     <>
       <ModalError errMsg={errorMsg}></ModalError>
-      <SearchSmallScreen isMenuOpen={isSearchMenuOpen} closeSearchBarClickHandler={() => toggleSearchBar(false)} />
+      <SearchSmallScreen
+        isMenuOpen={isSearchMenuOpen}
+        closeSearchBarClickHandler={() => toggleSearchBar(false)}
+        openFilterBarClickHandler={() => toggleFilterBar(true)}
+      />
 
       <SideBarFilter
         isFilterMenuOpen={isFilterMenuOpen}

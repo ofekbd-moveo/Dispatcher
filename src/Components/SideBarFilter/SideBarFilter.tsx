@@ -103,7 +103,7 @@ export const SideBarFilter = (props: ISideBarFilter) => {
             className={buttonType.PRIMARY}
             isArrowVisible={false}
             content="VIEW RESULTS"
-            onClickHandler={() => {}}
+            onClickHandler={closeFilterBarClickHandler}
           ></Button>
         </Footer>
       </SideBarContainer>
