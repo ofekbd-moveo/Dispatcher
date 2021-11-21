@@ -106,7 +106,7 @@ export const RowContainer = styled.div<{ isSelected?: boolean }>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid ${Colors.LIGHT_PURPLE_GRAY};
+  border-bottom: 1px solid ${(props) => (props.isSelected ? Colors.WHITE : Colors.LIGHT_PURPLE_GRAY)};
   padding: 11px 19px;
   background: ${(props) => (props.isSelected ? Colors.LIGHT_GRAY : Colors.WHITE)};
 `;
@@ -121,6 +121,10 @@ export const FilterListContainer = styled.div`
   opacity: 0.85;
   font-size: 0.875rem;
   font-weight: 200;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 50px;
 `;
 
 export const BackArrow = styled.img`

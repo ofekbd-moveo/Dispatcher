@@ -6,9 +6,6 @@ export const SearchSmallScreenContainer = styled.form`
   right: 0;
   height: 100%;
   width: 100%;
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* flex-direction: column; */
   z-index: 100;
   background: ${Colors.GHOST_WHITE};
   transition: width ease-in-out 1s;

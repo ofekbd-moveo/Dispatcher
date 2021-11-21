@@ -103,6 +103,7 @@ export const ListItem = styled.li<{ isSelected?: boolean }>`
   font-size: 0.75rem;
   line-height: 0.75rem;
   letter-spacing: 0.00625rem;
+  border-bottom: 1px solid ${(props) => (props.isSelected ? Colors.WHITE : "none")};
   background: ${(props) => (props.isSelected ? Colors.LIGHT_GRAY : Colors.WHITE)};
   &:hover {
     background-color: fade(${Colors.LIGHT_PURPLE_GRAY}, 40%);
