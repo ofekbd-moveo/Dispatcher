@@ -8,6 +8,7 @@ import {
   DropDownListContainer,
   ListItem,
   SubCategoryContainer,
+  Title,
 } from "./DropDownFilterStyle";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";

@@ -3,7 +3,7 @@ import { TopBarContainer, LogoIcon, IconList, Icon, Account, LogoAndSearchContai
 import settings from "../../Utils/assets/settings.svg";
 import notifications from "../../Utils/assets/notifications.svg";
 import assets from "../../Utils/assets";
-import { ITopBar } from "../types";
+import { Colors, ITopBar } from "../types";
 import { useAuth0 } from "@auth0/auth0-react";
 import ReactTooltip from "react-tooltip";
 
@@ -28,7 +28,15 @@ const TopBar = (props: ITopBar): JSX.Element => {
         <IconSearch src={assets.search} onClick={openSearchBarClickHandler} />
         <Icon src={settings} data-tip data-for="comingSoonTip" />
         <Icon src={notifications} data-tip data-for="comingSoonTip" />
-        <ReactTooltip id="comingSoonTip" place="top" effect="solid">
+        <ReactTooltip
+          id="comingSoonTip"
+          className="tooltip"
+          place="bottom"
+          effect="solid"
+          offset={{ bottom: 7, left: 10 }}
+          backgroundColor={Colors.WHITE}
+          textColor={Colors.PURPLE_BLUE}
+        >
           coming soon...
         </ReactTooltip>
 
@@ -38,9 +46,22 @@ const TopBar = (props: ITopBar): JSX.Element => {
               returnTo: window.location.origin,
             })
           }
+          data-tip
+          data-for="logoutTip"
         >
           {ACCOUNT_LETTERS}
         </Account>
+        <ReactTooltip
+          id="logoutTip"
+          className="tooltip"
+          place="bottom"
+          effect="solid"
+          offset={{ bottom: 7, left: 10 }}
+          backgroundColor={Colors.WHITE}
+          textColor={Colors.PURPLE_BLUE}
+        >
+          log out
+        </ReactTooltip>
       </IconList>
     </TopBarContainer>
   );

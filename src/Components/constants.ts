@@ -137,7 +137,7 @@ export const startDateIndexRange = [5, 15];
 export const endDateIndexRange = [19, 29];
 
 export const API_URL = "https://newsapi.org/v2/";
-export const API_KEY = "23505bb23f6c49fcbc29b13770fae175";
+export const API_KEY = "fc30f4ba09eb4775af717dad7d32b7a3";
 
 // fc30f4ba09eb4775af717dad7d32b7a3
 //d299469ecdb548a88e2c5f0fde8c080d

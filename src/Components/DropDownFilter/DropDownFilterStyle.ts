@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Colors } from "../types";
 
 export const DropDownContainer = styled.div<{ className: string }>`
-  width: 190px;
+  width: min(20vw, 190px);
+
   @media screen and (max-width: 768px) {
     display: ${(props) => (props.className === "category" ? "none" : "")};
   }
@@ -47,6 +48,7 @@ export const DropDownHeader = styled.div`
   font-weight: 500;
   border-radius: 10px;
   border: none;
+  white-space: nowrap;
   font-size: 0.875rem;
   letter-spacing: 0.015625rem;
   color: ${Colors.PURPLE_BLUE};
@@ -62,6 +64,9 @@ export const DropDownHeader = styled.div`
   }
   &:hover {
     cursor: pointer;
+  }
+  .span-title {
+    margin-right: 16px;
   }
 `;
 
@@ -119,4 +124,8 @@ export const SubCategoryList = styled.div`
 
 export const SubCategoryContainer = styled.div`
   margin-right: 20px;
+`;
+
+export const Title = styled.span`
+  margin-right: 16px;
 `;

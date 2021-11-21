@@ -11,6 +11,7 @@ import { CATEGORY_TITLE, DATE_KEY, MAIN_TITLE } from "../constants";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { DatePick } from "../Common/Date/Date";
+import { getKeyOfVal } from "../../Utils/HelpFunctions/helpFunc";
 
 export const SideBarFilter = (props: ISideBarFilter) => {
   const { isFilterMenuOpen, closeFilterBarClickHandler } = props;
@@ -44,7 +45,9 @@ export const SideBarFilter = (props: ISideBarFilter) => {
     const filters = allFiltersOptions[currCategory][currSubCategory];
 
     return filters.map((filter, key) => {
-      const isAllreadySelected = selectedFilters[currCategory][currSubCategory].includes(filter);
+      const isAllreadySelected = selectedFilters[currCategory][currSubCategory].includes(
+        getKeyOfVal(currSubCategory, filter)
+      );
 
       return (
         <SubCategoryFilter

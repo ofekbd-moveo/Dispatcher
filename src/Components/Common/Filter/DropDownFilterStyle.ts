@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Colors } from "../../types";
 
 export const DropDownContainer = styled.div`
-  width: 190px;
+  /* width: 190px; */
+  width: min(20vw, 190px);
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -15,6 +16,7 @@ export const DropDownHeader = styled.div`
   font-weight: 500;
   border-radius: 10px;
   border: none;
+  white-space: nowrap;
   font-size: 0.875rem;
   letter-spacing: 0.015625rem;
   color: ${Colors.PURPLE_BLUE};

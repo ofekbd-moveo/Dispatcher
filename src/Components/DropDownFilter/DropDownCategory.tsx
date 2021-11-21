@@ -35,7 +35,7 @@ export const DropDownCategory = () => {
   return (
     <DropDownContainer className="category">
       <DropDownHeader onClick={() => setIsOpen(!isOpen)}>
-        <span>{CategoriesStr[currCategory]}</span>
+        <span className="span-title">{CategoriesStr[currCategory]}</span>
         <img className="drop-down-arrow" src={assets.dropDownArrow}></img>
       </DropDownHeader>
       {isOpen && (
