@@ -47,6 +47,7 @@ export const ContentContainer = styled.div`
   width: 80%;
   @media screen and (max-width: 480px) {
     width: auto;
+    white-space: pre-wrap;
   }
 `;
 

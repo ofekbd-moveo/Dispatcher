@@ -21,6 +21,7 @@ import { ChangeEvent, useState } from "react";
 import { SecondaryTopBar } from "../SecondaryTopBar/SecondaryTopBar";
 import CardList from "../Card/CardList";
 import { NoData } from "../NoData/NoData";
+import { upperCase } from "lodash";
 
 export interface ISreachSmallScreen {
   isMenuOpen: boolean;
@@ -62,6 +63,7 @@ export const SearchSmallScreen = (props: ISreachSmallScreen): JSX.Element => {
     dispatch(filterCardsData());
 
     setIsSearching(true);
+    dispatch(newsActions.setSearceInput(`"${upperCase(searchInput)}"`));
     // //close search sidebar
     // closeSearchBarClickHandler();
   };
