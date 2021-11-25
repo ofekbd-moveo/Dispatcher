@@ -73,9 +73,13 @@ export type doughnutDataType = {
 };
 
 export const doughnutOptions = {
-  responsive: true,
-  // maintainAspectRatio: false,
-  cutout: 40,
+  // responsive: true,
+  // cutout: 40,
+  // options: {
+  cutout: "80%",
+  plugins: {
+    legend: false as any,
+  },
 };
 
 export const barOptions = {
@@ -86,9 +90,30 @@ export const barOptions = {
 export const lineOptions = {
   responsive: true,
   maintainAspectRatio: false,
+  plugins: {
+    legend: false as any,
+  },
   scales: {
+    x: {
+      display: true,
+      borderColor: "white",
+      grid: {
+        display: false,
+        borderColor: "white",
+      },
+      ticks: {
+        display: true,
+      },
+    },
     y: {
+      display: false,
       beginAtZero: true,
+      grid: {
+        display: false,
+      },
+      ticks: {
+        display: true,
+      },
     },
   },
 };

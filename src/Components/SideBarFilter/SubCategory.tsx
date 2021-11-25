@@ -1,11 +1,17 @@
+import { upperCase, upperFirst } from "lodash";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 import { formatDateRange } from "../../Utils/HelpFunctions/casting";
 import { getKeyOfVal, getValOfKey } from "../../Utils/HelpFunctions/helpFunc";
 import { DATE_KEY } from "../constants";
-import { ISubCategory } from "../types";
+import { Categories, ISubCategory } from "../types";
 import { FilterListContainer, RowContainer, RowTitle } from "./SideBarMenuStyle";
 
 export const SubCategory = (props: ISubCategory) => {
   const { subCategory, filters, setMenuTitle, setCurrSubCategory } = props;
+  const selectedFilters = useSelector((state: RootState) => state.news.selectedFilters);
+  const allFiltersOptions = useSelector((state: RootState) => state.news.allFiltersOptions);
+  const currCategory = useSelector((state: RootState) => state.news.currCategory);
 
   const convertFiltersArrToString = () => {
     if (filters) {
@@ -15,13 +21,34 @@ export const SubCategory = (props: ISubCategory) => {
   };
 
   const subCategoryClickHandler = () => {
-    setMenuTitle(subCategory);
-    setCurrSubCategory(subCategory);
+    if (
+      (currCategory === Categories.topHeadline &&
+        subCategory === "sources" &&
+        selectedFilters[currCategory]["category"] &&
+        selectedFilters[currCategory]["category"].length === 0 &&
+        selectedFilters[currCategory]["country"] &&
+        selectedFilters[currCategory]["country"].length === 0) ||
+      ((subCategory === "country" || subCategory === "category") &&
+        selectedFilters[currCategory]["sources"] &&
+        selectedFilters[currCategory]["sources"].length === 0) ||
+      currCategory === Categories.everything
+    ) {
+      setMenuTitle(subCategory);
+      setCurrSubCategory(subCategory);
+    }
   };
+  const isDisable =
+    (currCategory === Categories.topHeadline &&
+      subCategory === "sources" &&
+      ((selectedFilters[currCategory]["category"] && selectedFilters[currCategory]["category"].length !== 0) ||
+        (selectedFilters[currCategory]["country"] && selectedFilters[currCategory]["country"].length !== 0))) ||
+    ((subCategory === "country" || subCategory === "category") &&
+      selectedFilters[currCategory]["sources"] &&
+      selectedFilters[currCategory]["sources"].length !== 0);
 
   return (
-    <RowContainer onClick={subCategoryClickHandler}>
-      <RowTitle>{subCategory}</RowTitle>
+    <RowContainer id={isDisable ? "disable" : ""} onClick={subCategoryClickHandler}>
+      <RowTitle>{upperFirst(subCategory === "sortBy" ? "sort by" : subCategory)}</RowTitle>
       <FilterListContainer>{convertFiltersArrToString()}</FilterListContainer>
     </RowContainer>
   );

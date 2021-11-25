@@ -10,7 +10,8 @@ export const NoDataContainer = styled.div<{ type: NoDataType }>`
   }
 `;
 
-export const NoDataMsg = styled.h1`
+export const NoDataMsg = styled.p`
   font-size: 1.125rem;
   color: ${Colors.PURPLE_BLUE};
+  padding-top: 18px;
 `;

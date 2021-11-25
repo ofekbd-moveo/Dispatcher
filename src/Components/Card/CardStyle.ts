@@ -64,7 +64,7 @@ export const CardContainer = styled.div`
 
   @media (max-width: 480px) {
     flex-direction: column;
-    margin: 5% 0;
+    margin: 0 0 5% 0;
   }
 `;
 

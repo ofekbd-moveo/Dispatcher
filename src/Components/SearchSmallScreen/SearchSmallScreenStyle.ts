@@ -51,9 +51,12 @@ export const RemoveIcon = styled.img`
 export const SearchInputArea = styled.input`
   border: none;
   outline: none;
-  width: 80%;
+  width: 250px;
   font-size: 1.125rem;
   vertical-align: super;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
 `;
 
 export const TitleContainer = styled.div`

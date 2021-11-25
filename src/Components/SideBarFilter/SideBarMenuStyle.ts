@@ -43,6 +43,9 @@ export const SideBarContainer = styled.div<{ isFilterMenuOpen: boolean }>`
   white-space: nowrap;
   width: ${(props) => (props.isFilterMenuOpen ? 40 : 0)}%;
   @media screen and (max-width: 768px) {
+    width: ${(props) => (props.isFilterMenuOpen ? 50 : 0)}%;
+  }
+  @media screen and (max-width: 480px) {
     width: ${(props) => (props.isFilterMenuOpen ? 80 : 0)}%;
   }
 
@@ -109,6 +112,11 @@ export const RowContainer = styled.div<{ isSelected?: boolean }>`
   border-bottom: 1px solid ${(props) => (props.isSelected ? Colors.WHITE : Colors.LIGHT_PURPLE_GRAY)};
   padding: 11px 19px;
   background: ${(props) => (props.isSelected ? Colors.LIGHT_GRAY : Colors.WHITE)};
+  &#disable {
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;
 
 export const RowTitle = styled.h2`

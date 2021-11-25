@@ -9,6 +9,8 @@ import exit from "./exit.svg";
 import filter from "./filter.svg";
 import asterisk from "./asterisk.svg";
 import calendar from "./calendar.svg";
+import img_missing from "./img_placeholder.jpeg";
+import filterActive from "./filterActive.svg";
 
 const assets = {
   arrowRight,
@@ -22,6 +24,8 @@ const assets = {
   filter,
   asterisk,
   calendar,
+  img_missing,
+  filterActive,
 };
 
 export default assets;

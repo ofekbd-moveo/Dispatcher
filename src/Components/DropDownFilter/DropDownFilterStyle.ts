@@ -58,6 +58,11 @@ export const DropDownHeader = styled.div`
   justify-content: space-between;
   margin-bottom: 6.5px;
 
+  &#disable {
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
   &.drop-down-arrow {
     width: 7px;
     height: 14px;
@@ -67,6 +72,17 @@ export const DropDownHeader = styled.div`
   }
   .span-title {
     margin-right: 16px;
+  }
+`;
+
+export const DropDownFilterTitle = styled.span`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 120px;
+  &.sort-by-disable {
+    color: #5a5a89;
+    opacity: 0.3;
   }
 `;
 

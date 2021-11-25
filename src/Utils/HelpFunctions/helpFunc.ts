@@ -1,4 +1,4 @@
-import { COUNTRY, doughnutData, lineData, SOURCES } from "../../Components/constants";
+import { COUNTRY, doughnutData, LANGUAGE, lineData, SOURCES } from "../../Components/constants";
 import { ICard, IDoughnutChart, ILineChart, TFiltersOptions } from "../../Components/types";
 import { formateChartDate } from "./casting";
 
@@ -60,10 +60,12 @@ export const getKeyOfVal = (subCategory: string, val: string) => {
   switch (subCategory) {
     case "country":
       res = Object.keys(COUNTRY).find((key) => COUNTRY[key] === val);
-
       break;
     case "sources":
       res = Object.keys(SOURCES).find((key) => SOURCES[key] === val);
+      break;
+    case "language":
+      res = Object.keys(LANGUAGE).find((key) => LANGUAGE[key] === val);
       break;
   }
 
@@ -79,6 +81,9 @@ export const getValOfKey = (subCategory: string, val: string) => {
       break;
     case "sources":
       res = SOURCES[val];
+      break;
+    case "language":
+      res = LANGUAGE[val];
       break;
   }
 

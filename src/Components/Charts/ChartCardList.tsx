@@ -13,7 +13,8 @@ const ChartCardList = (): JSX.Element => {
   const [lineChart, setLineChart] = useState(initLineChart);
   const [barChart, setBarChart] = useState(initBarChart);
 
-  const charts: TChartCard[] = [doughnutChart, lineChart, barChart];
+  const charts: TChartCard[] = [doughnutChart, lineChart];
+  // , barChart];
 
   const cards = useSelector((state: RootState) => state.news.cards);
 

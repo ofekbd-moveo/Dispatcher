@@ -17,13 +17,23 @@ export const COUNTRY: { [item: string]: string } = {
   br: "Brazil",
   ca: "Canada",
   cn: "China",
+  co: "Colombia",
   il: "Israel",
+  fr: "France",
+  de: "Germany",
 };
 export let SOURCES: { [item: string]: string } = {};
 export const LANGUAGE: { [item: string]: string } = {
   ar: "Arabic",
   en: "English",
   fr: "French",
+  he: "Hebrew",
+  de: "German",
+  es: "Spanish",
+  it: "Italian",
+  pt: "Portuguese",
+  ru: "Russian",
+  zh: "Chinese",
 };
 export const SORT_BY: { [item: string]: string } = {
   relevancy: "relevancy",
@@ -67,6 +77,19 @@ export const initializedSelectedFilters: TFiltersOptions = {
     sources: [],
   },
 };
+// 151, 160, 240
+export const doughnutColors = [
+  "rgba(221, 243, 254)", //light blu
+  "rgba(96, 63, 139)", //purple
+  "rgba(123, 178, 201)",
+  "rgba(255, 174, 54)", //light orenge
+  "rgba(3, 0, 53)", //dark nevy
+  "rgba(151, 160, 240)", //light purple
+  "rgba(246, 123, 80)",
+  "rgba(131, 139, 194)",
+  "rgba(172, 238, 243)",
+  "rgba(52, 58, 110)", //nevy
+];
 
 export const doughnutData: doughnutDataType = {
   labels: [],
@@ -74,22 +97,18 @@ export const doughnutData: doughnutDataType = {
     {
       label: "Sum",
       data: [],
-      backgroundColor: [
-        "rgba(221, 243, 254, 0.5)",
-        "rgba(255, 152, 0, 0.5)",
-        "rgba(3, 0, 53, 0.5)",
-        "rgba(52, 58, 110, 0.5)",
-      ],
-      borderColor: ["rgba(221, 243, 254, 1)", "rgba(255, 152, 0, 1)", "rgba(3, 0, 53, 1)", "rgba(52, 58, 110, 1)"],
-      borderWidth: 2,
+      backgroundColor: doughnutColors,
+      // ["rgba(221, 243, 254)", "rgba(255, 152, 0)", "rgba(3, 0, 53)", "rgba(52, 58, 110)"],
+      borderWidth: 1,
       hoverBackgroundColor: [
-        "rgba(221, 243, 254, 0.8)",
-        "rgba(255, 152, 0, 0.8)",
-        "rgba(3, 0, 53, 0.8)",
-        "rgba(52, 58, 110, 0.8)",
+        "rgba(220, 210, 204,0.8)",
+        // "rgba(221, 243, 254, 0.8)",
+        // "rgba(255, 152, 0, 0.8)",
+        // "rgba(3, 0, 53, 0.8)",
+        // "rgba(52, 58, 110, 0.8)",
       ],
-      hoverOffset: 5,
-      cutout: "80%",
+      hoverOffset: 4,
+      cutout: "90%",
     },
   ],
 };
@@ -101,8 +120,8 @@ export const lineData: lineDataType = {
       label: "# of articles",
       data: [],
       fill: true,
-      backgroundColor: "rgba(0, 88, 185, 0.2)",
-      borderColor: "rgba(0, 88, 185, 0.7)",
+      backgroundColor: "rgba(0, 88, 185, 0.1)",
+      borderColor: "rgba(0, 88, 185, 1)",
       tension: 1,
     },
   ],
@@ -137,8 +156,12 @@ export const startDateIndexRange = [5, 15];
 export const endDateIndexRange = [19, 29];
 
 export const API_URL = "https://newsapi.org/v2/";
-export const API_KEY = "fc30f4ba09eb4775af717dad7d32b7a3";
+export const API_KEY = "d299469ecdb548a88e2c5f0fde8c080d";
 
-// fc30f4ba09eb4775af717dad7d32b7a3
+//fc30f4ba09eb4775af717dad7d32b7a3
 //d299469ecdb548a88e2c5f0fde8c080d
 //23505bb23f6c49fcbc29b13770fae175
+
+//54ff8210a60c427393c70a91bd0c9b5b
+//1a2ebf23c0b643b38abae6d4c901ca8d
+//7f7a213b13e64725af8b3f2962ecdc83

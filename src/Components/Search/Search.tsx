@@ -60,7 +60,7 @@ const Search = (): JSX.Element => {
     <SearchContainer>
       <SearchLineContainer onSubmit={(e) => submitHandler(e)}>
         <SearchIcon type="image" name="submit" src={assets.search} />
-        <SearchArea placeholder="Search" value={searchInput} onChange={onChangeHandler} />
+        <SearchArea className="seach-area" placeholder="Search" value={searchInput} onChange={onChangeHandler} />
         <div className="vertical-div" />
         <DropDownFilter type={DropDownFilterType.CATEGORY} />
       </SearchLineContainer>

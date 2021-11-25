@@ -6,11 +6,10 @@ import {
   DATE_KEY,
   initializedAllFiltersOptions,
   initializedSelectedFilters,
+  LANGUAGE,
   SOURCES,
 } from "../Components/constants";
 import { loadLocalStorageState, setLocalStorageState } from "../Utils/CustomHooks/LocalStorage";
-import { categories } from "../Components/DispatcherPage/Mock";
-import { SubCategory } from "../Components/DropDownFilter/SubCategory";
 
 const initializedRecentSearches = loadLocalStorageState();
 
@@ -26,6 +25,7 @@ interface TNews {
   isInitial: boolean;
   isErrorOccur: boolean;
   errorMsg: string;
+  pageNum: number;
 }
 const initializedNews: TNews = {
   currCategory: Categories.topHeadline,
@@ -39,6 +39,7 @@ const initializedNews: TNews = {
   isInitial: true,
   isErrorOccur: false,
   errorMsg: "",
+  pageNum: 2,
 };
 
 const newsSlice = createSlice({
@@ -60,6 +61,9 @@ const newsSlice = createSlice({
           break;
         case "sources":
           filter = Object.keys(SOURCES).find((key) => SOURCES[key] === filter);
+          break;
+        case "language":
+          filter = Object.keys(LANGUAGE).find((key) => LANGUAGE[key] === filter);
           break;
       }
 
@@ -106,6 +110,9 @@ const newsSlice = createSlice({
     resetErrorHandler(state) {
       state.errorMsg = "";
       state.isErrorOccur = false;
+    },
+    setPageNum(state, action) {
+      state.pageNum = action.payload;
     },
   },
 });

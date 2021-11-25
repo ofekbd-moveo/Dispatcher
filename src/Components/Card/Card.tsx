@@ -4,6 +4,7 @@ import Button from "../Common/Button/Button";
 import { buttonType, ICard } from "../types";
 import { formateDate } from "../../Utils/HelpFunctions/casting";
 import { tagsMock } from "../DispatcherPage/Mock";
+import assets from "../../Utils/assets";
 
 const Card = (props: ICard): JSX.Element => {
   const { source, author, title, description, url, urlToImage, publishedAt, content } = props;
@@ -12,11 +13,13 @@ const Card = (props: ICard): JSX.Element => {
 
   return (
     <CardContainer>
-      <Image src={urlToImage}></Image>
-
+      <Image
+        src={urlToImage !== "null" && urlToImage !== null && urlToImage !== "" ? urlToImage : assets.img_missing}
+        onError={() => `src='${assets.img_missing}'`}
+      ></Image>
       <ContentContainer>
         <Date>{formateDate(publishedAt)}</Date>
-        <TagList tags={tagsMock} />
+        {/* <TagList tags={tagsMock} /> */}
         <Title>{title}</Title>
         <Source>{source.name}</Source>
         <Description>{description}</Description>

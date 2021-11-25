@@ -37,6 +37,9 @@ export const SecondaryTopBarContainer = styled.div`
   }
 `;
 
-export const FilterBarIcon = styled.img``;
+export const FilterBarIcon = styled.img`
+  height: 28px;
+  width: 28px;
+`;
 
 export const FilterBarIconContainer = styled.div``;

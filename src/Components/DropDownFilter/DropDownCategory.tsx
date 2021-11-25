@@ -12,6 +12,7 @@ import { RootState } from "../../store";
 import { newsActions } from "../../store/index";
 import { useDispatch } from "react-redux";
 import { CategoriesStr } from "../types";
+import { filterCardsData } from "../../store/indexFuncs";
 
 export const DropDownCategory = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,7 @@ export const DropDownCategory = () => {
 
   const selectedClickHandler = (category: string) => {
     dispatch(newsActions.changeCategory(category));
+    dispatch(filterCardsData());
     setIsOpen(!isOpen);
   };
 

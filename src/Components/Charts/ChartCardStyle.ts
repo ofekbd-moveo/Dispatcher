@@ -13,7 +13,9 @@ export const ChartCardContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-export const ChartContainer = styled.div``;
+export const ChartContainer = styled.div`
+  text-align: -webkit-center;
+`;
 
 export const Divider = styled.div`
   border: 2px solid ${Colors.PURPLE_BLUE};
@@ -27,4 +29,12 @@ export const ChartTitle = styled.h1`
   font-weight: 700;
   color: ${Colors.BLUISH_BLACK};
   margin-bottom: 10px;
+`;
+
+export const SumTitle = styled.div`
+  position: absolute;
+  color: rgba(3, 0, 53, 1);
+  font-family: "Mulish";
+  letter-spacing: 0.1px;
+  font-size: 14px;
 `;

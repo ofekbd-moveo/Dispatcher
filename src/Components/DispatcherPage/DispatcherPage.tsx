@@ -11,7 +11,7 @@ import TopBar from "../TopBar/TopBar";
 import { ContentContainer, DataContentContainer, Title } from "./DispatcherPageStyle";
 import { DropDownFilter } from "../DropDownFilter/DropDownFilter";
 import { useSelector, useDispatch } from "react-redux";
-import { newsActions, RootState } from "../../store";
+import { RootState } from "../../store";
 import { initCardsData, initSources } from "../../store/indexFuncs";
 import { ModalError } from "../Common/ModalError/ModalError";
 
