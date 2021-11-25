@@ -44,6 +44,11 @@ export const Description = styled.p`
 
 export const ContentContainer = styled.div`
   margin: 16.5px;
+  width: 80%;
+  @media screen and (max-width: 480px) {
+    width: auto;
+    white-space: pre-wrap;
+  }
 `;
 
 export const CardContainer = styled.div`
@@ -59,7 +64,7 @@ export const CardContainer = styled.div`
 
   @media (max-width: 480px) {
     flex-direction: column;
-    margin: 5% 0;
+    margin: 0 0 5% 0;
   }
 `;
 

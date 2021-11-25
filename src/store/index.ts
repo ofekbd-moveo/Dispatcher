@@ -1,7 +1,14 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { Categories, ICard, TFiltersOptions } from "../Components/types";
 import _ from "lodash";
-import { DATE_KEY, initializedAllFiltersOptions, initializedSelectedFilters } from "../Components/constants";
+import {
+  COUNTRY,
+  DATE_KEY,
+  initializedAllFiltersOptions,
+  initializedSelectedFilters,
+  LANGUAGE,
+  SOURCES,
+} from "../Components/constants";
 import { loadLocalStorageState, setLocalStorageState } from "../Utils/CustomHooks/LocalStorage";
 
 const initializedRecentSearches = loadLocalStorageState();
@@ -14,6 +21,11 @@ interface TNews {
   isLoading: boolean;
   searchInput: string;
   recentSearches: string[];
+  mainTitle: string;
+  isInitial: boolean;
+  isErrorOccur: boolean;
+  errorMsg: string;
+  pageNum: number;
 }
 const initializedNews: TNews = {
   currCategory: Categories.topHeadline,
@@ -23,6 +35,11 @@ const initializedNews: TNews = {
   isLoading: true,
   searchInput: "",
   recentSearches: initializedRecentSearches,
+  mainTitle: "",
+  isInitial: true,
+  isErrorOccur: false,
+  errorMsg: "",
+  pageNum: 2,
 };
 
 const newsSlice = createSlice({
@@ -34,9 +51,22 @@ const newsSlice = createSlice({
     },
 
     toogleFilter(state, action) {
-      const { subCategory, filter } = action.payload;
+      let { subCategory, filter } = action.payload;
 
       let filtersList = state.selectedFilters[state.currCategory][subCategory];
+
+      switch (subCategory) {
+        case "country":
+          filter = Object.keys(COUNTRY).find((key) => COUNTRY[key] === filter);
+          break;
+        case "sources":
+          filter = Object.keys(SOURCES).find((key) => SOURCES[key] === filter);
+          break;
+        case "language":
+          filter = Object.keys(LANGUAGE).find((key) => LANGUAGE[key] === filter);
+          break;
+      }
+
       const isSelectedFilter = filtersList.includes(filter);
 
       state.selectedFilters[state.currCategory][subCategory] = isSelectedFilter
@@ -49,9 +79,11 @@ const newsSlice = createSlice({
     setCards(state, action) {
       state.cards = action.payload;
     },
-
-    addCards(state, action) {
-      state.cards = _.union(state.cards, action.payload);
+    setMainTitle(state, action) {
+      state.mainTitle = action.payload;
+    },
+    setIsInitial(state, action) {
+      state.isInitial = action.payload;
     },
 
     setSources(state, action) {
@@ -68,6 +100,19 @@ const newsSlice = createSlice({
     setLocalStorageState(state, action) {
       setLocalStorageState(action.payload);
       state.recentSearches = action.payload;
+    },
+    setErrorMsg(state, action) {
+      state.errorMsg = action.payload;
+    },
+    setIsErrorOccur(state, action) {
+      state.isErrorOccur = action.payload;
+    },
+    resetErrorHandler(state) {
+      state.errorMsg = "";
+      state.isErrorOccur = false;
+    },
+    setPageNum(state, action) {
+      state.pageNum = action.payload;
     },
   },
 });

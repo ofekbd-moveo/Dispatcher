@@ -1,9 +1,37 @@
 import styled from "styled-components";
 import { Colors } from "../types";
+
 export const SearchContainer = styled.div`
-  width: clamp(100px, 45vw, 600px);
+  /* width: clamp(100px, 45vw, 600px); */
+  /* width: 45vw; */
+  /* transition: width 1s; */
   @media screen and (max-width: 480px) {
     display: none;
+  }
+
+  animation: 1s ease-in-out shrinkWidth;
+  animation-fill-mode: forwards;
+
+  &:focus-within {
+    animation: 1s ease-in-out extendWidth;
+    animation-fill-mode: forwards;
+  }
+  @keyframes extendWidth {
+    from {
+      width: 33vw;
+    }
+    to {
+      width: 45vw;
+    }
+  }
+
+  @keyframes shrinkWidth {
+    from {
+      width: 45vw;
+    }
+    to {
+      width: 33vw;
+    }
   }
 `;
 
@@ -33,7 +61,15 @@ export const SearchArea = styled.input`
   border: none;
   outline: none;
   width: 80%;
+  /* width: 20vw; */
   border-radius: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
+  /* transition: width 1s;
+  &:focus {
+    width: 25vw !important;
+  } */
 `;
 
 export const RecentSearchesContainer = styled.div`

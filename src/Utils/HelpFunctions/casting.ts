@@ -51,7 +51,24 @@ export const convertFilterToApiLabel = (subCategory: string, filter: string): st
   }
 };
 
-export const convertToParamsStr = (selectedFilters: TFiltersOptions): string[] => {
+export const convertToParamsStr = (currCategory: string, selectedFilters: TFiltersOptions): string => {
+  let params = convertCategoryToApiLabel(currCategory) + "?";
+  for (const subCategory in selectedFilters[currCategory]) {
+    if (selectedFilters[currCategory][subCategory].length !== 0) {
+      if (subCategory === DATE_KEY) {
+        params += selectedFilters[currCategory][subCategory][0];
+        continue;
+      }
+      params += selectedFilters[currCategory][subCategory].reduce(
+        (acc: string, curr: string) => acc + subCategory + "=" + curr + "&",
+        ""
+      );
+    }
+  }
+  return params;
+};
+
+export const convertToMultiParamsStr = (selectedFilters: TFiltersOptions): string[] => {
   let requestsParams = [];
 
   for (const category in selectedFilters) {

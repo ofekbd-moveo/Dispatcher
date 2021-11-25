@@ -22,7 +22,6 @@ export const DatePick = (): JSX.Element => {
       console.log(startStr);
 
       dispatch(newsActions.setDate(`from=${startStr}&to=${endStr}&`));
-
       dispatch(filterCardsData());
     }
   };

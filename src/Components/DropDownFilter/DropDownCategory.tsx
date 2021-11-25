@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { newsActions } from "../../store/index";
 import { useDispatch } from "react-redux";
+import { CategoriesStr } from "../types";
+import { filterCardsData } from "../../store/indexFuncs";
 
 export const DropDownCategory = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,20 +23,21 @@ export const DropDownCategory = () => {
 
   const selectedClickHandler = (category: string) => {
     dispatch(newsActions.changeCategory(category));
+    dispatch(filterCardsData());
     setIsOpen(!isOpen);
   };
 
   const renderCategories = (categories: string[]) =>
     categories.map((category: string, key: number) => (
       <ListItem key={key} onClick={() => selectedClickHandler(category)}>
-        {category}
+        {CategoriesStr[category]}
       </ListItem>
     ));
 
   return (
-    <DropDownContainer>
+    <DropDownContainer className="category">
       <DropDownHeader onClick={() => setIsOpen(!isOpen)}>
-        <span>{currCategory}</span>
+        <span className="span-title">{CategoriesStr[currCategory]}</span>
         <img className="drop-down-arrow" src={assets.dropDownArrow}></img>
       </DropDownHeader>
       {isOpen && (

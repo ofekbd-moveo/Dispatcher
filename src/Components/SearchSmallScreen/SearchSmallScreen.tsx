@@ -1,5 +1,5 @@
 import Button from "../Common/Button/Button";
-import { buttonType } from "../types";
+import { buttonType, NoDataType } from "../types";
 import {
   BackArrow,
   RecentSearchesContainer,
@@ -11,22 +11,30 @@ import {
   TitleContainer,
   RecentSearch,
   UpperContainer,
+  DataContainer,
 } from "./SearchSmallScreenStyle";
 import assets from "../../Utils/assets";
 import { useDispatch, useSelector } from "react-redux";
 import { newsActions, RootState } from "../../store";
 import { filterCardsData } from "../../store/indexFuncs";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
+import { SecondaryTopBar } from "../SecondaryTopBar/SecondaryTopBar";
+import CardList from "../Card/CardList";
+import { NoData } from "../NoData/NoData";
+import { upperCase } from "lodash";
 
 export interface ISreachSmallScreen {
   isMenuOpen: boolean;
   closeSearchBarClickHandler: () => void;
+  openFilterBarClickHandler: () => void;
 }
 export const SearchSmallScreen = (props: ISreachSmallScreen): JSX.Element => {
-  const { isMenuOpen, closeSearchBarClickHandler } = props;
+  const { isMenuOpen, closeSearchBarClickHandler, openFilterBarClickHandler } = props;
+  const [isSearching, setIsSearching] = useState(false);
   const resentSearchesTitle = "RECENT SHEARCHES";
   const searchInput = useSelector((state: RootState) => state.news.searchInput);
   const recentSearches = useSelector((state: RootState) => state.news.recentSearches);
+  const cards = useSelector((state: RootState) => state.news.cards);
 
   const dispatch = useDispatch();
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -54,8 +62,10 @@ export const SearchSmallScreen = (props: ISreachSmallScreen): JSX.Element => {
     //send new api request
     dispatch(filterCardsData());
 
-    //close search sidebar
-    closeSearchBarClickHandler();
+    setIsSearching(true);
+    dispatch(newsActions.setSearceInput(`"${upperCase(searchInput)}"`));
+    // //close search sidebar
+    // closeSearchBarClickHandler();
   };
 
   return (
@@ -63,36 +73,52 @@ export const SearchSmallScreen = (props: ISreachSmallScreen): JSX.Element => {
       <UpperContainer>
         <SearchInputContainer>
           <div className="search-input">
-            <BackArrow src={assets.back} />
+            <BackArrow src={assets.back} onClick={closeSearchBarClickHandler} />
             <SearchInputArea
               placeholder="Search"
               value={searchInput}
               onChange={(e) => onChangeHandler(e)}
             ></SearchInputArea>
           </div>
-          <RemoveIcon src={assets.exit} onClick={closeSearchBarClickHandler} />
+          {isSearching ? (
+            <img src={assets.search} onClick={() => setIsSearching(false)} />
+          ) : (
+            searchInput !== "" && (
+              <RemoveIcon src={assets.exit} onClick={() => dispatch(newsActions.setSearceInput(""))} />
+            )
+          )}
         </SearchInputContainer>
-        <TitleContainer>
-          {resentSearchesTitle}
-          <Button
-            type="button"
-            className={buttonType.TEXT}
-            isArrowVisible={false}
-            content="CLEAR"
-            onClickHandler={() => dispatch(newsActions.setLocalStorageState([]))}
-          ></Button>
-        </TitleContainer>
-        <RecentSearchesContainer>{renderRecentSearchesList(recentSearches)}</RecentSearchesContainer>
+
+        {isSearching ? (
+          <>
+            <SecondaryTopBar openFilterBarClickHandler={openFilterBarClickHandler} />
+            <DataContainer>{cards.length === 0 ? <NoData type={NoDataType.TEXTUAL} /> : <CardList />}</DataContainer>
+          </>
+        ) : (
+          <>
+            <TitleContainer>
+              {resentSearchesTitle}
+              <Button
+                type="button"
+                className={buttonType.TEXT}
+                isArrowVisible={false}
+                content="CLEAR"
+                onClickHandler={() => dispatch(newsActions.setLocalStorageState([]))}
+              ></Button>
+            </TitleContainer>
+            <RecentSearchesContainer>{renderRecentSearchesList(recentSearches)}</RecentSearchesContainer>
+          </>
+        )}
       </UpperContainer>
-      <SearchButtonContainer>
-        <Button
+      {/* <SearchButtonContainer>
+         <Button
           name="submit"
           type="submit"
           className={buttonType.PRIMARY}
           isArrowVisible={false}
           content="SEARCH"
-        ></Button>
-      </SearchButtonContainer>
+        ></Button> 
+      </SearchButtonContainer>*/}
     </SearchSmallScreenContainer>
   );
 };

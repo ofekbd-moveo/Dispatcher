@@ -5,7 +5,7 @@ export const BackDrop = styled.div<{ isFilterMenuOpen: boolean }>`
   position: absolute;
   width: 100%;
   height: 100vh;
-  z-index: 10;
+  z-index: 100;
   background: rgba(48, 48, 50, 0.7);
   ${(props) =>
     props.isFilterMenuOpen
@@ -43,6 +43,9 @@ export const SideBarContainer = styled.div<{ isFilterMenuOpen: boolean }>`
   white-space: nowrap;
   width: ${(props) => (props.isFilterMenuOpen ? 40 : 0)}%;
   @media screen and (max-width: 768px) {
+    width: ${(props) => (props.isFilterMenuOpen ? 50 : 0)}%;
+  }
+  @media screen and (max-width: 480px) {
     width: ${(props) => (props.isFilterMenuOpen ? 80 : 0)}%;
   }
 
@@ -106,9 +109,14 @@ export const RowContainer = styled.div<{ isSelected?: boolean }>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid ${Colors.LIGHT_PURPLE_GRAY};
+  border-bottom: 1px solid ${(props) => (props.isSelected ? Colors.WHITE : Colors.LIGHT_PURPLE_GRAY)};
   padding: 11px 19px;
   background: ${(props) => (props.isSelected ? Colors.LIGHT_GRAY : Colors.WHITE)};
+  &#disable {
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;
 
 export const RowTitle = styled.h2`
@@ -121,6 +129,10 @@ export const FilterListContainer = styled.div`
   opacity: 0.85;
   font-size: 0.875rem;
   font-weight: 200;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 50px;
 `;
 
 export const BackArrow = styled.img`

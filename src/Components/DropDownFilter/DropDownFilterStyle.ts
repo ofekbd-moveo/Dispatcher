@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { Colors } from "../types";
 
-export const DropDownContainer = styled.div`
-  width: 190px;
+export const DropDownContainer = styled.div<{ className: string }>`
+  width: min(20vw, 190px);
+
   @media screen and (max-width: 768px) {
-    display: none;
+    display: ${(props) => (props.className === "category" ? "none" : "")};
   }
+
   .react-datepicker {
     right: 7px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
@@ -46,6 +48,7 @@ export const DropDownHeader = styled.div`
   font-weight: 500;
   border-radius: 10px;
   border: none;
+  white-space: nowrap;
   font-size: 0.875rem;
   letter-spacing: 0.015625rem;
   color: ${Colors.PURPLE_BLUE};
@@ -55,12 +58,31 @@ export const DropDownHeader = styled.div`
   justify-content: space-between;
   margin-bottom: 6.5px;
 
+  &#disable {
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
   &.drop-down-arrow {
     width: 7px;
     height: 14px;
   }
   &:hover {
     cursor: pointer;
+  }
+  .span-title {
+    margin-right: 16px;
+  }
+`;
+
+export const DropDownFilterTitle = styled.span`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 120px;
+  &.sort-by-disable {
+    color: #5a5a89;
+    opacity: 0.3;
   }
 `;
 
@@ -97,6 +119,7 @@ export const ListItem = styled.li<{ isSelected?: boolean }>`
   font-size: 0.75rem;
   line-height: 0.75rem;
   letter-spacing: 0.00625rem;
+  border-bottom: 1px solid ${(props) => (props.isSelected ? Colors.WHITE : "none")};
   background: ${(props) => (props.isSelected ? Colors.LIGHT_GRAY : Colors.WHITE)};
   &:hover {
     background-color: fade(${Colors.LIGHT_PURPLE_GRAY}, 40%);
@@ -112,9 +135,14 @@ export const SubCategoryList = styled.div`
 
   @media screen and (max-width: 768px) {
     height: 0;
+    display: none;
   }
 `;
 
 export const SubCategoryContainer = styled.div`
   margin-right: 20px;
+`;
+
+export const Title = styled.span`
+  margin-right: 16px;
 `;

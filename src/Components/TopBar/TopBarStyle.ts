@@ -8,10 +8,17 @@ export const TopBarContainer = styled.div`
   padding: 12px;
   justify-content: space-between;
   height: 75px;
+  .tooltip {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  .tooltip.place-bottom::after {
+    border: none;
+  }
 `;
 
 export const LogoIcon = styled.img`
-  margin-right: 10%;
+  /* margin-right: 10%; */
+  margin-right: max(calc(12vw - 80px), 10px);
 `;
 
 export const IconList = styled.div`

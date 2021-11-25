@@ -1,6 +1,8 @@
 import { RowContainer, RowTitle } from "./SideBarMenuStyle";
 import { newsActions } from "../../store/index";
 import { useDispatch } from "react-redux";
+import { CategoriesStr } from "../types";
+import { filterCardsData } from "../../store/indexFuncs";
 
 export interface ICategoryFilter {
   isSelected: boolean;
@@ -14,12 +16,13 @@ export const CategoryFilter = (props: ICategoryFilter): JSX.Element => {
 
   const changeCategory = () => {
     dispatch(newsActions.changeCategory(category));
+    dispatch(filterCardsData());
     backClickHandler();
   };
 
   return (
     <RowContainer isSelected={isSelected} onClick={changeCategory}>
-      <RowTitle>{category}</RowTitle>
+      <RowTitle>{CategoriesStr[category]}</RowTitle>
     </RowContainer>
   );
 };

@@ -6,7 +6,8 @@ import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename={process.env.REACT_APP_PUBLIC_URL}>
+    {/* basename={process.env.REACT_APP_PUBLIC_URL} */}
+    <Router>
       <Auth0ProviderWithHistory>
         <App />
       </Auth0ProviderWithHistory>

@@ -1,5 +1,5 @@
 import { CATEGORY_TITLE } from "../constants";
-import { ICategory } from "../types";
+import { CategoriesStr, ICategory } from "../types";
 import { FilterListContainer, RowContainer, RowTitle } from "./SideBarMenuStyle";
 
 export const Category = (props: ICategory) => {
@@ -10,7 +10,7 @@ export const Category = (props: ICategory) => {
   return (
     <RowContainer onClick={renderCategory}>
       <RowTitle>{CATEGORY_TITLE}</RowTitle>
-      <FilterListContainer>{category}</FilterListContainer>
+      <FilterListContainer>{CategoriesStr[category]}</FilterListContainer>
     </RowContainer>
   );
 };

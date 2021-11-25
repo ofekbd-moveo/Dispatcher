@@ -4,14 +4,10 @@ import { Colors } from "../types";
 export const SearchSmallScreenContainer = styled.form`
   position: absolute;
   right: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
   z-index: 100;
   background: ${Colors.GHOST_WHITE};
-
   transition: width ease-in-out 1s;
   white-space: nowrap;
 
@@ -26,7 +22,7 @@ export const SearchSmallScreenContainer = styled.form`
 `;
 
 export const UpperContainer = styled.div`
-  height: 90%;
+  height: 100%;
 `;
 
 export const SearchInputContainer = styled.div`
@@ -55,9 +51,12 @@ export const RemoveIcon = styled.img`
 export const SearchInputArea = styled.input`
   border: none;
   outline: none;
-  width: 80%;
+  width: 250px;
   font-size: 1.125rem;
   vertical-align: super;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
 `;
 
 export const TitleContainer = styled.div`
@@ -96,4 +95,8 @@ export const SearchButtonContainer = styled.div`
   padding: 10px;
   text-align: center;
   width: 100%;
+`;
+
+export const DataContainer = styled.div`
+  margin: 5px 10px;
 `;
