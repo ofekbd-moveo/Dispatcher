@@ -1,4 +1,4 @@
-import dateFormat from "dateformat";
+// import dateFormat from "dateformat";
 import moment from "moment";
 import {
   CATEGORY,
@@ -13,11 +13,14 @@ import { Categories, TFiltersOptions } from "../../Components/types";
 
 export const formateDate = (dateText: string): string => {
   const date = new Date(dateText);
-  return dateFormat(date, "dddd mmm d, yyyy");
+  // return dateFormat(date, "dddd mmm d, yyyy");
+
+  return moment(date).format("dddd MMM d, yyyy");
 };
 export const formateChartDate = (dateText: string): string => {
   const date = new Date(dateText);
-  return dateFormat(date, "mmm d");
+  // return dateFormat(date, "mmm d");
+  return moment(date).format("MMM d");
 };
 
 export const formatDateRange = (dateStr: string) => {
