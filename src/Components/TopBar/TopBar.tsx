@@ -12,11 +12,13 @@ const TopBar = (props: ITopBar): JSX.Element => {
 
   const { logout } = useAuth0();
   const { user } = useAuth0();
-  const ACCOUNT_LETTERS = (user?.name as string)
-    .split(" ")
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase();
+  const ACCOUNT_LETTERS = user?.name
+    ? (user?.name as string)
+        .split(" ")
+        .map((word) => word[0])
+        .join("")
+        .toUpperCase()
+    : "USER";
 
   return (
     <TopBarContainer>
